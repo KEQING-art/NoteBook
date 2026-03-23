@@ -24,3 +24,4 @@ git remote add remotename 远程仓库的URL  （将git 与远程仓库关联起
 git remote -v （查看git 关联的远程仓库）
 git remote rm origin （删除现在git关联的远程仓库）
 rm -rf 文件名  （删掉文件）
+
