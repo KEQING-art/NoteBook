@@ -9,6 +9,8 @@ mkdir 文件名 （创建一个空的文件夹）
 4
 cd /d 进入D盘
 cd project 进入磁盘内的文件夹
+cd .. （返回上一级目录（可以连用））
+cd - （返回之前所在目录）
 5
 git config --global user.name "keqing" （设置git 的全局用户名）
 6
