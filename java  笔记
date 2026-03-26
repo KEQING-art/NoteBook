@@ -1,5 +1,7 @@
+1
 使用vaddin作为前端。
-要用包路径引入 vaddin 的功能 例如imoort com.vaadin.flow.component.orderedlayout.VerticalLayout . 这样就可以在类中继承父类，进而使用父类的方法例如
+要用包路径引入 vaddin 的功能 例如imoort com.vaadin.flow.component.orderedlayout.VerticalLayout . 这样就可以在类中继承父类，进而使用父类的方法例如:
+这个例子时使用 vaddin 创建空白填空
 mport com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
@@ -11,3 +13,9 @@ public class Todo extends VerticalLayout {
         TextField field = new TextField();
      }
 }
+
+2
+java 中 使用vaddin将填空充实一下
+setLabel(String label)
+setPlaceholder(String placeholder)
+setValue(String value)
