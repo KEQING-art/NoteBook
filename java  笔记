@@ -13,9 +13,22 @@ public class Todo extends VerticalLayout {
         TextField field = new TextField();
      }
 }
-
-2
 java 中 使用vaddin将填空充实一下
 setLabel(String label)
 setPlaceholder(String placeholder)
 setValue(String value)
+
+
+
+2
+使用按钮 并用 Lambda 函数使button 能返回一些值
+import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.textfield.TextField;
+
+Button button = new Button(); 
+button.addClickListener(click->{ // 这就是调用lambda 函数
+   String userNameText = 
+})
+在这个函数里面 可以使用getValue 来获取填空的值 例如 Steing text = field.getValue();
+
+小知识 给 text 赋值时 可以在这么赋 = text + "login";
