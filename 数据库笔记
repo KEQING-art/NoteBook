@@ -1,0 +1,20 @@
+use 名字 使用数据库
+Drop database 名字 删除数据库
+
+MYSQR 里的数据类型： 
+字符类型 char , varchar , text  
+整型：bigint , int , smallint , tinyint , bit
+浮点型:float , double[(m,d)]    //m 代表可以使用的数字位数，d 代表小数点可以有几位
+定点型 decima[(m,d)]
+日期时间型：date YYYY-MM-DD , time HH:MM;SS , year YYYY , datetime YYYY-MM-DD HH:MM:SS , timestamp YYYY-MM-DD HH:MM:SS
+
+约束
+NULL 或 NOT NULL 如果表的某列被指定 NULL 则数据不被允许省略，反之     
+PRIMARY KEY 主键
+UNIQUE 唯一性
+CHECK 取值范围
+DEFAULT 默认值
+FOREIGN KEY 外键
+
+CREAT [TEMPORARY] table [IF NOT EXIST] 名字 (表名 数据类型 逻辑表达式|参数 ，...);  创建表
+Insert INTO 表名 （，，）
