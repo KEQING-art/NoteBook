@@ -29,6 +29,7 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.textfield.TextField;
 
 Button button = new Button(); 
+button.setText() 给按钮起个名
 button.addClickListener(click->{ // 这就是调用lambda 函数
    String userNameText = 填空名.getValue();
     Boolean text = "admin".equals(userNameText); 布尔判断
