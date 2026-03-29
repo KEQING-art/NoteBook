@@ -11,7 +11,10 @@ public class Todo extends VerticalLayout {
     public Todo() {
 
         TextField field = new TextField();
-     }
+        field.setLable(); 给一个填空起个名
+        field.setPlaceholder();给一个填空一个初始信息
+        add(field);        
+    }
 }
 java 中 使用vaddin将填空充实一下
 setLabel(String label)
@@ -27,8 +30,39 @@ import com.vaadin.flow.component.textfield.TextField;
 
 Button button = new Button(); 
 button.addClickListener(click->{ // 这就是调用lambda 函数
-   String userNameText = 
+   String userNameText = 填空名.getValue();
+    Boolean text = "admin".equals(userNameText); 布尔判断
+    if(test){
+        System.out.print(...);
+    }
 })
+add(button); 添加这个按钮
 在这个函数里面 可以使用getValue 来获取填空的值 例如 Steing text = field.getValue();
 
-小知识 给 text 赋值时 可以在这么赋 = text + "login";
+额外小知识
+给 text 赋值时 可以在这么赋 = text + "login";
+"admin".equals(...); 这个函数可以判断两个数据等不等
+
+
+
+3 
+使用按钮的提示信息
+import com.vaadin.flow.component.notification.Notification; 这是要引入的头文件
+Notification notification  = new Notification(); 声明一个提示信息
+notification.setDuration(); 这是提示信息的存在时间，空格里填时间
+loginbutton.addClickListener(click->{ // 使用 lambda 语法
+    。。。。
+   notification.setText(提示信息的内容);
+   notification.open(); 使提示信息现实；
+})
+
+4
+在类中使用自创方法
+public Todo(){
+    onlogin();
+}
+puclic void onlogin(){
+    代码块
+}
+
+5
