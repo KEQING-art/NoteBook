@@ -1,1 +1,16 @@
+列表
+无序列表
+<ul type = "disc/circle/square'>
+  <li type = "同上"></li> 这里的type 不会影响下面的
+</ul>
 
+有序列表
+<ol type = "i/I/A/a/1" start = "">
+  <li type = "同上" start = ""></li> 这里的start 会影响后面的数值
+</ol>
+
+定义列表
+<dl>
+  <dt> </dt>  // 这是标题
+  <dd> </dd>  // 这是内容
+</dl>
