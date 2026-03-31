@@ -1,3 +1,4 @@
+1
 列表
 无序列表
 <ul type = "disc/circle/square'>
@@ -16,6 +17,8 @@
 </dl>
 
 小知识 : <br>的作用是换行 
+
+2
 超链接
 <a href = "url" name = "url 的名称" title = “提示信息” target = "指定打开窗口"> </a>
 target 取值 ： _self 当前打开  _blank  全新的空白窗口打开  _top 在顶层框架打开，也就是在跟框架打开  _parent 在当前框架的上一层打开 framename 在指定框架或浮动框架打开
@@ -23,3 +26,31 @@ target 取值 ： _self 当前打开  _blank  全新的空白窗口打开  _top 
 创建HTTP 文档下载链接 <a href = "地址"> 链接内容</a>
 创建图片超链接 <a href = "url"> <img src = "图片地址"> </a>
 创建电子邮件超链接 <a href = "mailto: E-mail地址 > </a>
+创建页面书签链接   
+<a name = 书签名">书签标签</a> 这相当于目录  
+<a href = "#书签名">书签标题</a> 这相当于 标题
+
+<h..>标签
+<h1 align = "right/left/center">
+
+3
+浮动框架
+<iframe 属性名称 = "value" name = "iframename"> </iframename>
+<a href = "target.html" target = "iframename"> </a> 这是在浮动窗下标记链接
+iframe 的属性有  src 表示显示的网站 name 表示浮窗名称  width 和 height 表示窗口的宽高  frameborder 表示窗口的边框  scrolling 设置滚动条
+
+4 
+图像与多媒体
+<img src = "" alt = "替代文本">
+属性 name 图片名称  height width  图片的长宽高  align 图片对其方式  border 图片边框  hsapce 定义图片左侧和右侧的空白  vspace 定义图像顶部和底部的空白
+其中align 的呢容可以是 top/middle/bottom/left/center/right
+
+设置图像的热区链接 
+<img src = "图像地址" usemap = "#映射图像名称">
+<map name="映射图像名称" id="映射图像名称">
+  <area shape = "热区形状" coords = "热区坐标" href = "uel">
+</map>
+
+5 
+<style type = "text/css">
+这里里面可以添加 body {text - align:center;} 等等
