@@ -67,3 +67,25 @@ puclic void onlogin(){
 }
 
 5
+java 中的 == 判断的是地址和内容是否相等
+java 中的 .equals() 判断的是内容是否相等
+
+这是 字符串的使用方法
+char text = str1.charAt(2);// 查找字符串里的第二个字符
+int text1 = str1.indexOf("va"); //检索str 第一次出现的位置
+int text2 = str1.indexOf("va"，2);//从第几个字符查找va
+int tet3 = str1.lastIndexOf("笔"); //查找“笔”最后出现的位置
+int text4 = str1.lastIndexOf("笔",4);//从第几个字符，查找“笔”最后出现的位子
+boolean text5 = str1.startsWith("学习",4);//判断从第4位开始的字符串是否以指定前缀开始
+boolean text6 = str1.startsWith("java");//判断字符串是否以指定字符开始
+boolean text7 = str1.endsWith("笔记");//测试字符是否以指定后缀结尾
+Srting text8 = str1.subString(begin,end);//截取一段从哪里开始，到哪里结束的字符串
+byte[] text10 = str1.getByte(); 将一个字符串变成byte数组
+String text11 = str1.replace("字符1","字符2"); 将一个字符串中的字符1 替换成字符2
+String[] text12 = str1.split(" "); 按照指定字符拆分字符串
+char[] text13 = str1.toCharArray(); 将一个字符串转化为字符数组
+String text14 = str1.toLowerCase();将一个字符串中的大写字母全部转换成小写字母，将方法换成toUppeerCase();则反了过来
+String text15 = str1.trim(); 将一个字符串中的空格清除
+
+
+StringBuffer 和 String 差不多，用法都差不多。 StringBuffer 是引用变量
