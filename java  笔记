@@ -90,3 +90,37 @@ StringBuffer 和 String 差不多，用法都差不多。 StringBuffer 是引用
 
 6
 java 里定义时间
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;//这是时间接口
+LocalDateTime 声明一个有日期，有时间的变量
+LocalDate 声明一个有日期的变量
+LocalTime 声明一个有时间的变量
+LocalDateTime time = new LocalDateTime.now(); 为一个变量赋值
+
+import java.time.format.DateTimeFormatter;//这是自定义时间接口，也可以将一个字符串时间转为时间
+DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");//自定义时间格式
+String nowStr = dtf.format(now);
+
+DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+String str1 = "2021-05-01 18:00:00";//将一个时间字符串转为时间需要格式一样
+LocalDateTime time = LocalDateTime.parse(str1,dtf);
+
+
+7
+接口指的就是这些：
+import java.util.ArrayList;//这是ArrayList 数组，他的大小可以随时改变，且里面的内容也可以是别的。 LIst接口可以操控ArrayList数组
+import java.util.List; List 接口实现需要ArrayList实现
+演示：
+// 创建一个字符串集合，用于存储多个字符串
+List<String> strings = new ArrayList<>();
+
+// 创建一个用户集合，用于存储多个用户信息
+List<User> users = new ArrayList<>();
+
+List方法有：
+public void add(int index,E element):将指定的元素，添加到该集合中的指定位置上。
+public E get(int index):返回集合中指定位置的元素。
+public E remove(int index):移除列表中指定位置的元素，返回的是被移除的元素。
+public int size():取得集合里元素的个数，list.size( );
+public void clear():删除所有元素,list.clear();
