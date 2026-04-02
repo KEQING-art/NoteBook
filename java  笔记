@@ -86,6 +86,7 @@ String[] text12 = str1.split(" "); 按照指定字符拆分字符串
 char[] text13 = str1.toCharArray(); 将一个字符串转化为字符数组
 String text14 = str1.toLowerCase();将一个字符串中的大写字母全部转换成小写字母，将方法换成toUppeerCase();则反了过来
 String text15 = str1.trim(); 将一个字符串中的空格清除
-
-
 StringBuffer 和 String 差不多，用法都差不多。 StringBuffer 是引用变量
+
+6
+java 里定义时间
