@@ -124,3 +124,13 @@ public E get(int index):返回集合中指定位置的元素。
 public E remove(int index):移除列表中指定位置的元素，返回的是被移除的元素。
 public int size():取得集合里元素的个数，list.size( );
 public void clear():删除所有元素,list.clear();
+
+8
+对于集合一类的数据 可以使用加强for循环
+for(元素类型 新的变量名 : 集合){
+    System.out.println(变量名.方法)；
+}
+
+9
+静态变量 static 在一个类中，只会有一个对象存在
+可以选择创建一个静态集合，然后把数据存进去
