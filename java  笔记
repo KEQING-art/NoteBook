@@ -134,3 +134,30 @@ for(元素类型 新的变量名 : 集合){
 9
 静态变量 static 在一个类中，只会有一个对象存在
 可以选择创建一个静态集合，然后把数据存进去
+
+10
+使用Apache commons读取文件 需要导入
+<dependency>
+  <groupId>commons-io</groupId>
+  <artifactId>commons-io</artifactId>
+  <version>2.10.0</version>
+</dependency>
+
+
+文件读取
+声明文件 //这相当于把nameFile 当成了指针
+File nameFile = new File("路径");
+复制文件内容给变量
+try{
+    String content = FileUtils.readFileToString(nameFile,"utf-8");  // 注意在try 里面声明的变量不能在外部使用
+}catch(Exception e){
+    e.printtStacktrace(content);
+}
+
+文件路径
+./  这相当于回到当前项目的根路径
+./name.txt 回到当前项目的根路径的name.txt 的文件
+
+
+
+
