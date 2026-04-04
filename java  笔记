@@ -151,13 +151,18 @@ File nameFile = new File("路径");
 try{
     String content = FileUtils.readFileToString(nameFile,"utf-8");  // 注意在try 里面声明的变量不能在外部使用
 }catch(Exception e){
-    e.printtStacktrace(content);
+    e.printtStacktrace();
 }
 
 文件路径
 ./  这相当于回到当前项目的根路径
 ./name.txt 回到当前项目的根路径的name.txt 的文件
 
-
+List<String> lines = null;
+try{
+ lines = FileUtils.readLines(文件, "utf-8"); //将文件以字符串的形式一行一行赋值
+}catch(Exception e){
+    e.printtStacktrace();
+}
 
 
