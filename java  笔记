@@ -135,6 +135,11 @@ for(元素类型 新的变量名 : 集合){
 静态变量 static 在一个类中，只会有一个对象存在
 可以选择创建一个静态集合，然后把数据存进去
 
+
+
+
+
+2026 4 5 
 10
 使用Apache commons读取文件 需要导入
 <dependency>
@@ -150,19 +155,47 @@ File nameFile = new File("路径");
 复制文件内容给变量
 try{
     String content = FileUtils.readFileToString(nameFile,"utf-8");  // 注意在try 里面声明的变量不能在外部使用
+    lines = FileUtils.readLines(文件, "utf-8"); //将文件以字符串的形式一行一行赋值
 }catch(Exception e){
     e.printtStacktrace();
 }
+
 
 文件路径
 ./  这相当于回到当前项目的根路径
 ./name.txt 回到当前项目的根路径的name.txt 的文件
 
-List<String> lines = null;
+
+11
+使用jason 进行文件读取  // 其实就是读取文件信息
+
+声明一个jason 实例
+ObjectMapper mapper = new ObjectMapper();//我们可以使用这个实例使用jason的方法
+
+序列化：
 try{
- lines = FileUtils.readLines(文件, "utf-8"); //将文件以字符串的形式一行一行赋值
+    String text = mapper.writeValueAsString(可以是个集合，也可以是个对象); // 把对象变成son 格式字符串存入文件中
 }catch(Exception e){
-    e.printtStacktrace();
+    e.printStacktrace();
 }
+
+需要注意的是 User 变量 （自己定义的类）
+User 具有LocalDateTime gmtCreated 变量
+想让他以yyyy-MM-dd HH:mm:ss 打出就需要在这个变量上加
+@JsonDeserialize(using = LocalDateTimeDeserializer.class)
+@JsonSerialize(using = LocalDateTimeSerializer.class)
+@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+
+反序列化：
+想要完成反序列化，就需要先将文件内容转化成字符串
+try{
+    String content = FileUtils.readFileToString(文件指针, "utf-8"); 序列化// 这么写的前提是文件内容已经是 json 格式
+    List<User> users = mapper.readValue(content,ty new TypeReference<List<User>>() { // 如果User 是个对象那么 写User.class
+            });// 这是把jason 格式的文件序列化
+}catch(Exception e){
+    
+}
+
+
 
 
