@@ -172,7 +172,7 @@ try{
 声明一个jason 实例
 ObjectMapper mapper = new ObjectMapper();//我们可以使用这个实例使用jason的方法
 
-序列化：
+序列化：//将一个对象转化成字符串存入文件
 try{
     String text = mapper.writeValueAsString(可以是个集合，也可以是个对象); // 把对象变成son 格式字符串存入文件中
 }catch(Exception e){
@@ -186,7 +186,7 @@ User 具有LocalDateTime gmtCreated 变量
 @JsonSerialize(using = LocalDateTimeSerializer.class)
 @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
 
-反序列化：
+反序列化： //将将文件提取出的jason 格式内容 转化为集合或对象
 想要完成反序列化，就需要先将文件内容转化成字符串
 try{
     String content = FileUtils.readFileToString(文件指针, "utf-8"); 序列化// 这么写的前提是文件内容已经是 json 格式
@@ -196,6 +196,9 @@ try{
     
 }
 
-
+想将字符串写入文件
+FileUtils.writeStringToFile(文件指针,字符串,"utf-8");
+像删除文件
+FileUtils.delete(文件指针);
 
 
