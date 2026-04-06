@@ -56,6 +56,7 @@ loginbutton.addClickListener(click->{ // 使用 lambda 语法
    notification.open(); 使提示信息现实；
 })
 
+按钮小知识：        button.setThemeName("tertiary"); // 将这个按钮的框架删掉
 }
 
 
@@ -215,5 +216,57 @@ FileUtils.writeStringToFile(文件指针,字符串,"utf-8");
 像删除文件
 FileUtils.delete(文件指针);
 
+}
 
+2026 4 6
+设置一个登录页面{
+import com.vaadin.flow.component.html.H1;// 标题的接口
+import com.vaadin.flow.component.html.Label;//提示信息的接口
+import com.vaadin.flow.component.login.LoginForm;//登录主体的接口
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;//水平容器的接口
+import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.router.Route;
+
+public class LoginView extends VerticalLayout { // 继承垂直结构
+    private LoginForm login = new LoginForm();// 设置一个登录主体，最好加private
+    public LoginView(){
+
+        setJustifyContentMode(JustifyContentMode.CENTER);
+        setAlignItems(Alignment.CENTER); // 这两句话将页面的所有组件在各个方向居中
+
+        login.setForgotPasswordButtonVisible(false);// 这句话将页面的主体的忘记密码删除
+        
+        H1 h1 = new H1("TODO"); // 设置一个标题
+
+        HorizontalLayout regLayOut = new HorizontalLayout(); // 设置一个水平容器
+        regLayOut.setAlignItems(Alignment.CENTER); // 将水平容器的内容居中对齐，在垂直方向
+        Label tip = new Label("Don't have an account?"); // 提示信息
+        Button button = new Button("Sign up here");  // 设置一个按钮
+        button.setThemeName("tertiary"); // 将这个按钮的框架删掉
+        regLayOut.add( tip,button); // 将两个组件添加到水平容器中
+
+        add(h1,regLayOut,logiwn); // 按顺序添加全部组件
+    }
+}
+设置一个的登录主体
+import com.vaadin.flow.component.login.LoginForm;//登录主体的接口
+    private LoginForm login = new LoginForm();// 设置一个登录主体，最好加private
+    login.setForgotPasswordButtonVisible(false);// 这句话将页面的主体的忘记密码删除
+
+设置一个标题
+import com.vaadin.flow.component.html.H1;// 标题的接口
+H1 h1 = new H1("TODO"); // 设置一个标题
+
+设置一个提示信息
+import com.vaadin.flow.component.html.Label;//提示信息的接口
+Label tip = new Label("Don't have an account?"); // 提示信息
+
+设置一个水平容器
+HorizontalLayout regLayOut = new HorizontalLayout(); // 设置一个水平容器
+regLayOut.setAlignItems(Alignment.CENTER); // 将水平容器的内容居中对齐，在垂直方向
+regLayOut.add( tip,button); // 将两个组件添加到水平容器中
+
+将组件陆续添加进去
+add.(); //添加顺序就是排列顺序
 }
