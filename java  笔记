@@ -154,7 +154,7 @@ for(元素类型 新的变量名 : 集合){
 File nameFile = new File("路径");
 复制文件内容给变量
 try{
-    String content = FileUtils.readFileToString(nameFile,"utf-8");  // 注意在try 里面声明的变量不能在外部使用
+    String content = FileUtils.readFileToString(nameFile,"utf-8"或者java.nio.charset.StandardCharsets.UTF_8);  // 注意在try 里面声明的变量不能在外部使用
     lines = FileUtils.readLines(文件, "utf-8"); //将文件以字符串的形式一行一行赋值
 }catch(Exception e){
     e.printtStacktrace();
