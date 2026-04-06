@@ -1,7 +1,8 @@
 1
-使用vaddin作为前端。
-要用包路径引入 vaddin 的功能 例如imoort com.vaadin.flow.component.orderedlayout.VerticalLayout . 这样就可以在类中继承父类，进而使用父类的方法例如:
-这个例子时使用 vaddin 创建空白填空
+java中如何创建一个注册页面{
+使用vaadin作为前端。
+要用包路径引入 vaadin 的功能 例如imoort com.vaadin.flow.component.orderedlayout.VerticalLayout . 这样就可以在类中继承父类，进而使用父类的方法例如:
+这个例子时使用 vaddin 创建空白填空 // 创建空白也是页面的一部分
 mport com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
@@ -23,7 +24,7 @@ setValue(String value)
 
 
 
-2
+2 // 为注册页设置一个按钮
 使用按钮 并用 Lambda 函数使button 能返回一些值
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.textfield.TextField;
@@ -44,12 +45,10 @@ add(button); 添加这个按钮
 给 text 赋值时 可以在这么赋 = text + "login";
 "admin".equals(...); 这个函数可以判断两个数据等不等
 
-
-
 3 
 使用按钮的提示信息
 import com.vaadin.flow.component.notification.Notification; 这是要引入的头文件
-Notification notification  = new Notification(); 声明一个提示信息
+Notification notification  = new Notification(); 声明一个操作实例
 notification.setDuration(); 这是提示信息的存在时间，空格里填时间
 loginbutton.addClickListener(click->{ // 使用 lambda 语法
     。。。。
@@ -57,16 +56,12 @@ loginbutton.addClickListener(click->{ // 使用 lambda 语法
    notification.open(); 使提示信息现实；
 })
 
-4
-在类中使用自创方法
-public Todo(){
-    onlogin();
-}
-puclic void onlogin(){
-    代码块
 }
 
+
 5
+字符串{/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 java 中的 == 判断的是地址和内容是否相等
 java 中的 .equals() 判断的是内容是否相等
 
@@ -87,9 +82,12 @@ char[] text13 = str1.toCharArray(); 将一个字符串转化为字符数组
 String text14 = str1.toLowerCase();将一个字符串中的大写字母全部转换成小写字母，将方法换成toUppeerCase();则反了过来
 String text15 = str1.trim(); 将一个字符串中的空格清除
 StringBuffer 和 String 差不多，用法都差不多。 StringBuffer 是引用变量
+}
+
 
 6
-java 里定义时间
+类{//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+java 的类里定义时间
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;//这是时间接口
@@ -106,8 +104,20 @@ DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 String str1 = "2021-05-01 18:00:00";//将一个时间字符串转为时间需要格式一样
 LocalDateTime time = LocalDateTime.parse(str1,dtf);
 
+在类中使用构造方法
+public Todo(){
+    onlogin();
+}
+在类中使用普通方法
+puclic void onlogin(){
+    代码块
+}
+}
 
-7
+
+集合{///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+集合小方法 集合名.addAll(另一个集合)；
+1
 接口指的就是这些：
 import java.util.ArrayList;//这是ArrayList 数组，他的大小可以随时改变，且里面的内容也可以是别的。 LIst接口可以操控ArrayList数组
 import java.util.List; List 接口实现需要ArrayList实现
@@ -125,22 +135,25 @@ public E remove(int index):移除列表中指定位置的元素，返回的是�
 public int size():取得集合里元素的个数，list.size( );
 public void clear():删除所有元素,list.clear();
 
-8
+2
 对于集合一类的数据 可以使用加强for循环
 for(元素类型 新的变量名 : 集合){
     System.out.println(变量名.方法)；
 }
 
-9
+3
 静态变量 static 在一个类中，只会有一个对象存在
 可以选择创建一个静态集合，然后把数据存进去
+}
 
 
 
 
+2026 4 5
+文件{///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+文件的小方法 文件指针.exists() 判断文件是否否存在
 
-2026 4 5 
-10
+1
 使用Apache commons读取文件 需要导入
 <dependency>
   <groupId>commons-io</groupId>
@@ -166,8 +179,8 @@ try{
 ./name.txt 回到当前项目的根路径的name.txt 的文件
 
 
-11
-使用jason 进行文件读取  // 其实就是读取文件信息
+2
+使用jason 进行数据的序列化和反序列化
 
 声明一个jason 实例
 ObjectMapper mapper = new ObjectMapper();//我们可以使用这个实例使用jason的方法
@@ -196,9 +209,11 @@ try{
     
 }
 
+3
 想将字符串写入文件
 FileUtils.writeStringToFile(文件指针,字符串,"utf-8");
 像删除文件
 FileUtils.delete(文件指针);
 
 
+}
