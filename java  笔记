@@ -209,6 +209,17 @@ try{
 }catch(Exception e){
     
 }
+反向序列化小知识： 
+若文件是空的，那么反序列化的 String content =FileUtils.readFileToString(文件指针, "utf-8");会报错，想解决这个问题，需要进行判断
+if(content == null||content.trim().isEmpty()){
+    list = new ArrayList<>();
+}else {
+    List<String> users = mapper.readValue(content, new TypeReference<List>() {
+    });
+    list.addAll(users);
+}
+
+
 
 3
 想将字符串写入文件
@@ -293,7 +304,7 @@ public void onLogin(ClickEvent event){  此方法可以点击login 后，提示�
 
 cookie 技术的使用：
 cookie技术用于存储用户状态 // 我们可以在用户点击登陆时记下他的信息
-Cookie cookie = new Cookie("username",userName); // 这是声明一个cookie ,里面的"username" 是创建一个属性， username 指的用户名
+Cookie cookie = new Cookie("username",userName); // 这是声明一个cookie ,里面的"username" 是创建一个页面属性，可以随时被引用， username 指的用户名
 cookie.setPath("/"); // 这句话标宋hicookie 写到根路径下面
 VaadinService.getCurrentResponse().addCookie(cookie); // 这是把cookie 的信息保存下来
 
@@ -307,4 +318,18 @@ public class Todo extends VerticalLayout implements AfterNavigationObserver { �
         ui.navigate("地址");
     })
 }
+
+声明一个垂直容器：
+VerticalLayout todolist = new VerticalLayout(); 
+todolist.add()// 垂直容器里可以添加复选框
+
+声明一个复选框：
+Checkbox checkbox = new Checkbox(字符串); // 复选框就是一个带前框的字符串
+
 }/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+代码可读性：
+{/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+代码可读性：构造方法是标准的入口。把复杂的逻辑（读文件、解析 JSON、循环创建组件）放在构造方法里，符合 Java 的开发规范，别人看代码更容易理解。
+
+}
