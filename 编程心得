@@ -8,3 +8,24 @@
 把两个字符串，一个不能变，把另一个插入到那个不变的里面，用字典顺序，把他们两个以最小的字典顺序合并输出。但其实并不必要把他两个真合并到一起，你只需要把能变得用从小到大排序，然后 把他们两个按从小到大输出就行了
 5
 字符总和问题 要注意变量的纯洁，不要被污染了。
+
+6
+// 下面代码的作用可用于记忆化代码. 这段代码的直观作用是返回第一个有值的坐标, 若是没有有值的返回0坐标
+int index(int num,int n){
+  for(int i = 0;i < n;i++){
+    if(num[i] != 0) return i; 
+  }
+  return 0;
+}
+
+记忆化代码本质是将数据变为可存储，可查询的数据。
+
+8
+c 语言的 long , unsigned long , long long , unsigned long long 
+long 的数据需要加 L  ，引用它需要%ld
+unsigned long 数据需要加 UL  , %lu
+long long 的 数据需要加 LL , %lld
+unsigned long long 的数据需要加 ULL %llu
+
+java 中使用long 
+long 的数据需要L ， 引用他需要 %d;
