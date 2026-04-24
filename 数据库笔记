@@ -16,5 +16,39 @@ CHECK 取值范围
 DEFAULT 默认值
 FOREIGN KEY 外键
 
-CREAT [TEMPORARY] table [IF NOT EXIST] 名字 (表名 数据类型 逻辑表达式|参数 ，...);  创建表
-Insert INTO 表名 （，，）
+表:
+{//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+CREAT [TEMPORARY] table [IF NOT EXIST] 名字 (表名 数据类型 NOT NULL/NOT COMMENT'注释内容'...，...);  创建表
+Insert INTO 表名 （元素名 类型 NULL/NOT NULL ，，） 往表中插入元素
+use 表名 使用表
+desc 表名 展示表的元素
+
+查询表
+{
+select 列 from 表名;  
+列可以是 * ,这的意思是查询所有列 ， 也可以是几个列名例如：sno ,cno
+
+为查询添加条件 where
+select 列 from 表名 where 条件 ;
+条件可以是: >=(数字，字符串都可以使用)  , _ , %， like(模糊查询,供字符串使用), =(精确查询，数字和字符串都可以用,但他会忽略结尾的空格) ,
+示例：select * from student_info where birthday >= '2006-01-01'; 这个的意思是查询比2026年1月1日大的数据，这里的birthday 是字符串
+_      select * from student_info where sname like '张__'; 这个的意思是查询第一个字是张的三个字的字符
+%      select * from student_info where address like '%市%'; 这个的意思是查询中间有个市字的字符
+like  select * from student_info where address like '%市%'; 这个的意思是查询中间有个市字的字符
+=     select count(gender)as 男性数量 from student_info where gender='男';  查询与gender = 男的元素
+
+为查询结果排序
+oder by 列 desc(降序)/asc(升序)
+示例：select * from student_info order by birthday desc;
+
+查询一个创建的列（本质仍然是查询）
+select 函数(列)as 列明 from student_info; 这个意思是，从原有的列通过一个函数创建一个列，这个列叫列明
+函数 ： 总和函数count() , 
+        select count(gender)as 男性数量 from student_info;
+
+为查询结果分类
+select 列名 from student_info group by 列; 这句的意思是 用第二个列将第一个列分类
+示例：select gender,count(gender)as 数量 from student_info group by gender;  这句话的意思是用gender的分类 将 gender 和 数量分类
+}        
+}//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
