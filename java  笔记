@@ -242,9 +242,27 @@ if(content == null||content.trim().isEmpty()){
     list.addAll(users);
 }
 
-
-
 3
+文件的方法
+getName() 获取文件的名字 String
+getParent() 获取父路径 Filr
+getPath() 获取路径名的字符串 String
+isAbsolutr() 检查此路径是否是绝对路径 Boolean
+canRead() 检查此路径是否可以被访问
+canWrite() 检查是否可以修改文件内容
+isDirectory() 检查此文件是否是一个文件夹
+isFile() 检查此文件是否是一个标准文件
+lastModified() 获取此文件最后一次被修改的时间 long
+length() 获取此文件的长度 long
+delete() 删除此路径的文件 Boolean
+list() 获取此文件下的文件名称 和 此文件名称 String[]
+listFiles() 获取此文件的路径 和 其文件下的文件路径 File[]
+mkdir() 创建此抽象路径的指定目录（不会创建父目录） Boolean
+mkdirs() 创建此抽象路径的指定目录(哪怕没有父目录 他也会连带创建) Boolean
+rename(File) 重新命名文件 Boolean
+toString() 获取此文件的字符串名称 String
+equals(文件路径) 检查 括号里的文件路径和指定文件路径是否一样 Boolean
+4
 想将字符串写入文件
 FileUtils.writeStringToFile(文件指针,字符串,"utf-8");
 像删除文件
