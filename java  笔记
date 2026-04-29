@@ -442,7 +442,19 @@ import okhttp3.Request;
     OkHttpClient okHttpClient = new OkHttpClient();
     Request request = new Request.Builder().url(url).build();
     Call call = okHttpClient.newCall(request);
-    String result = call.execuate().body().string(); 获取这个url网站的信息
+    String result = call.execuate().body().string(); 
+    通过以上三步获取这个url网站的信息。
 
+2
+执行post 操作
+Builder builder = new FormBody.Builder(); 设置获取数据的工具
+   
+for(String key:formData.keySet()){ // 这是把信息存储在cuilder里
+      builder.add(key,formData.get(key));
+    }
 
+FormBody formBody = builder.build(); 这是存储信息的容器
+Request request = new Request.Builder().url(url).post(formBody).build();  请求访问的工具
+Call call = okHttpClient.newCall(request);  申请访问
+String result = call.execuate().body().string();  获取信息
 }////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
