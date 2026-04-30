@@ -457,4 +457,24 @@ FormBody formBody = builder.build(); 这是存储信息的容器
 Request request = new Request.Builder().url(url).post(formBody).build();  请求访问的工具
 Call call = okHttpClient.newCall(request);  申请访问
 String result = call.execuate().body().string();  获取信息
+
+3
+提交json 数据
+我们需要现在pom 里引入这段代码
+     <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>fastjson</artifactId>
+        <version>1.2.62</version>
+      </dependency>
+
+private static final MediaType JSON_TYPE = MediaType.parse("application/json;charset utf-8"); 然后我们需要声明一个 ， 这句话的作用是告诉计算机我使用的json格式 
+String param = JSON.toJSONString(datas);我们再把MAP类型的datas转化为json格式 
+RequestBody requestBody = RequestBody.create(JSON_TYPE, param);把json信息存储进去  
+Request request = new Request.Builder().url(url).post(requestBody).build();  设置一个请求访问的工具
+
+这一段代码 ，  call.execuate().body().string();更普遍的写法
+      Response rep = call.execute();
+      String content = rep.body().string();
+
+     call.execuate().body().string(); 获取状态码
 }////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
