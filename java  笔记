@@ -390,7 +390,8 @@ Checkbox checkbox = new Checkbox(字符串); // 复选框就是一个带前框�
 }////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-类{//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+时间
+{//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 1
 java 的类里定义时间
 import java.time.LocalDate;
@@ -442,7 +443,8 @@ import okhttp3.Request;
     OkHttpClient okHttpClient = new OkHttpClient();
     Request request = new Request.Builder().url(url).build();
     Call call = okHttpClient.newCall(request);
-    String result = call.execuate().body().string(); 
+    Response rep = call.execute();
+    String result = response.body().string(); 
     通过以上三步获取这个url网站的信息。
 
 2
@@ -455,8 +457,9 @@ for(String key:formData.keySet()){ // 这是把信息存储在cuilder里
 
 FormBody formBody = builder.build(); 这是存储信息的容器
 Request request = new Request.Builder().url(url).post(formBody).build();  请求访问的工具
-Call call = okHttpClient.newCall(request);  申请访问
-String result = call.execuate().body().string();  获取信息
+Call call = okHttpClient.newCall(request);  准备一个待执行的任务
+    Response rep = call.execute();  立刻执行这个任务并拿到结果
+    String result = response.body().string();   获取信息
 
 3
 提交json 数据
@@ -468,13 +471,21 @@ String result = call.execuate().body().string();  获取信息
       </dependency>
 
 private static final MediaType JSON_TYPE = MediaType.parse("application/json;charset utf-8"); 然后我们需要声明一个 ， 这句话的作用是告诉计算机我使用的json格式 
-String param = JSON.toJSONString(datas);我们再把MAP类型的datas转化为json格式 
-RequestBody requestBody = RequestBody.create(JSON_TYPE, param);把json信息存储进去  
+String param = JSON.toJSONString(datas);  我们再把MAP类型的datas转化为json格式 
+RequestBody requestBody = RequestBody.create(JSON_TYPE, param);  把json信息存储进去  
 Request request = new Request.Builder().url(url).post(requestBody).build();  设置一个请求访问的工具
+Call call = okHttpClient.newCall(request);  准备一个待执行的任务
+Response rep = call.execute();
+String content = rep.body().string();
+call.execuate().body().code(); 获取状态码
 
-这一段代码 ，  call.execuate().body().string();更普遍的写法
-      Response rep = call.execute();
-      String content = rep.body().string();
-
-     call.execuate().body().string(); 获取状态码
+4
+获取图片信息
+图片是由二进制组成的所以我们只需要把获取字符串的流程改动一下就行了
+    OkHttpClient okHttpClient = new OkHttpClient();
+    Request request = new Request.Builder().url(url).build();
+    Call call = okHttpClient.newCall(request);
+    Response rep = call.execute();
+    byte[] bytes = response.body().byte(); 
+    System.out.println(bytes.length);
 }////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
