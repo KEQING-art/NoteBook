@@ -471,7 +471,7 @@ Call call = okHttpClient.newCall(request);  准备一个待执行的任务
       </dependency>
 
 private static final MediaType JSON_TYPE = MediaType.parse("application/json;charset utf-8"); 然后我们需要声明一个 ， 这句话的作用是告诉计算机我使用的json格式 
-String param = JSON.toJSONString(datas);  我们再把MAP类型的datas转化为json格式 
+String param = JSON.toJSONString(datas);  我们再把MAP类型的datas转化为json格式  （要让网页看所以转为JSON格式）
 RequestBody requestBody = RequestBody.create(JSON_TYPE, param);  把json信息存储进去  
 Request request = new Request.Builder().url(url).post(requestBody).build();  设置一个请求访问的工具
 Call call = okHttpClient.newCall(request);  准备一个待执行的任务
@@ -488,4 +488,10 @@ call.execuate().body().code(); 获取状态码
     Response rep = call.execute();
     byte[] bytes = response.body().byte(); 
     System.out.println(bytes.length);
+
+
+6
+fastJson 库
+类型 contentObj = JSON.parseObject(content,类型.class);  将网页获取的JSON信息转化为我们想要的类型
+String param = JSON.toJSONString(datas);  我们再把MAP类型的datas转化为json格式  （要让网页看所以转为JSON格式）
 }////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
