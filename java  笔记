@@ -489,9 +489,15 @@ call.execuate().body().code(); 获取状态码
     byte[] bytes = response.body().byte(); 
     System.out.println(bytes.length);
 
+5
+对于一个 Map 数据 我们使用 .get 方法返回的是object 类型 ， 所以我们接收数据时往往需要强转 
+Map contentObj = JSON.parseObject(content, Map.class); 将json 数据转化为Map类型
+Map dataObj = (Map)contentObj.get("data");
 
 6
 fastJson 库
 类型 contentObj = JSON.parseObject(content,类型.class);  将网页获取的JSON信息转化为我们想要的类型
 String param = JSON.toJSONString(datas);  我们再把MAP类型的datas转化为json格式  （要让网页看所以转为JSON格式）
+json 中 大括号表示对象 / 集合 Map、HashMap、JSONObject      中括号表示数组 / 列表 List、ArrayList、JSONArray
+我们往往把 json的数组类型 转化为java的list集合接口类型
 }////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
