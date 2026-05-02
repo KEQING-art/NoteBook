@@ -536,4 +536,24 @@ byte[] data = asker.getFile(url);
 File file = new File("xzq_201907.xlsx");
 FileOutputStream fileOutputStream = new FileOutputStream(file); // 创建写入工具 ， 如果没有指定文件他会自己创建一个
 fileOutputStream.write(data); 
+
+解析excel文件
+List<Map<Integer,String>> list = EasyExcel.read("china-city-list.xlsx").sheet(0).doReadSync(); // 将excel 文件的sheet0表的内容取出 ，这个集合的每一个元素都是 Map<Integer,String>
+    for (Map<Integer, String> integerStringMap : list) { // 遍历每一行 ， 获取的结果是一个 Map<Integer , String>
+      for (Integer integer : integerStringMap.keySet()){ // 遍历这一行 ，这一行由Map组成
+        String content = integerStringMap.get(integer); 
+        System.out.print(content + " ");
+
+      }
+
+如果们知道excel的具体内容 ， 我们可以使用自己定义的类
+public class DemoData { //// 属性定义的顺序必须与列顺序保持一致
+  private String code1;
+  private String city1;
+  private String code2;
+  private String city2;
+  private String code3;
+  private String city3;
+}
+List<DemoData> sheetDatas = EasyExcel.read("xzq_201907.xlsx").head(DemoData.class).sheet(0).doReadSync(); // 将每一行看成一个DemoData 
 }////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
