@@ -277,7 +277,7 @@ toString() 获取此文件的字符串名称 String
 equals(文件路径) 检查 括号里的文件路径和指定文件路径是否一样 Boolean
 4
 想将字符串写入文件
-FileUtils.writeStringToFile(文件指针,字符串,"utf-8");
+FileUtils.writeStringToFile(文件指针,字符串,"utf-8",ture(这里写true 可以文件内容后面写内容));   没有文件他会自己创建一个文件
 像删除文件
 FileUtils.delete(文件指针);
 }/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -480,7 +480,7 @@ String content = rep.body().string();
 call.execuate().body().code(); 获取状态码
 
 4
-获取图片信息
+获取图片信息(或excel 信息)
 图片是由二进制组成的所以我们只需要把获取字符串的流程改动一下就行了
     OkHttpClient okHttpClient = new OkHttpClient();
     Request request = new Request.Builder().url(url).build();
@@ -505,5 +505,35 @@ json 中 大括号表示对象 / 集合 Map、HashMap、JSONObject      中括�
 如何看待网页的信息
 Map contentObj = JSON.parseObject(content, Map.class); 这个获取的是被大括号包起来的全部信息 ， 因为你获得的是一个大括号所以你要用Map , 但是你可以直接使用大括号里的全部信息
     List lists = (List)contentObj.get("subjects"); 这个获得的是被中括号包起来的全部信息 ， 因为你获得的是一个中括号所以你要用List , 但是你可以直接使用打括号里的全部信息
-    
+
+8
+User-Agent 的作用是证明访问来源是一个网站
+    Request request = new Request.Builder()
+        .url(url).addHeader("User-Agent","http://photo.yupoo.com/")
+        .build();
+Refere 的作用表示请求的来源
+    Request request = new Request.Builder()
+        .url(url).addHeader("Referer","http://photo.yupoo.com/")
+        .build();
+Host 的作用指定了接收请求的服务器的主机名和端口号。
+    Request request = new Request.Builder()
+        .url(url).addHeader("Host"," yupoo.com")
+        .build();
+
+9
+爬取网站信息，写入文件
+import java.io.File;
+import java.io.FileWriter;
+
+写入文本文件
+File file = new File("h.txt");
+FileWriter fileWritter = new FileWriter(file.getName()); // 创建写入工具
+fileWritter.write(content); // 写入
+fileWritter.close(); // 关闭写入
+
+写入excel 文件
+byte[] data = asker.getFile(url);
+File file = new File("xzq_201907.xlsx");
+FileOutputStream fileOutputStream = new FileOutputStream(file); // 创建写入工具 ， 如果没有指定文件他会自己创建一个
+fileOutputStream.write(data); 
 }////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
