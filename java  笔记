@@ -560,5 +560,36 @@ List<DemoData> sheetDatas = EasyExcel.read("xzq_201907.xlsx").head(DemoData.clas
 Cookie
 Cookie 是存储在网页的一段内容 ，它以key=value保存着
 
+我们要想爬取登录后的页面就需要cookie ， 但cookie 是暂时的 ， 不能够长久使用 ， 但我们可以借助Session对象接问题
+  // 用 CookieJar 实现 cookie 的存储，便于登录后请求其它 URL 可以复用
+     这段代码可以实现两个作用 ， 作用一 ， 你登陆了一个网站 ， 这个代码会自动把cookie 保存下来
+                               作用二， 等你下次访问合格网站时 ， 它会自动把cookie 给这个网站
+  private static final OkHttpClient okHttpClient = new OkHttpClient.Builder()
+      .cookieJar(new CookieJar() {
+        // 把登录完毕后的 cookie 存储下来，再次发请求的时候复用
+        private final HashMap<String, List<Cookie>> cookieStore = new HashMap<>();
 
+        @Override
+        public void saveFromResponse(HttpUrl url, List<Cookie> cookies) {
+          cookieStore.put(url.host(), cookies); // 如果这里写mtime.com 他会把所有的cookie 存到mtime.com
+          System.out.println("[saveFromResponse]url.host()=" + url.host());
+        }
+
+        @Override
+        public List<Cookie> loadForRequest(HttpUrl url) {
+          System.out.println("[loadForRequest]url.host()=" + url.host());
+          List<Cookie> cookies = cookieStore.get(url.host());
+          return cookies != null ? cookies : new ArrayList<>();
+        }
+      })
+      .build();
+
+ObjectMapper mapper = new ObjectMapper();
+String jsonBody = null;
+jsonBody = mapper.writeValueAsString(formData); //完成formData 的序列化 ， 将信息保存带jsonBody
+RequestBody body = RequestBody.create(          // 创建 JSON 请求体
+      MediaType.parse("application/json; charset=utf-8"),
+      jsonBody
+);
+Request request = new Request.Builder().url(url).post(body).addHeader("User-Agent","").addHeader("Referer","").build();
 }////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
