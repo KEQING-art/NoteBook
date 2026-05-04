@@ -525,17 +525,24 @@ Host 的作用指定了接收请求的服务器的主机名和端口号。
 import java.io.File;
 import java.io.FileWriter;
 
+
+
 写入文本文件
 File file = new File("h.txt");
 FileWriter fileWritter = new FileWriter(file.getName()); // 创建写入工具
 fileWritter.write(content); // 写入
 fileWritter.close(); // 关闭写入
 
+
+
 写入excel 文件
 byte[] data = asker.getFile(url);
 File file = new File("xzq_201907.xlsx");
 FileOutputStream fileOutputStream = new FileOutputStream(file); // 创建写入工具 ， 如果没有指定文件他会自己创建一个
 fileOutputStream.write(data); 
+
+
+
 
 解析excel文件
 List<Map<Integer,String>> list = EasyExcel.read("china-city-list.xlsx").sheet(0).doReadSync(); // 将excel 文件的sheet0表的内容取出 ，这个集合的每一个元素都是 Map<Integer,String>
@@ -557,9 +564,12 @@ public class DemoData { //// 属性定义的顺序必须与列顺序保持一致
 }
 List<DemoData> sheetDatas = EasyExcel.read("xzq_201907.xlsx").head(DemoData.class).sheet(0).doReadSync(); // 将每一行看成一个DemoData 
 
+
+
 Cookie
 Cookie 是存储在网页的一段内容 ，它以key=value保存着
 
+Session和cookie 保持登录状态与服务器进行通讯
 我们要想爬取登录后的页面就需要cookie ， 但cookie 是暂时的 ， 不能够长久使用 ， 但我们可以借助Session对象接问题
   // 用 CookieJar 实现 cookie 的存储，便于登录后请求其它 URL 可以复用
      这段代码可以实现两个作用 ， 作用一 ， 你登陆了一个网站 ， 这个代码会自动把cookie 保存下来
@@ -593,3 +603,42 @@ RequestBody body = RequestBody.create(          // 创建 JSON 请求体
 );
 Request request = new Request.Builder().url(url).post(body).addHeader("User-Agent","").addHeader("Referer","").build();
 }////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+json 数据
+{////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+json数据是网页看的数据
+
+1
+序列化(把数据变成json 格式)
+方法一
+ObjectMapper mapper = new ObjectMapper();
+String jsonBody = null;
+jsonBody = mapper.writeValueAsString(formData); // 将数据转化成json格式
+
+
+
+方法二
+我们需要引入
+<dependency>
+ <groupId>com.alibaba</groupId>
+ <artifactId>fastjson</artifactId>
+ <version>1.2.62</version>
+</dependency>
+private static final MediaType JSON_TYPE = MediaType.parse("application/json;charset utf-8"); 然后我们需要声明一个 ， 这句话的作用是告诉计算机我使用的json格式 
+String param = JSON.toJSONString(datas);  我们再把MAP类型的datas转化为json格式  （要让网页看所以转为JSON格式）
+
+2
+反序列化（将将文件提取出的jason 格式内容 转化为集合或对象）
+方法一
+String content = FileUtils.readFileToString(文件指针, "utf-8"); 反序列化// 这么写的前提是文件内容已经是 json 格式
+List<User> users = mapper.readValue(content,ty new TypeReference<List<User>>() { // 如果User 是个对象那么 写User.class   // 这是把jason 格式的文件序列化
+
+若文件是空的，那么反序列化的 String content =FileUtils.readFileToString(文件指针, "utf-8");会报错，想解决这个问题，需要进行判断
+if(content == null||content.trim().isEmpty()){
+    list = new ArrayList<>();
+}else {
+    List<String> users = mapper.readValue(content, new TypeReference<List>() {
+    });
+    list.addAll(users);
+}
+}////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
