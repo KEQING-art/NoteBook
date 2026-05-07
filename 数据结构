@@ -14,3 +14,16 @@ while(left <= right){   //left 小于 right 是为了保证目标值一直在 le
   middleValue >= aim ;
   middleValue <= aim ;  
 }
+
+二分查找可以解决有序字符串查找问题
+  public static int find(ArrayList<String> array, String aim) {
+    int left = 0;
+    int right = array.size();
+    while(left <= right){
+      int mid = left + (right - left)/2;
+      if(array.get(mid).compareTo(aim) == 0) {return mid;}
+      else if(array.get(mid).compareTo(aim) < 0) {left = mid + 1;}
+      else{right = mid - 1;}
+    }
+    return -1;
+  }
