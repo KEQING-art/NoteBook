@@ -98,49 +98,35 @@ for(int i = 0;i < array.lenth - 2;i++){
   int temp ; temp = array[i]; array[i] = array[index] ; array[index] = temp; 
 }
 
-归并排序(这个排序极其稳定 ， 能较好的处理大量的数据，百万级别以上)
-public static void Sort(int[] array){
+归并排序
+(这个排序极其稳定 ， 能较好的处理大量的数据，百万级别以上)
+public static int[] Sort(int[] array){
   if(array.length = 1) return array; //数组内容只剩一个时，返回值
   int mid = array.length/2;
+  int[] left = Sort(subArray(array,0,mid));
+  int[] right = Sort(subArray(array,mid + 1, array.length))
   
-}    
-  public static int[] mergeSort(int[] array) {
-    // 为了方便查看结果，我们将每个数组进行打印
-    if (array.length == 1) {
-      return array;
-    }
+  int index = 0;
+  int index_left = 0;
+  int index_right = 0;
 
-    int middle = array.length / 2;
-    // 处理 0 到 middle 左侧数组部分
-    int[] left = mergeSort(subArray(array, 0, middle));
-    // 处理 middle 到 array.length 右侧数组部分
-    int[] right = mergeSort(subArray(array, middle, array.length));
+  while(index_left < left.length && index_right < right.length){ //将数据一一填上去
+    if(left[index_left] <= right[index_right]){array[index++] = left[index_left++];}
+    else{array[inde++] = right[index_right++];} 
 
-    // TODO处理合并问题
-    int index_left = 0;
-    int index_right = 0;
-    int index = 0;
-    while(index_left < left.length && index_right < right.length){
-      if(left[index_left] <= right[index_right]){
-        array[index++] = left[index_left++];
-      }
-      else{
-        array[index++] = right[index_right++];
-      }
-    }
-    if(index_left < right.length){
-      while(index_left < left.length){
-        array[index++] = left[index_left++];
-      }
-    }
-
-    if(index_right < left.length){
-      while(index_right < left.length){
-        array[index++] = array[index_right++];
-      }
-    }
-    System.out.println(index+" "+index_left+" "+index_right);
-    return array;
+    if(index_right < right.length){array[index++] = right[index_right++];} //检查剩余有没有数据美填上去
+    if(index_left < left.length){array[index++] = right[index_left++];}
   }
+  return array;
+}
+
+piublic static int[] subArray(int[] array,int left ,int right){  //选取一个数组的片段
+  int[] result = new int[right - left + 1];
+
+  int i = 0;
+  while(left <= right){result[i++] = array[left++];}
+  return result; 
+}
+
 
 }//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
