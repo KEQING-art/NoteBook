@@ -63,7 +63,7 @@ public static void grow(){
 } 扩容的核心就是制造一个新数组
 }///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-插入
+排序
 {///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 插入排序
@@ -81,7 +81,7 @@ array[j + 1] = num;  // 插入
 }
 
 冒泡排序
-public static void insertSort(int[] array) 
+public static void Sort(int[] array) 
 for(int i = 0;i < array.lenth - 1;i++){
   for(int j = i + 1;j < array.lenth;j ++){ 
      if(array[j] < array[i]) {array[j] += array[i]; array[i] = array[j] - array[i] ; array[j] -= array[i]}
@@ -89,7 +89,7 @@ for(int i = 0;i < array.lenth - 1;i++){
 }
 
 选择排序
-public static void insertSort(int[] array) 
+public static void Sort(int[] array) 
 for(int i = 0;i < array.lenth - 2;i++){
   int index = i;
   for(int j = i + 1;j < array.lenth;j ++){ 
@@ -97,4 +97,50 @@ for(int i = 0;i < array.lenth - 2;i++){
   }
   int temp ; temp = array[i]; array[i] = array[index] ; array[index] = temp; 
 }
+
+归并排序(这个排序极其稳定 ， 能较好的处理大量的数据，百万级别以上)
+public static void Sort(int[] array){
+  if(array.length = 1) return array; //数组内容只剩一个时，返回值
+  int mid = array.length/2;
+  
+}    
+  public static int[] mergeSort(int[] array) {
+    // 为了方便查看结果，我们将每个数组进行打印
+    if (array.length == 1) {
+      return array;
+    }
+
+    int middle = array.length / 2;
+    // 处理 0 到 middle 左侧数组部分
+    int[] left = mergeSort(subArray(array, 0, middle));
+    // 处理 middle 到 array.length 右侧数组部分
+    int[] right = mergeSort(subArray(array, middle, array.length));
+
+    // TODO处理合并问题
+    int index_left = 0;
+    int index_right = 0;
+    int index = 0;
+    while(index_left < left.length && index_right < right.length){
+      if(left[index_left] <= right[index_right]){
+        array[index++] = left[index_left++];
+      }
+      else{
+        array[index++] = right[index_right++];
+      }
+    }
+    if(index_left < right.length){
+      while(index_left < left.length){
+        array[index++] = left[index_left++];
+      }
+    }
+
+    if(index_right < left.length){
+      while(index_right < left.length){
+        array[index++] = array[index_right++];
+      }
+    }
+    System.out.println(index+" "+index_left+" "+index_right);
+    return array;
+  }
+
 }//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
