@@ -129,4 +129,39 @@ piublic static int[] subArray(int[] array,int left ,int right){  //选取一个�
 }
 
 
+
+快速排序：
+    public static void Sort(int[] array){
+        quickSort(array,0,array.length - 1);
+    }
+    public static void quickSort(int[] array,int left,int right){
+        if(left == right){
+            return ;
+        }
+
+        int pivotIndex = right;
+
+        int index_left = left;
+        int index_right = right - 1;
+        while(index_left < index_right){
+            if(array[index_left] > array[pivotIndex]){
+
+                while(index_left < index_right){
+                    if(array[index_right] < array[pivotIndex]){
+                        int temp = array[index_left];
+                        array[index_left] = array[index_right];
+                        array[index_right] = temp;
+                        break;
+                    }
+                    index_right--;
+                }
+            }
+            index_left++;
+        }
+        int temp = array[index_left];
+        array[index_left] = array[pivotIndex];
+        array[pivotIndex] = temp;
+        quickSort(array,left,index_left - 1);
+        quickSort(array,index_left + 1,right);
+    }
 }//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
