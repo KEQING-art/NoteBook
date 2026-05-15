@@ -27,6 +27,40 @@ while(left <= right){   //left 小于 right 是为了保证目标值一直在 le
     }
     return -1;
   }
+
+快速查找
+    public static int quickFind(int[] array,int aim){
+        int left = 0;
+        int right = array.length - 1;
+        return quick(array,aim - 1,left,right);
+    }
+    public static int quick(int[] array,int aim,int left,int right){ //
+        if(left == right) return array[left];  // 终结函数
+
+        int pivotIndex = partion(array,left,right); // 将函数大体排序好后 ， 得出排序好的下标 
+
+        if(pivotIndex == aim) return array[pivotIndex]; 
+        else if (pivotIndex < aim) return quick(array, aim, pivotIndex + 1, right);
+        else return quick(array,aim,left,pivotIndex - 1);
+    }
+
+    public static int partion(int[] array, int left,int right){ // 排序函数 ， 检查除最后一个外的数据 ， 大的放前面 ， 小的放后面，然后排号 i
+        int i = left;
+        int pivot = array[right];
+
+        for(int j = left;j < right;j++){
+            if(array[j] >= pivot) {swap(array,i,j); i++;}
+        }
+
+        swap(array,i,right);
+        return i;
+    }
+
+    public static void swap(int[] array,int i,int j){ 交换函数
+        int temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
 }//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 动态数组的实现
