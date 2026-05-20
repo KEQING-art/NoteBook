@@ -434,7 +434,17 @@ LocalDateTime time = LocalDateTime.parse(str1,dtf);
 
 6
 import java.util.Date   这是一个很大程度上已经过时了的类
-Date date = new 
+Date date = new Date();
+
+7
+判断两个localDate的时间的关系
+是否相等可以使用  Boolean justice = date1.isEqual(date2);
+在另一个前面     Boolean isBefore = date1.isEqual(date2);
+在另一个后面     Boolean isAfter = date1.isAfter(date2);
+
+8
+我们可以设定一个时间
+LocalDate localdate = LocalDate.of(年，月，日);
 {//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 java网络编程
