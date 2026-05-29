@@ -231,15 +231,42 @@ table
 输入框
 {/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 <form></form> 标签
-这个标签可以展示一个框
+这个标签可以将不同控件放到同一个表单里
 
 <form></form>标签有两个属性action method
 action是一个处理表单信息的url , 表格信息将在被提交时，将信息送到被指定的地址
 method 的值可以是 GET 或 POST ，用来规定如何发送表单信息
 
-<input>标签
+<input>标签（行内）
 这个标签可以在<form>框里输入信息
 这个标签有 type ， placeholder , name , value 和 readonly或disabled
+type :radio/checkbox 这个属性可以改变我们输入内容的形式 
+name 表示这个input标签的名字 
 
-个性输入框
+单选框
+用input实现：
+实例：<input type="radio" placeholder="gender" name="gender">男 
+二选一单选框<input type="radio" placeholder="gender" name="gender">男 
+            <input type="radio" placeholder="gender" name="gender">女
+
+
+多选框
+用input实现:
+实例：<label><input type="checkbox" placeholder="111" name="ability">编程</label>
+      <label><input type="checkbox" placholder="111" name="aility">其他</label>
+
+
+多行输入框
+用<textarea>实现
+<textarea></textarea> ， 这个标签可以生成一个可以自动换行的输入框
+这个标签具有 name , rows ,cols ,placeholder 等标签
+
+<lable></lable>标签(行内)
+这个标签可以为各种控件蹄冻可访问的文本描述
+这个标签可以扩大控件的点击范围 ， 例如<label><input  type="radio">男</label> 这个时候你点击男，他就会帮你点击控件
+我们也可以利用控件的id 和 lable 标签的 for 属性 ，达成上面的效果，例如：
+<input id = "gender" placeholder="1"> 
+<lable for="gender">男</lable> 
+
+这个标签可以帮助视障用户无障碍访问
 }///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
