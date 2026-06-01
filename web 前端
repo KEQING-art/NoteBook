@@ -270,14 +270,24 @@ table
 <form></form> 标签
 这个标签可以将不同控件放到同一个表单里
 
-<form></form>标签有两个属性action method
+<form></form>标签有两个属性action method name enctype
 action是一个处理表单信息的url , 表格信息将在被提交时，将信息送到被指定的地址
 method 的值可以是 GET 或 POST ，用来规定如何发送表单信息
+name 规定表单的名字
+enctype 规定表单数据发送到服务器前如何编码
+
+
+<fieldset></fieldset>定义域
+这个标签可以将相关元素分组
+
+<legend></legend>
+这个标签可以为定义域命名
+这个标签的元素有align="left/center/right"
 
 <input>标签（行内）
 这个标签可以在<form>框里输入信息
-这个标签有 type ， placeholder , name , value 和 readonly或disabled
-type :radio/checkbox/password/number/text 这个属性可以改变我们输入内容的形式 
+这个标签有 type ， placeholder , name , value ， readonly或disabled ， 
+type（这个属性可以改变我们输入内容的形式 ） :radio/checkbox/password/number/text/image（图像按钮）/submit（提交按钮）/file（文件选择框）/buttton（普通按钮）/hidden(隐藏框)/reset(重置框)
 name 表示这个input标签的名字 
 
 单选框
