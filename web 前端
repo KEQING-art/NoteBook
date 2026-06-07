@@ -90,10 +90,14 @@ select{属性 : value;......} // 选择器中属性命名 ：单词-单词
 我们也可以这么写类： p.c{color:green ; font-weight:bold} 这样写的意思是 class = "c" 的p 元素，这样它就只能在p 中使用
 类选择器在 标签的class中可以有多个，例如：<p class="a b"></p> 这段话的意思是p标签有两个class标签
 
+
+
 id 选择器：
 id 选择器在body中只会出现一次
 #right{color:red;text-align:right;font-size:20px;} // id 选择器的声明
 <p id="right"></p> //使用id 选择器
+
+
 
 伪类选择器：
 标记：伪类名{/*CSS*/规则}
@@ -101,6 +105,8 @@ id 选择器在body中只会出现一次
           nth-child() 这个选择器可以在父类中一个一个的选择对应的元素
 示例： a:link{color:gray;text-decoration:none} // 这代码的意思是： 网址在未被访问前的样式
         .container>div:bth-child(1){} //这段代码的意思是，在container内的第一个div的样式
+
+
 属性选择器：
 [属性]{属性: 属性值；属性：属性值.....} // 为带有这个属性的标签设置样式
 实例： [title]{color:red;} // 为带有title的所有元素设置样式
@@ -111,12 +117,27 @@ id 选择器在body中只会出现一次
 我们可以在类选择器中使用子选择器
 类选择器,实例： .container>div{} 这句话的意思是设置container内第一层的div 的属性
 id选择器，实例  #container>div{}  这句话的意思是设置container内第一层的div 的属性
+标签选择器，实例 ul>li>p{}
+
+
 
 后代选择器
 我们可以在选择器中使用后代选择器
 类选择器,实例： .container div{} 这句话的意思是设置container内的div 的属性
 id选择器，实例  #container div{}  这句话的意思是设置container内的div 的属性
+               #password .box p{} 这句话的意思是id 为password内的类名为box里的p 标签
+标记选择器，实例 p span{} 
 
+
+
+
+交集选择器
+实例： a.pass{} a标签里 类为pass的属性
+
+
+并集选择器
+并集选择器可以为不同的选择器一起指定样式
+.box,p,h3,.phone{}  这句话的意思是指定类是box ,phone 和标签是p,h3的属性
 
 2
 属性
