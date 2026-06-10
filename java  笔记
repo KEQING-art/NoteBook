@@ -217,7 +217,20 @@ System.out.println(number.intValue());
 
 集合{///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 集合小方法 集合名.addAll(另一个集合)；
-1
+集合有collection(无序允许重复) , list（有序允许重复） , set（无序不允许重复） , Map(key 值不允许重复)
+
+collection
+collection 是list 和set的父类
+collection的方法,一览
+c.add(Object) 若是没有添加参数则返回false
+c.addAll(collection) 添加参数的所有元素
+c.clear() 删除元素中的所有元素 
+c.contains(Object) 检查c中有没有Object的这个元素
+c.containsAll(Collection) 若容器中包含参数中的所有元素  
+
+
+
+
 接口指的就是这些：
 import java.util.ArrayList;//这是ArrayList 数组，他的大小可以随时改变，且里面的内容也可以是别的。 LIst接口可以操控ArrayList数组
 import java.util.List; List 接口实现需要ArrayList实现
