@@ -161,19 +161,12 @@ id选择器，实例  #container div{}  这句话的意思是设置container内�
 2
 属性
 
-复合属性： 一个属性可以表示多个属性的值
-比如: font 
-p{font: italic 20px 黑体;} //  应按照这个顺序填写：style ， variant , weight , size/height , famiiy
-
-属性内可以填多个值:
-比如 p{font-family: "楷体_gb2312","黑体";} 此时编译器会先使用第一个，若第一个没有，使用第二个
-
 字体属性
 font-weight: num;  字体粗细
 
 font-size: num px; 字体大小
 
-font-family: 字体名称     //小提示，你可以设置多个字体，只需要在各个字体之间加逗号就行了 ， 若是字体名称中间有空格，你么你就需要使用“” 包起来
+font-family: 字体名称("楷体_gb2312","黑体")     //小提示，你可以设置多个字体，只需要在各个字体之间加逗号就行了 ， 若是字体名称中间有空格，你么你就需要使用“” 包起来
 
 color: #000000     字体颜色
 
@@ -183,7 +176,13 @@ letter-spacing:num px; 字间距离
 
 line-height: 30 px;  行高 // 这个标签的父元素是font-size
 
-
+定位属性
+position: static/absolute/fixed/sticky/relative
+static 默认定位
+absolute 绝对定位
+fixed 固定定位
+sticky 粘性定位
+relative 相对定位
 
 3
 <style type = "text/css">
