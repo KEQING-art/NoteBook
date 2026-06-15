@@ -182,7 +182,7 @@ static 默认定位
 absolute 绝对定位
 fixed 固定定位
 sticky 粘性定位
-relative 相对定位
+relative 相对定位  只有在使用left ,right, top, bottom 时，才能看出relative的效果，除此之外效果和static无异
 
 3
 <style type = "text/css">
