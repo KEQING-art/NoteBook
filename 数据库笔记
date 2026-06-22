@@ -136,6 +136,9 @@ cmd中的操作
 mysqldump -uroot -p studentsdb(数据库名)> C:\beifen\studentsdb_back_20260601.sql（存储地址） //这段代码可以将数据库备份到指定地址
 mysqldump -uroot -p student1(数据库名)< C:\beifen\studentsdb_back_20260601.sql（存储地址）   //这段代码可以将数据库备份上传到指定数据库
 
+navicat中也可以手动备份
+你只需要点击连接转储，把数据库存起来，然后想看的时候， 点击连接的"运行sql",把文件输入就可以了
+
 用户
 创建新用户
 create role 'user'@'localhost'
