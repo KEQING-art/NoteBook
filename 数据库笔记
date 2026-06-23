@@ -57,19 +57,38 @@ _      select * from student_info where sname like '张__'; 这个的意思是�
 like  select * from student_info where address like '%市%'; 这个的意思是查询中间有个市字的字符
 =     select count(gender)as 男性数量 from student_info where gender='男';  查询与gender = 男的元素
 
-为查询结果排序
-oder by 列 desc(降序)/asc(升序)
-示例：select * from student_info order by birthday desc;
 
-查询一个创建的列（本质仍然是查询）
+聚合函数一览 COUNT(), SUM(), AVG(), MAX(), MIN()
+实例 ：  count() , select count(gender)as 男性数量 from student_info;
+                   select count(1) from 表名 
+        sum() , select sum(id) from 表名;
+        avg() , select avg(id) from 表名;
 select 函数(列)as 列明 from student_info; 这个意思是，从原有的列通过一个函数创建一个列，这个列叫列明
-函数 ： 总和函数count() , 
-        select count(gender)as 男性数量 from student_info;
 
-为查询结果分类
+group 为查询结果分类
+当你使用group 语句的时候，你所有的查询字段要么 GROUP BY 子句中，要么使用聚合函数（如 COUNT(), MAX() 等）
 select 列名 from student_info group by 列; 这句的意思是 用第二个列将第一个列分类
 示例：select gender,count(gender)as 数量 from student_info group by gender;  这句话的意思是用gender的分类 将 gender 和 数量分类
-     
+
+having 为group 分组后的查询结果进行条件过滤
+having 语句的实例:
+select emp_type_id, min(emp_id) from emp group by emp_type_id having min(emp_id) > 1; 
+如何理解这句话，如下
+第1步：FROM emp
+从 emp 表读取所有数据
+第2步：GROUP BY emp_type_id
+按 emp_type_id（员工类型ID）进行分组
+第3步：HAVING MIN(emp_id) > 1 ， 对每个分组计算最小的 emp_id，只保留最小值大于1的分组
+第4步：SELECT emp_type_id, MIN(emp_id)
+输出满足条件的分组的 emp_type_id 和该分组的最小 emp_id
+
+
+order为查询结果排序
+order by 列 desc(降序)/asc(升序)
+示例：select * from student_info order by birthday desc;  // 这句话的意思是把查询结果按照哪个字段的顺序排列
+
+指定查询范围
+select * form 表名 Limit [偏移量,] 行数;  这句话是在查询结果中，指定第偏移量位， 查询从此后的行数
 
 更新表内容
 UPDATE student SET sno = CONCAT('000', sno); 这句话的作用是把字符串拼接起来
@@ -77,6 +96,8 @@ update 表名 set 列名=列值 [where语句] //我们可以用这句话修改�
 
 删除表内容
 delete from 表名 [where 语句]
+
+
 }//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 索引和视图
