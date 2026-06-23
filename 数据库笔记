@@ -56,7 +56,7 @@ _      select * from student_info where sname like '张__'; 这个的意思是�
 %      select * from student_info where address like '%市%'; 这个的意思是查询中间有个市字的字符
 like  select * from student_info where address like '%市%'; 这个的意思是查询中间有个市字的字符
 =     select count(gender)as 男性数量 from student_info where gender='男';  查询与gender = 男的元素
-
+//where 不可以使用聚合函数
 
 聚合函数一览 COUNT(), SUM(), AVG(), MAX(), MIN()
 实例 ：  count() , select count(gender)as 男性数量 from student_info;
@@ -98,6 +98,26 @@ update 表名 set 列名=列值 [where语句] //我们可以用这句话修改�
 delete from 表名 [where 语句]
 
 
+多表查询
+select 表1.列1，表1.列2 .... 
+from 表1, 表2
+where 表1.外键 = 表2.主键 [and 表2.外键 = 表.3主键] 
+// 这里的where语句的作用是将将两个表关联起来，只保留 外键 等于 主键的记录，这里指的是在另一张表中寻找有相等的主键，并把主键所在行和 外键所在行连接起来 ，这就是将两张表合成一张表
+
+多表实例：
+SELECT emp_id, emp_name, type_name 
+FROM emp, emp_type
+WHERE emp_type_id = type_id
+ORDER BY emp_id
+
+理解实例：
+第1步：FROM emp, emp_type
+从 emp 表和 emp_type 表中查询数据
+第2步：WHERE emp_type_id = type_id
+连接条件：将两个表关联起来
+只保留 emp.emp_type_id 等于 emp_type.type_id 的记录
+第3步：SELECT emp_id, emp_name, type_name
+只选择需要的三列
 }//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 索引和视图
