@@ -97,6 +97,9 @@ update 表名 set 列名=列值 [where语句] //我们可以用这句话修改�
 删除表内容
 delete from 表名 [where 语句]
 
+插入表内容
+INSERT INTO table_name (column1, column2, column3, ...)
+VALUES (value1, value2, value3, ...);
 
 多表查询
 select 表1.列1，表1.列2 .... 
