@@ -502,16 +502,52 @@ function 函数名(){
   return 返回值;
 }
 
-
 js的时间 
 var time = new date(). 这里的time 指的是现在的时间
 time.getFullYear() 获得现在时间的年分
 time.getDate() 获得现在月份的天数
 time.getMonth() 返回现在的月份-1
 
+
+
+
+
+
 Dom
 DOM 是js操控网页的接口，他的作用更是将网页转化成一个javaScriipt对象，浏览器会根据dom模型，将结构文档html解析成一系列的节点，再由这些节点组成一个树状结构
 不同的节点都有有不同的nodeType属性， 
+
+Dom事件
+你可以通过<button onclick=""></button> 你可以通过vutton标签的onclick 启动函数，来执行事件
+
+Dom0事件
+你可以，在js中，获得指定按钮标签，通过修改标签的onclick ,来执行函数。
+这个的缺陷是，你只能指定onclick触发一个函数， 你若是多次写出按钮标签的onclick， 那么点击按钮后只会执行最后一个onclick的函数
+实例： 
+<button id="1"></button> //在这个实例中， 你点击button只会执行事件2
+<script>
+var content = document.getElementsById("1");
+content.onclick =function(){
+  console.log("你已执行事件1");
+}
+content.onclick =function(){
+  console.log("你已执行事件2");
+}
+</script>
+
+Dom2事件
+你可以，在js中，获得指定按钮标签，通过指定方法(addEventListener)修改标签的onclick ,这样点击一个按钮可以执行多个函数。
+实例：
+<button id="1"></button> //在这个实例中， 你点击button只会执行事件2
+<script>
+var content = document.getElementsById("1");
+content.addEventListener("click", function(){
+  console.log("事件1")
+})
+content.addEventListener("click", function(){
+  console.log("事件2")
+})
+</script>
 
 
 
