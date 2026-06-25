@@ -962,8 +962,15 @@ preparedStatement.setString(1,name1); // 将占位符替换成数据
 preparedStatement.setInt(2,id);
 preparedStatement.setInt(3,3);
 
-执行sql 语句， 接收返回值
+执行sql的增删改语句， 接收返回值
 int i = preparedStatement.executeUpdate(); 
+
+执行sql的查语句，接受一个ResultSet结果集
+ResultSet resultset = preparedStatement.executeQuery();
+resultSet一开始指向结果集的第一行，能够取出第一行的内容，可以借助.get类型()方法，往括号里输入对应下标，或对应的列名，取出相应类型数据。 实例： resultSet.getInt(1); 取出所在行的第一列的内容
+resultSet 可以指向其他行， 可以借助.next() ，指向下一行
+
+
 
 关闭数据库
 connection.close();
