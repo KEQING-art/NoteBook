@@ -1,0 +1,13 @@
+API 相当于一个工具包，是一个菜单
+
+vue api的响应式函数
+reactive() 将对象(包括数组和内置类型，如Map和Set)转化成响应式  实例：const message1 = reactive({count:1})
+ref() 包装任何类型为响应式   实例：const message = ref(1) 和 const message = ref({one : 1, two:2}) 
+
+<script setup>标签
+在标签中,你可以声明变量。      实例： const message = ref('你好呀'); 
+在标签中,你可以导入api的函数   实例   import {ref} from 'vue'
+在标签中,对于ref函数返回的赋值变量，你可以使用 变量.value 获取变量对应的值，也可以通过 变量.value = 值，来修改值
+
+<template>标签
+在标签中，使用在标签中双花括号动态渲染页面
