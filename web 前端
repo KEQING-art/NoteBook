@@ -572,7 +572,13 @@ var content = document.getElementsById("id名");  这个方法返回的是一个
 var content = document.querySelector("选择器");  这个方法只会返回第一个具有你指定选择器的标签， 括号里的选择器得这么写 ，若是类选择器就写：.选择起名， 若是id选择器就写: #选择起名 
 
 修改document获取对象的文字
-content.InnerHtml() = "内容";  //我们可以通过这一方法修改页面元素显示的文字
+content.InnerHtml = "内容";  //我们可以通过这一方法修改页面元素显示的文字
+content.textContent = ""; 
+innerHtml 会获取可解析的html 代码; textContent 会获取纯文字
+innerHtml 会设置可解析的html 代码; textContent 会设置出纯文字
+innerHtml 有可能会执行恶意脚本; textContent 不会
+innerHtml 的性能比textContent 高得多
+
 
 修改document获取对象的style属性
 方法一：
