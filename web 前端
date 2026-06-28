@@ -540,8 +540,9 @@ content.onclick =function(){
 </script>
 
 Dom2事件
-你可以，在js中，获得指定按钮标签，通过指定方法(addEventListener)修改标签的onclick ,这样点击一个按钮可以执行多个函数。
-实例：
+在js中，获得指定按钮标签，通过指定方法(addEventListener)修改标签的onclick ,这样点击一个按钮可以执行多个函数。
+模板：content.addEventListener(eventType, callback); 
+实例一：
 <button id="1"></button> //在这个实例中， 你点击button只会执行事件2
 <script>
 var content = document.getElementsById("1");
@@ -552,6 +553,12 @@ content.addEventListener("click", function(){
   console.log("事件2")
 })
 </script>
+
+eventType : "click"、"dblclick"、"mousedown"、"mouseup"
+click 触发时机:鼠标点击（按下并释放）	示例:点击按钮
+dblclick 触发时机:鼠标双击	示例:双击图片
+mousedown 触发时机:鼠标按钮按下 	示例:按住不放
+mouseup 触发时机:鼠标按钮释放 	示例:松开鼠标
 
 
 
