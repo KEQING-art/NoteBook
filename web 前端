@@ -573,7 +573,7 @@ var content = document.querySelector("选择器");  这个方法只会返回第�
 
 修改document获取对象的文字
 content.InnerHtml = "内容";  //我们可以通过这一方法修改页面元素显示的文字
-content.textContent = ""; 
+content.textContent = "";    // 你也可以这么写， content.textContent.trim() 这样返回的就是去除两边的空白字符后的文本
 innerHtml 会获取可解析的html 代码; textContent 会获取纯文字
 innerHtml 会设置可解析的html 代码; textContent 会设置出纯文字
 innerHtml 有可能会执行恶意脚本; textContent 不会
