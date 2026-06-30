@@ -91,8 +91,9 @@ order by 列 desc(降序)/asc(升序)
 select * form 表名 Limit [偏移量,] 行数;  这句话是在查询结果中，指定第偏移量位， 查询从此后的行数
 
 更新表内容
-UPDATE student SET sno = CONCAT('000', sno); 这句话的作用是把字符串拼接起来
 update 表名 set 列名=列值 [where语句] //我们可以用这句话修改一行的数据，也可以删除多行数据， 注意如果不写where 那么修改的是所有行
+update 表名 set 列名 = concat(字符串 ,列名) //这句话的作用是把字符串拼接起来 
+示例：UPDATE student SET sno = CONCAT('000', sno); 这句话的作用是把字符串拼接起来
 
 删除表内容
 delete from 表名 [where 语句]
