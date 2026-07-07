@@ -53,10 +53,11 @@ use 表名 使用表
 desc 表名 展示表的元素
 
 查询表
-select 列 from 表名;  
+select [distinct] emp_id 列 from 表名; // 这里的distinct 是去除重复行,只留一个emp_id   
 列可以是 * ,这的意思是查询所有列 ， 也可以是几个列名例如：sno ,cno
 
-为查询添加条件 where
+
+为查询添加条件 where            //where 不可以使用聚合函
 select 列 from 表名 where 条件 ;
 条件可以是: >=(数字，字符串都可以使用)  , _ , %， like(模糊查询,供字符串使用), =(精确查询，数字和字符串都可以用,但他会忽略结尾的空格) 
 示例：select * from student_info where birthday >= '2006-01-01'; 这个的意思是查询比2026年1月1日大的数据，这里的birthday 是字符串
@@ -64,7 +65,10 @@ _      select * from student_info where sname like '张__'; 这个的意思是�
 %      select * from student_info where address like '%市%'; 这个的意思是查询中间有个市字的字符
 like  select * from student_info where address like '%市%'; 这个的意思是查询中间有个市字的字符
 =     select count(gender)as 男性数量 from student_info where gender='男';  查询与gender = 男的元素
-//where 不可以使用聚合函数
+AND/OR   这个可以用来连接两个条件
+is        is 用来代替= 来进行null 判断
+between   select * from emp where reduce between 100 and 500;
+not in    select emp_name from emp where emp_id not in (select emp_id from salary); 
 
 聚合函数一览 COUNT(), SUM(), AVG(), MAX(), MIN()
 实例 ：  count() , select count(gender)as 男性数量 from student_info;
@@ -115,6 +119,18 @@ select 表1.列1，表1.列2 ....
 from 表1, 表2
 where 表1.外键 = 表2.主键 [and 表2.外键 = 表.3主键] 
 // 这里的where语句的作用是将将两个表关联起来，只保留 外键 等于 主键的记录，这里指的是在另一张表中寻找有相等的主键，并把主键所在行和 外键所在行连接起来 ，这就是将两张表合成一张表
+
+select 表1.列1，表1.列2 .... 
+from 表1
+join 表2 on 表1.列1 = 表1.列2;
+这里join 作用，遍历 emp 表的每一行，对于 emp 的每一行，在 dept 表中查找 dept_id 相同的行，将匹配的两行数据合并成一行，返回合并后的结果。 表1 是驱动表， 表2是连接表
+
+select 表1.列1，表1.列2 .... 
+from 表1
+left join 表2 on 表1.列1 = 表1.列2
+这里的左表是表1，左表会被完全保留， 若是右表没有对应的，那就改成null
+
+
 
 多表实例：
 SELECT emp_id, emp_name, type_name 
