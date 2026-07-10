@@ -263,6 +263,7 @@ relative 相对定位  只有在使用left ,right, top, bottom 时，才能看�
 使用absolutely, fixed 属性修饰一个标签时， 若top或任意距离属性为零， 则标签的最外层会与padding的外边距重合。
 
 注意，padding的外边缘和border的内边缘重合。
+注意，视口没有padding 和 border 外边缘就是content 的外边缘
 
 3
 z-index 
