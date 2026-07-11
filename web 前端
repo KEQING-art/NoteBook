@@ -230,6 +230,8 @@ id选择器，实例  #container div{}  这句话的意思是设置container内�
 
 
 
+
+
 交集选择器
 实例： a.pass{} a标签里 类为pass的属性
 
@@ -263,7 +265,7 @@ position: static/absolute/fixed/sticky/relative
 static 默认定位
 absolute 绝对定位 ，绝对定位是根据祖上的第一个非static标签决定位置的, 并且你使用top,bottom, 等等是距祖先元素的padding外边缘，进行定位的 
 fixed 固定定位，固定定位是根据视口的padding外边缘定位的。
-sticky 粘性定位
+sticky 粘性定位，粘性定位是根据父元素padding外边缘距定位的，当它距父元素到达一定距离时， 他会固定在父元素上，若是没到达那一定距离， 他会随页面流动
 relative 相对定位  只有在使用left ,right, top, bottom 时，才能看出relative的效果，除此之外效果和static无异。relative 是距原位置进行定位的。
 
 使用top,left,right,bottom， 这些标签意味着， 距某一事物的上下左右多少距离,也就是平移多少距离。
