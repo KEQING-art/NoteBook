@@ -134,7 +134,8 @@ margin-bottom: 正值; 这里的作用是正下边界， 他会把标签的下�
 面积
 box-sizing: content-box(内容宽度)/ border-box(border + padding + 内容宽度);  //默认box-sizing是content。 这个组件决定了width 和 height 代表了什么 
 width: ; 组件的宽度
-height: ; 组件的高度
+height: ; 组件的高度 //这两个属性有不同的单位 例如: %, px, vh(锁定视口);
+
 
 块状和行内
 display: inline/block/none(设置了这个属性组件就会消失)/inline-block;
@@ -337,6 +338,15 @@ text-align: center;        //这个标签可以让父类的行内组件居中
 float 
 float 可以使标签向左向右排列
 float: left/right;
+
+7
+背景覆盖（下面的属性常常与body 搭配使用）
+width:  100vw;
+height: 100vh;                   // 强制高度为视口高度， 1vh 等于视口高度的1%, 1vw 是视口宽度的1%
+background-image: url("地址");   //背景图片地址
+background-size: cover;         /*保持比例缩放以覆盖整个区域 */
+background-position: center;    /* 图片居中显示 */
+background-repeat: no-repeat;   /* 禁止图片重复 */
 }///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
