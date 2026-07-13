@@ -168,8 +168,8 @@ HTML的琐碎知识
 
 
 2
-降部空间
-只有文字会有降部空间，其他的不会有。
+降部空间和升部空间
+只有文字会有降部空间和升部空间，其他的不会有。
 
 3
 层叠上下文
@@ -276,7 +276,7 @@ css属性
 字体属性
 font-weight: num;  字体粗细
 
-font-size: num px; 字体大小
+font-size: num px; 字体所在方格的大小， 这个放个由升部 和 降部 和 文字主体组成
 
 font-family: 字体名称("楷体_gb2312","黑体")     //小提示，你可以设置多个字体，只需要在各个字体之间加逗号就行了 ， 若是字体名称中间有空格，你么你就需要使用“” 包起来
 
@@ -287,8 +287,8 @@ text-align:center/left/right  字体对齐方式
 letter-spacing:num px; 字间距离
 
 line-height: 30 px;  行高 // 这个标签的父元素是font-size
-
-
+//当你使用line-height的相对值时，此时的行高 = font-size*line-height , 此时这就是这一行的高度。
+//而当你使用line-height的绝对值时，此时的行高 = max(line-height, font-size) ， 此时这就是这一行的高度。
 
 2
 定位属性(标签定位)
