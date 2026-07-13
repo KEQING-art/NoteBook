@@ -349,10 +349,10 @@ background-image: url("地址");   //背景图片地址
 background-size: cover;         //保持比例缩放以覆盖整个区域 
 background-position: center;    // 图片居中显示 
 background-repeat: no-repeat;   // 禁止图片重复 
-
-
 background-color: 颜色;              // 设置固定的背景颜色
-background-color:渐变类型(渐变方向, 开始颜色 起始位置, 结束颜色 结束位置);
+
+
+background:渐变类型(渐变方向, 开始颜色 起始位置, 结束颜色 结束位置); //设置渐变色
 渐变类型: linear-gradient(线性渐变)
 渐变方向: to right/to left(向右或向左);to right bottom/to right top(向右下渐变或向右上渐变) 
 起始位置和结束位置的单位有 %，px 
