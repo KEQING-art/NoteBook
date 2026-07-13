@@ -134,7 +134,9 @@ margin-bottom: 正值; 这里的作用是正下边界， 他会把标签的下�
 面积
 box-sizing: content-box(内容宽度)/ border-box(border + padding + 内容宽度);  //默认box-sizing是content。 这个组件决定了width 和 height 代表了什么 
 width: ; 组件的宽度
-height: ; 组件的高度 //这两个属性有不同的单位 例如: %, px, vh(锁定视口);
+height: ; 组件的高度 
+//这两个属性有不同的单位 例如: %, px, vh(锁定视口);
+// vh 使用示例：1vh 等于视口高度的1%, 1vw 是视口宽度的1%
 
 
 块状和行内
@@ -320,7 +322,8 @@ opacity 决定一个标签及其子元素的透明度。
 它的取值范围是0-1; 0 是完全透明， 1是完全不透明
 
 5
-vertical-align (垂直对齐，此属性可以对行内元素、行内块元素以及表格单元格有效)  
+(垂直对齐)
+vertical-align (此属性可以对行内元素、行内块元素以及表格单元格有效)  
 vertical-align: ; 可以赋值一览: baseline, middle, top/bottom, text-top/text-bottom。 //vertical-align的
 baseline: 基线是x的底部， 元素与父元素的基线对齐。
 middle: 元素的中部与小写字母x高度的一半对齐
@@ -341,12 +344,16 @@ float: left/right;
 
 7
 背景覆盖（下面的属性常常与body 搭配使用）
-width:  100vw;
-height: 100vh;                   // 强制高度为视口高度， 1vh 等于视口高度的1%, 1vw 是视口宽度的1%
 background-image: url("地址");   //背景图片地址
-background-size: cover;         /*保持比例缩放以覆盖整个区域 */
-background-position: center;    /* 图片居中显示 */
-background-repeat: no-repeat;   /* 禁止图片重复 */
+background-size: cover;         //保持比例缩放以覆盖整个区域 
+background-position: center;    // 图片居中显示 
+background-repeat: no-repeat;   // 禁止图片重复 
+
+
+background-color: 颜色;              // 设置固定的背景颜色
+background-color:渐变类型(渐变方向, 开始颜色, 结束颜色);
+渐变类型: linear-gradient(线性渐变)
+渐变方向: to right/to left(向右或向左);to right bottom/to right top(向右下渐变或向右上渐变) 
 }///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
