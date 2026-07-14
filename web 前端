@@ -342,15 +342,21 @@ text-align: center;        //这个标签可以让父类的行内组件居中
 
 6
 float 
-float 可以使标签向左向右排列
+float 可以使标签向左向右排列，使标签半脱离文档流
 float: left/right;
 
 7
 背景覆盖（下面的属性常常与body 搭配使用）
 background-image: url("地址");   //背景图片地址
+
 background-size: cover;         //保持比例缩放以覆盖整个区域 
+
 background-position: center;    // 图片居中显示 
-background-repeat: no-repeat;   // 禁止图片重复 
+这里的值可以是数值%, px，
+
+
+background-repeat: no-repeat/repeat/repeat-x/repeat-y;   // 你可以禁止图片重复， 也可以只允许x 轴方向或y 轴方向重复 
+
 background-color: 颜色;              // 设置固定的背景颜色
 
 
