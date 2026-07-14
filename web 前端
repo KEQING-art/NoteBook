@@ -347,15 +347,6 @@ float: left/right;
 
 7
 背景覆盖（下面的属性常常与body 搭配使用）
-background-image: url(地址);   //背景图片地址
-
-background-size: cover;         //保持比例缩放以覆盖整个区域 
-
-background-position: center;    // 图片居中显示 
-这里的值可以是数值%, px，
-
-background-repeat: no-repeat/repeat/repeat-x/repeat-y;   // 你可以禁止图片重复， 也可以只允许x 轴方向或y 轴方向重复 
-
 background-color: 颜色;              // 设置固定的背景颜色
 
 background:渐变类型(渐变方向, 开始颜色 起始位置, 结束颜色 结束位置，开始颜色 起始位置); //设置渐变色
@@ -365,6 +356,13 @@ background:渐变类型(渐变方向, 开始颜色 起始位置, 结束颜色 �
 起始位置 和 结束位置一样的时候， css会自动用结束颜色填满剩余的部分。
 起始位置和结束位置不一样的时候， 从起始位置到结束位置颜色渐变。
 颜色，你可以使用#666666, 也可以使用rgb(x,y,z,透明度); //这里的x,y,z 可以决定颜色。透明度的数值从0到1
+
+background-image: url(地址);   //背景图片地址
+
+background-repeat: no-repeat/repeat/repeat-x/repeat-y;   // 你可以禁止图片重复， 也可以只允许x 轴方向或y 轴方向重复 
+
+background-position: center;    // 图片居中显示 
+这里的值可以是数值%, px，
 
 background-size:cover/contain/数值 px px或 % %       //cover全覆盖，甚至超过父元素， contain 扩展至最大尺寸，以使其的宽度和高度完全适应内容区域。 px px 或 % % 可以自行调整图片大小， 宽高
 
