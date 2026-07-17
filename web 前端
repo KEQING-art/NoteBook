@@ -364,11 +364,39 @@ id 选择器在body中只会出现一次
 
 伪类选择器：
 标记：伪类名{/*CSS*/规则}
-伪类名有：link（标签违背访问前的样式） , hover(鼠标在标签上的样式) , active（标签被激活时的样式） , visited（标签被访问后的样式）， first-letter(作用于块，设置第一个字符样式) ， first-line (设置第一行的样式)
-          nth-child() 这个选择器可以在父类中一个一个的选择对应的元素
-示例： a:link{color:gray;text-decoration:none} // 这代码的意思是： 网址在未被访问前的样式
-        .container>div:bth-child(1){} //这段代码的意思是，在container内的第一个div的样式
-       a:hove{color:gray;text-decoration:none}  // 这代码的意思是： 鼠标放到标签上时候的样式
+伪类名有：link , hover, active , visited， first-letter ， first-line , nth-child() ,focus
+link
+标签未被访问前的样式
+示例:a:link{color:gray;text-decoration:none} // 这代码的意思是： 网址在未被访问前的样式
+
+nth-child()
+示例：.container>div:nth-child(1){} //这段代码的意思是，在container内的第一个div的样式
+
+hover
+鼠标在标签上的样式
+示例：a:hove{color:gray;text-decoration:none}  // 这代码的意思是： 鼠标放到标签上时候的样式
+
+active
+标签被点击时的样式
+示例：div:ative{属性.....}  //这段代码的意思是，鼠标点击标签时的样式
+
+focus
+标签获得焦点后的样式
+示例; input
+
+visited
+标签被访问后的样式
+示例:
+
+first-letter
+作用于块，设置第一个字符样式
+
+first-line
+设置第一行的样式
+
+
+
+
 
 属性选择器：
 [属性]{属性: 属性值；属性：属性值.....} // 为带有这个属性的标签设置样式
