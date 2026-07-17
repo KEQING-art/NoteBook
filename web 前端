@@ -394,6 +394,8 @@ first-line
 
 nth-child()
 示例：.container>div:nth-child(1){} //这段代码的意思是，在container内的第一个div的样式
+括号里可以写 odd 和 even, 这代表了奇数和偶数
+
 
 小知识：
 写多个伪类的时候应该， 按照这个顺序写link-> visisted->hover->active, 尤其是写链接标签的伪类时。
