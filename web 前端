@@ -554,8 +554,11 @@ inline可以设置内边距，且内边距确实会生效并占据空间，但�
 flex可以把父元素内标签成块处理，父元素变成块状元素。inline-flex可以把父元素变成行内元素。           //设置这两个其一的属性，标签的float, clear, vertical-align 都将不起作用
 父元素flex，子元素中使用justify-content:center; 可以使子元素居中
 父元素flex， 然后使用gap 可以控制各个子元素的间隔
-父元素flex, 里面的block 元素不能够再占据一行了
 父元素flex， 然后使用align-items:center,可以使父元素内的标签中心对齐
+
+小知识
+父元素flex, 里面的block 元素不能够再占据一行了
+父元素flex，默认状态下，里面所有元素等高
 
 
 none可以将元素隐藏，甚至连占有的空间都不会留有。
