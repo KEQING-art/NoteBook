@@ -556,9 +556,26 @@ block可以设置宽高，行内不可以
 inline可以设置内边距，且内边距确实会生效并占据空间，但它不会影响行高和上下文的垂直布局流。;可以设置左右margin; 默认只有文字的面积
 
 flex可以把父元素内标签成块处理，父元素变成块状元素。inline-flex可以把父元素变成行内元素。           //设置这两个其一的属性，标签的float, clear, vertical-align 都将不起作用
-父元素flex，子元素中使用justify-content:center; 可以使子元素居中
-父元素flex， 然后使用gap 可以控制各个子元素的间隔
-父元素flex， 然后使用align-items:center,可以使父元素内的标签中心对齐
+flex 布局，可以使用以下属性:
+justify-content: ;  //justify-content 是控制子元素的水平对齐方式
+可以赋值一览:flex-start | flex-end | center | space-between | space-around | space-evenly    //父元素flex，父元素使用justify-content:center; 可以使子元素居中，
+flex-start 项目向水平方向的起点对齐
+flex-end 项目向水平方向的中点对齐
+flex-center 项目向水平方向上居中
+space-between  项目在每行上均匀的放置，从起点开始到终点
+space-evenly  项目在一行上均匀的放置， 项目之间， 项目与父元素的边缘之间， 这些距离都是一样的
+
+
+gap:;                              父元素flex， 然后使用gap 可以控制各个子元素的间隔
+
+align-items:;     //align-items 控制的是子元素垂直对齐方式                    
+可以赋值一览:flex-start | flex-end | center | baseline | stretch   
+flex-start  项目(子元素)的顶边向父元素的顶边对齐
+flex-end 项目的底边向父元素的底边对齐
+center 项目的中点向父元素的中点对齐
+baseline  各个项目的第一行文字基线对齐
+stretch  各个项目的高度被拉长到与容器相同的高度
+
 
 小知识
 父元素flex, 里面的block 元素不能够再占据一行了
