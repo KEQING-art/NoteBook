@@ -579,6 +579,13 @@ baseline  各个项目的第一行文字基线对齐
 stretch  各个项目的高度被自上向下拉长到与容器相同的高度，
 
 
+flex-wrap:;  //flex-wrap 控制的是怎么换行
+可以赋值一览: nowrap、wrap、wrap-reserver;
+nowrap 不换行
+wrap  正常换行
+wrap-reserver  向上换行
+
+
 小知识
 父元素flex, 里面的block 元素不能够再占据一行了
 父元素flex，默认状态下，里面所有元素等高
