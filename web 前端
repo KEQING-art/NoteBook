@@ -592,6 +592,14 @@ none 项目不可被压缩，哪怕仪涵哥空间不够，这个项目也不会
 1    项目自动填满这一行的水平剩余空间。  //若是一行中有三个项目，你给这三个项目设置了 flex: 1; 那么三个项目会占据相同的空间，将这一行瓜分掉，若是你只给三个项目其中一个设置，那么这个项目会撑满剩余空间
 
 
+flex-direction:; 这个属性控制的是dispaly:flex;属性下父元素的主轴和交叉轴,交叉轴永远垂直主轴  //小知识，你将主轴垂直后，align-items就控制水平排列, justify-content控制垂直排列
+可赋值一览; row、row-reverse、 column、column-reverse
+row 默认值
+row-reverse  主轴水平，从右到左
+column 主轴垂直
+column-reverse 主轴垂直，从上到下 
+
+
 小知识
 父元素flex, 里面的block 元素不能够再占据一行了
 父元素flex，默认状态下，里面所有元素等高
