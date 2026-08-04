@@ -148,6 +148,10 @@ HTML的table
 
 HTML的表单标签
 {/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+表单标签是负责数据采集工作的
+
+
+1
 <form></form> 标签
 这个标签可以将不同控件放到同一个表单里
 
@@ -157,43 +161,45 @@ method 的值可以是 GET 或 POST ，用来规定如何发送表单信息
 name 规定表单的名字
 enctype 规定表单数据发送到服务器前如何编码
 
+小知识
+当你使用 get 提交表单内的信息时，表单信息被提交到服务器端的url后面， 示例: http://127.0.0.1:5500/visual%206/1.html?name=Tom&age=18 , 这里的name=Tom&age=18就是表单信息。
+get 提交的信息会显示在url 上，这样其实并不安全
+get 提交的信息量其实是有限制的
 
+当你使用 post 提交表单数据时，表单信息会在消息体中，提交到服务器。   你想要查看表单信息需要点击检查网页，找到里面的载荷，载荷里面就是表单信息
+post 提交的信息会显示消息体中，更安全
+post 提交的信息量是没有限制的
+
+2
 <fieldset></fieldset>定义域
 这个标签可以将相关元素分组
 
+3
 <legend></legend>
 这个标签可以为定义域命名
 这个标签的元素有align="left/center/right"
 
+4
 <input>标签（行内）
-这个标签可以在<form>框里输入信息
-这个标签有 type ， placeholder , name , value ， readonly或disabled ， 
-type（这个属性可以改变我们输入内容的形式 ） :radio/checkbox/password/number/text/image（图像按钮）/submit（提交按钮）/file（文件选择框）/buttton（普通按钮）/hidden(隐藏框)/reset(重置框)
-name 表示这个input标签的名字 
+这个标签的属性有 type ， placeholder , name , value ， readonly或disabled ， 
+name 表示这个input标签的名字 ， 注意若是表单项若是没有这个属性，那么表单项的内容是无法提交的
 
-单选框
-用input实现：
-实例：<input type="radio" placeholder="gender" name="gender">男 
-二选一单选框<input type="radio" placeholder="gender" name="gender">男 
-            <input type="radio" placeholder="gender" name="gender">女
+type（这个属性可以改变我们输入内容的形式 ） :text(输入框)/radio(单选框)/checkbox（多选框）/password/number/text/image（图像按钮）/submit（提交按钮）/file（文件选择框）/buttton（普通按钮）/hidden(隐藏框)/reset(重置框)/date(年月日时间表)/time(分钟，秒时间表)
+button时， input是按钮，你点击按钮是没反应的，通常你需要配合js 来完成交互
+text时 ，input 是单行输入框
+radio时，input
 
-
-多选框
-用input实现:
-实例：<label><input type="checkbox" placeholder="111" name="ability">编程</label>
-      <label><input type="checkbox" placholder="111" name="aility">其他</label>
-
-单行输入框
-<input type="text"></input>
-
+7
 多行输入框
 用<textarea>实现
 <textarea></textarea> ， 这个标签可以生成一个可以自动换行的输入框
 这个标签具有 name , rows ,cols ,placeholder 等标签
+cols 能控制一行中的宽度，它的宽度计算是通过一行中平均字符宽度* 你的cols 值
+rols 指的是输入框能拥有几行
 
-
+8
 <lable></lable>标签(行内)
-这个标签可以为各种控件蹄冻可访问的文本描述
+这个标签可以为各种控件提供可访问的文本描述
 这个标签可以扩大控件的点击范围 ， 例如<label><input  type="radio">男</label> 这个时候你点击男，他就会帮你点击控件
 我们也可以利用控件的id 和 lable 标签的 for 属性 ，达成上面的效果，例如：
 <input id = "gender" placeholder="1"> 
@@ -201,8 +207,7 @@ name 表示这个input标签的名字
 
 这个标签可以帮助视障用户无障碍访问
 
-
-
+9
 选项菜单
 <select>
   <option></option>
@@ -211,6 +216,7 @@ name 表示这个input标签的名字
 
 <select></select>具有的属性 ：name ， mutiple(单个属性)
 <option></option>具有的属性 : value (value 的是提交到后端的值) ，
+
 
 单选菜单
 <select name="">
@@ -224,8 +230,7 @@ name 表示这个input标签的名字
   <option value=""></option>
 </select>
 
-
-
+10
 按钮
 <button></button>
 <button> 标签的属性一览: title, value, onclick,type
@@ -237,6 +242,11 @@ noclick:; 设置点击按钮，会触发怎样的操作
 
 <button>内容</button>
 <button> 标签可以支持任意html内容，包括文本、图片、图标、换行等
+
+
+
+小知识
+表单项若是没有name属性 ，那么表单项的内容是无法提交的
 }////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -693,7 +703,7 @@ flex 布局，可以使用以下属性:
 justify-content: ;  //justify-content 是控制子元素的水平对齐方式
 可以赋值一览:flex-start | flex-end | center | space-between | space-around | space-evenly    //父元素flex，父元素使用justify-content:center; 可以使子元素居中，
 flex-start 项目向水平方向的起点对齐
-flex-end 项目向水平方向的中点对齐
+flex-end 项目向水平方向的终点对齐   //最后一个标签，先排列到最后，然后是倒数第二个，倒数第三个
 flex-center 项目向水平方向上居中
 space-between  项目在每行上均匀的放置，从起点开始到终点
 space-evenly  项目在一行上均匀的放置， 项目之间， 项目与父元素的边缘之间， 这些距离都是一样的
@@ -706,7 +716,7 @@ align-items:;     //align-items 控制的是子元素垂直对齐方式
 flex-start  项目(子元素)的顶边向父元素的顶边对齐
 flex-end 项目的底边向父元素的底边对齐
 center 项目的中点向父元素的中点对齐
-baseline  各个项目的第一行文字基线对齐
+baseline  各个项目与第一行文字基线对齐
 stretch  各个项目的高度被自上向下拉长到与容器相同的高度，
 
 
@@ -728,7 +738,7 @@ flex-direction:; 这个属性控制的是dispaly:flex;属性下父元素的主�
 row 默认值
 row-reverse  主轴水平，从右到左
 column 主轴垂直
-column-reverse 主轴垂直，从上到下 
+column-reverse 主轴垂直，从下到上 
 
 
 小知识
