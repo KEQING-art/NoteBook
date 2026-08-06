@@ -968,6 +968,10 @@ js有一个自动补分号的机制， 如果遇到换行符， 那么分号就�
 }/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
+
+
+
+
 js的数据类型和运算符
 {/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 js 中的三种变量名
@@ -1045,11 +1049,58 @@ js也有三目运算符
 
 
 
+
+
 Dom
 {/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-DOM 是js操控网页的接口，他的作用更是将网页转化成一个javaScriipt对象，浏览器会根据dom模型，将结构文档html解析成一系列的节点，再由这些节点组成一个树状结构
-不同的节点都有有不同的nodeType属性， 
+1
+DOM 是js操控网页的接口，他的作用更是将网页转化成一个javaScriipt对象，浏览器会根据dom模型，将结构文档html解析成一系列的节点，再由这些节点组成一个树状结构,不同的节点都有有不同的nodeType属性. 
 
+DOM 是文档对象模型，它会将标记语言的各个部分封装成对应的对象：
+Document 整个文档对象   //整个html 文档被封装成了文档对象
+Element  元素对象       //标签会封装成 元素对象
+Attribute  属性对象     //标签的属性会封装成 属性对象
+text  文本对象          //每个标签里面的文本内容会被封装成文本对象
+Comment  注释对象       //注释会被封装成注释对象
+
+使用dom 的操作步骤
+获取dom对象
+然后修改dom对象
+
+2
+通过document对象获取页面对象
+var content = document.getElementsByTagName("标签名"); 这个方法返回的是一个数组， 你若是想指定一个标签，只需要在括号后面添加[下标]就行了
+var content = document.getElementsByClassName("类名");  这个方法返回的是一个数组， 你若是想指定一个标签，只需要在括号后面添加[下标]就行了
+var content = document.getElementsByName("标签的name");  这个方法返回的是一个数组， 你若是想指定一个标签，只需要在括号后面添加[下标]就行了
+var content = document.getElementsById("id名");  这个方法返回的是一个标签
+var content = document.querySelector("选择器");  这个方法只会返回第一个具有你指定选择器的标签， 括号里的选择器得这么写 ，若是类选择器就写：.选择起名， 若是id选择器就写: #选择起名 
+var content = document.querySelectorAll("选择器");  这个返回的是一个nodeList 节点集合，是一个有长度，右节点的伪数组
+
+3
+修改和获取document对象的内容
+InnerHtml
+返回元素的文本内容，包括所有空白和内部 HTML 标签。
+我们可以修改这一标签的内容 content.InnerHtml = "内容"; 
+我们可以获取这一标签的内容 let texr = content.InnerHtml; 
+textContent
+元素和所有后代的文本内容，带有所有空白和 CSS 隐藏文本，但没有标签。
+content.textContent = "";    // 你也可以这么写， content.textContent.trim() 这样返回的就是去除两边的空白字符后的文本
+
+小知识：
+innerHtml 会获取可解析的html 代码; textContent 会获取纯文字
+innerHtml 有可能会执行恶意脚本; textContent 不会
+
+
+
+修改document获取对象的style属性
+方法一：
+content.setAttribute("style","属性:属性值; 属性:属性值; 属性:属性值;");
+方法二：
+content.style.属性=""； 
+实例： content.style.width="300px"; 这条代码在script标签内，把content 标签的宽改成了300px 
+       content.setAttribute("style","width:300px; height:200px; background:red;");
+
+4
 Dom事件
 你可以通过<button onclick=""></button> 你可以通过vutton标签的onclick 启动函数，来执行事件
 
@@ -1088,34 +1139,6 @@ click 触发时机:鼠标点击（按下并释放）	示例:点击按钮
 dblclick 触发时机:鼠标双击	示例:双击图片
 mousedown 触发时机:鼠标按钮按下 	示例:按住不放
 mouseup 触发时机:鼠标按钮释放 	示例:松开鼠标
-
-
-
-
-
-通过document对象获取页面对象
-var content = document.getElementsByTagName("标签名"); 这个方法返回的是一个数组， 你若是想指定一个标签，只需要在括号后面添加[下标]就行了
-var content = document.getElementsByClassName("类名");  这个方法返回的是一个数组， 你若是想指定一个标签，只需要在括号后面添加[下标]就行了
-var content = document.getElementsByName("标签的name");  这个方法返回的是一个数组， 你若是想指定一个标签，只需要在括号后面添加[下标]就行了
-var content = document.getElementsById("id名");  这个方法返回的是一个标签
-var content = document.querySelector("选择器");  这个方法只会返回第一个具有你指定选择器的标签， 括号里的选择器得这么写 ，若是类选择器就写：.选择起名， 若是id选择器就写: #选择起名 
-
-修改document获取对象的文字
-content.InnerHtml = "内容";  //我们可以通过这一方法修改页面元素显示的文字
-content.textContent = "";    // 你也可以这么写， content.textContent.trim() 这样返回的就是去除两边的空白字符后的文本
-innerHtml 会获取可解析的html 代码; textContent 会获取纯文字
-innerHtml 会设置可解析的html 代码; textContent 会设置出纯文字
-innerHtml 有可能会执行恶意脚本; textContent 不会
-innerHtml 的性能比textContent 高得多
-
-
-修改document获取对象的style属性
-方法一：
-content.setAttribute("style","属性:属性值; 属性:属性值; 属性:属性值;");
-方法二：
-content.style.属性=""； 
-实例： content.style.width="300px"; 这条代码在script标签内，把content 标签的宽改成了300px 
-       content.setAttribute("style","width:300px; height:200px; background:red;");
 }//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
