@@ -957,6 +957,9 @@ Dom：文档对象模型用于操纵HTML文档
 内部使用： 你可以在html的任意位置使用<script></script> ,然后在里面写入js代码，我们一般把<script></script>放在body底部 //为什么，我们会把js代码放在body 下面？ 这是因为html代码是从上往下渲染解析的， 若是你将js代码放在body顶部，那么页面就会先解析js代码，再js代码解析完后，后面的html代买才会开始渲染和解析
 外部引入:  你通过设置一个js文件， 然后再html文件中使用<script src="文件地址"></script> 这样编译器就可以在使用<script>的地方使用文件中的js代码  //需要注意的是， 这时候你再<script></script> 中写入代码，这里的代码并不会生效
 
+js的代码
+js的代码是从上往下执行的，编译器只会执行一遍，在这一遍中，你可以为标签加上事件，并在后续的页面交互中触发它
+
 js 中的三种常见的输出方式
 consolo.log() 这是控制台输出
 document.write() 这是页面输出
@@ -1065,7 +1068,7 @@ Comment  注释对象       //注释会被封装成注释对象
 
 使用dom 的操作步骤
 获取dom对象
-然后修改dom对象
+然后修改dom对象的属性或调用dom的方法
 
 2
 通过document对象获取页面对象
@@ -1076,12 +1079,18 @@ var content = document.getElementsById("id名");  这个方法返回的是一个
 var content = document.querySelector("选择器");  这个方法只会返回第一个具有你指定选择器的标签， 括号里的选择器得这么写 ，若是类选择器就写：.选择起名， 若是id选择器就写: #选择起名 
 var content = document.querySelectorAll("选择器");  这个返回的是一个nodeList 节点集合，是一个有长度，右节点的伪数组
 
+小知识
+nodeList 节点集合， 可以使用方括号加下标 来获取对应的对象。 
+示例：var content = document.querySelectorAll("h1");  // 这行代码会返回所有的h1 对象，并把它们做成一个集合
+      content[0].InnerHtml = `你好`;  //将第一行代码的内容修改成“你好”
+ 
 3
 修改和获取document对象的内容
 InnerHtml
 返回元素的文本内容，包括所有空白和内部 HTML 标签。
 我们可以修改这一标签的内容 content.InnerHtml = "内容"; 
 我们可以获取这一标签的内容 let texr = content.InnerHtml; 
+
 textContent
 元素和所有后代的文本内容，带有所有空白和 CSS 隐藏文本，但没有标签。
 content.textContent = "";    // 你也可以这么写， content.textContent.trim() 这样返回的就是去除两边的空白字符后的文本
@@ -1090,8 +1099,7 @@ content.textContent = "";    // 你也可以这么写， content.textContent.tri
 innerHtml 会获取可解析的html 代码; textContent 会获取纯文字
 innerHtml 有可能会执行恶意脚本; textContent 不会
 
-
-
+4
 修改document获取对象的style属性
 方法一：
 content.setAttribute("style","属性:属性值; 属性:属性值; 属性:属性值;");
@@ -1100,29 +1108,26 @@ content.style.属性=""；
 实例： content.style.width="300px"; 这条代码在script标签内，把content 标签的宽改成了300px 
        content.setAttribute("style","width:300px; height:200px; background:red;");
 
-4
-Dom事件
-你可以通过<button onclick=""></button> 你可以通过vutton标签的onclick 启动函数，来执行事件
-
+5
 Dom0事件
-你可以，在js中，获得指定按钮标签，通过修改标签的onclick ,来执行函数。
-这个的缺陷是，你只能指定onclick触发一个函数， 你若是多次写出按钮标签的onclick， 那么点击按钮后只会执行最后一个onclick的函数
+事件源.on事件类型 = callback;
 实例： 
 <button id="1"></button> //在这个实例中， 你点击button只会执行事件2
 <script>
-var content = document.getElementsById("1");
-content.onclick =function(){
+document.getElementsById("1").onclick =function(){
   console.log("你已执行事件1");
-}
-content.onclick =function(){
-  console.log("你已执行事件2");
 }
 </script>
 
+
+
+
 Dom2事件
+事件监听
+事件源.addEventListener(eventType, callback); 
+
+事件监听使用实例一：
 在js中，获得指定按钮标签，通过指定方法(addEventListener)修改标签的onclick ,这样点击一个按钮可以执行多个函数。
-模板：content.addEventListener(eventType, callback); 
-实例一：
 <button id="1"></button> //在这个实例中， 你点击button只会执行事件2
 <script>
 var content = document.getElementsById("1");
@@ -1134,11 +1139,37 @@ content.addEventListener("click", function(){
 })
 </script>
 
-eventType : "click"、"dblclick"、"mousedown"、"mouseup"
+
+
+事件源：哪个dom元素触发了事件
+callback: 事件触发的函数
+
+eventType: 事件类型
+事件分为鼠标事件，键盘事件、焦点事件、表单事件
+
+鼠标事件一览"click"、"dblclick"、"mousedown"、"mouseup"
 click 触发时机:鼠标点击（按下并释放）	示例:点击按钮
 dblclick 触发时机:鼠标双击	示例:双击图片
 mousedown 触发时机:鼠标按钮按下 	示例:按住不放
 mouseup 触发时机:鼠标按钮释放 	示例:松开鼠标
+mouseenter 触发时机； 鼠标在页面标签之上时
+mouseleave 触发事件：鼠标离开页面标签时
+
+键盘事件一览
+keydown  键盘按下时触发
+keyup  键盘弹起时触发
+
+焦点事件
+focus 获得焦点触发，示例：输入框获得焦点时
+blur  失去焦点触发，示例：输入框失去焦点时触发 
+
+表单事件
+input 用户输入时触发，示例： 输入框输入内容时
+submit 用户提交时触发，示例： 按钮提交时 
+
+小知识
+dom0事件能只为，事件源提供一个事件类型的一个函数执行，不能提供同一个事件类型的多个函数执行 
+dom0中使用的事件源属性，是dom对象的属性，不是标签的属性。
 }//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -1204,6 +1235,13 @@ typeof 变量  // 这个会返回判断
 
 小知识:
 判断null 时， 返回的是 object
+
+3
+this 的使用方法
+在监听事件中，你可以在触发函数中，使用this , 它指代的是事件源。
+示例： content.addEventListener("click", function(){
+        this.style.backgroundcolor = '#fff';
+      })
 }//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
