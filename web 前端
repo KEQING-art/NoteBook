@@ -991,10 +991,10 @@ var buer = true;
 var buer = false;
 
 js的引用数据类型
-合成
+对象，数组
 
 声明数据类型示例;
-var user= {age:18,habita:{},name:''}
+var user= {age:18,habita:{},name:''}  //对象
 
 2
 js的时间 
