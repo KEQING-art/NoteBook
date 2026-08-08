@@ -77,6 +77,8 @@ v-for 的使用方法
 <div id="item"><div v-for="(item,index) in items" :key="item.id">姓名:{{item.name}} 性别:{{item.gender==1?'男': '女'}} 图片:<img :src="item.image" :alt="item.name"></div></div>
 这里的key 是给item 的唯一标识， item.id  是item 里面的内容
 
+v-bind使用方法
+v-bind:属性='属性值' 或者 :属性='属性值'
 
 小知识
 vue指令其实就是标签的特殊属性，想要使用vue指令，你需要在标签上添加。
