@@ -132,6 +132,7 @@ select 函数(列)as 列明 from student_info; 这个意思是，从原有的列
 
 3
 having 为group 分组后的查询结果进行条件过滤
+
 having 语句的实例:
 select emp_type_id, min(emp_id) from emp group by emp_type_id having min(emp_id) > 1; 
 如何理解这句话，如下
@@ -150,7 +151,8 @@ order by 列 desc(降序)/asc(升序)
 
 5
 指定查询范围
-select * form 表名 Limit [偏移量,] 行数;  这句话是在查询结果中，指定第偏移量位， 查询从此后的行数
+select * form 表名 Limit 偏移量, 行数;  这句话是在查询结果中，指定第偏移量位， 查询从此后的行数
+select * form 表名 Limit 行数;  这句话是在查询0和此后的行数。
 
 6
 多表查询
