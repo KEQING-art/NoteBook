@@ -152,7 +152,6 @@ order by 列 desc(降序)/asc(升序)
 5
 指定查询范围
 select * form 表名 Limit 偏移量, 行数;  这句话是在查询结果中，指定第偏移量位， 查询从此后的行数
-select * form 表名 Limit 行数;  这句话是在查询0和此后的行数。
 
 6
 多表查询
