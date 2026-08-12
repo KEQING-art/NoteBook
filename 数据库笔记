@@ -201,20 +201,23 @@ select 函数(列)as 列明 from student_info; 这个意思是，从原有的列
 
 2
 函数
-concat(字符串 ,字段名)  //它可以把字符串连接在字段名前面，通常搭配update使用
-
-now() //返回当前时间
-使用示例: insert into `student`(id, gmt_modified)values(1, now());
+concat(字符串 ,字段名)  它可以把字符串连接在字段名前面，通常搭配update使用。
+now() 返回当前时间。  使用示例: insert into `student`(id, gmt_modified)values(1, now());
 
 3
 关键字
-as 使用方法: 字段名 as `新名字`   //as只是将展示出来的表名替换成新名字，并没有改变字段名
-current_timestamp //返回现在时间，这是sql标准的关键字，能够跨数据库使用
+as 将展示出来的表名替换成新名字。示例: 字段名 as `新名字`
+current_timestamp   返回现在时间，这是sql标准的关键字，能够跨数据库使用
 AND/OR   这个可以用来连接两个条件
-IS       is 专门进行null 判断 
-BETWEEN...AND  用于匹配一个连续的数值或日期范围。 select * from emp where reduce between 100 and 500; 
-IN/NOT IN   用于匹配一个集合。示例:WHERE fever IN ('T0', 'T1')、 select emp_name from emp where emp_id not in (select emp_id from salary); 
-LIKE 模糊查询，供字符串使用，通常要搭配% 和_ 使用。示例:select * from student_info where address like '%市%'; 这个的意思是查询中间有个市字的字符 
+IS       专门进行null 判断 
+BETWEEN...AND    用于匹配一个连续的数值或日期范围。 select * from emp where reduce between 100 and 500; 
+IN  用于匹配一个字符串集合。示例:WHERE fever IN ('T0', 'T1')、 select emp_name from emp where emp_id not in (select emp_id from salary); 
+LIKE   模糊查询，供字符串使用，通常要搭配% 和_ 使用。示例:select * from student_info where address like '%市%'; 这个的意思是查询中间有个市字的字符 
+NOT    对后面的条件进行反转  示例:WHERE fever NOT IN ('T0', 'T1');、WHERE gmt_modified IS NOT NULL;、WHERE hero_name NOT LIKE '马%'
+
+小知识
+in括号里的子查询，必须且只能返回“单列”数据, 这单列数据会变成一系列字符串。
+is not null 和 is null 本是一个整体
 
 4
 通配符
@@ -223,8 +226,9 @@ _      select * from student_info where sname like '张__'; 这个的意思是�
 
 5
 运算符
->=     select * from student_info where birthday >= '2006-01-01'; 这个的意思是查询比2026年1月1日大的数据，这里的birthday是字符串  //数字，字符串,日期都可以使用
-=      select count(gender)as 男性数量 from student_info where gender='男';  查询与gender = 男的元素 //精确查询，数字和字符串都可以用,但他会忽略结尾的空格
+>=     比较两边的大小。数字，字符串,日期都可以使用 示例:select * from student_info where birthday >= '2006-01-01'; 这个的意思是查询比2026年1月1日大的数据，这里的birthday是字符串  
+=      比较两边是否相等。数字和字符串都可以用,但他会忽略结尾的空格 示例:select count(gender)as 男性数量 from student_info where gender='男';  查询与gender = 男的元素 
+<=>    比较两边的相等。相等时返回true。 它可以比较null。
 }//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
