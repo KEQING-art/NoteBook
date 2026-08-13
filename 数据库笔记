@@ -201,8 +201,17 @@ select 函数(列)as 列明 from student_info; 这个意思是，从原有的列
 
 2
 函数
-concat(字符串 ,字段名)  它可以把字符串连接在字段名前面，通常搭配update使用。
+concat(字符串 ,字段名)  它可以拼接字符串和字段名，通常搭配update使用。
+使用示例:ELECT column_name1,CONCAT(column_name2,str,column_name3),column_name4 FROM table_name; 
+可以这么理解这里的查询字段名时，返回一系列字符串， 查询concat函数时，返回一系列字符串. 
+可以这么理解FROM table_name 生成一个虚拟表， 删除除了column_name1,column_name2,column_name3,column_name4的列，紧接着将column_name2列合并成一个column_name1列，然后将str 夹在这一合并列的中间
+
 now() 返回当前时间。  使用示例: insert into `student`(id, gmt_modified)values(1, now());
+
+TRIM( str); 去除字符串的前后空格
+TRIM( BOTH|LEADING|TRAILING removed_str FROM str); 选择去除前面的空格还是后面空格，抑或是其他字符
+
+REPLACE(column_name,string_find,string_to_replace);  能把某个字符修改成别的字符串
 
 3
 关键字
