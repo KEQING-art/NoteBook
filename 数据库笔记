@@ -164,7 +164,7 @@ from 表1, 表2
 where 表1.外键 = 表2.主键 [and 表2.外键 = 表.3主键] 
 // 这里的where语句的作用是将将两个表关联起来，只保留 外键 等于 主键的记录，这里指的是在另一张表中寻找有相等的主键，并把主键所在行和 外键所在行连接起来 ，这就是将两张表合成一张表
 
-普通链接
+显示链接
 select 表1.列1，表1.列2 .... 
 from 表1
 join 表2 on 表1.列1 = 表2.列2;
@@ -180,20 +180,18 @@ from 表1
 left/right join 表2 on 表1.列1 = 表1.列2
 这里的左表是表1，左表会被完全保留， 若是右表没有对应的，那就改成null
 
-多表查询实例：
-SELECT emp_id, emp_name, type_name 
-FROM emp, emp_type
-WHERE emp_type_id = type_id
-ORDER BY emp_id
+隐式连接  //无论如何更推荐显示连接
+SELECT 表1.列1，表1.列2 .... 
+FROM 表1, 表2
+WHERE 表1.列1 = 表2.列2;
 
-理解实例：
-第1步：FROM emp, emp_type
-从 emp 表和 emp_type 表中查询数据
-第2步：WHERE emp_type_id = type_id
-连接条件：将两个表关联起来
-只保留 emp.emp_type_id 等于 emp_type.type_id 的记录
-第3步：SELECT emp_id, emp_name, type_name
-只选择需要的三列
+多表左连接 //由此推出，你也可以推出多表右连接，多表显示连接
+SELECT
+  *
+FROM
+  TableA 
+  LEFT JOIN TableB ON conditionA
+  LEFT JOIN TableC ON conditionB;
 }//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
