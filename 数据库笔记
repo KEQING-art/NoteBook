@@ -124,9 +124,12 @@ select [distinct] fildid1, fildid2.... from 表名; // 这里的distinct 是去�
 
 
 2
-为查询添加条件 where            //where 不可以使用聚合函
+为查询添加条件 where            
 select 列 from 表名 where 条件 ;
-条件是一个布尔表达式
+
+小知识
+where 不可以使用聚合函数
+where 审查的是前面的虚拟表里的数据。
 
 2
 group 为查询结果分类
@@ -140,13 +143,10 @@ having 为group 分组后的查询结果进行条件过滤
 having 语句的实例:
 select emp_type_id, min(emp_id) from emp group by emp_type_id having min(emp_id) > 1; 
 如何理解这句话，如下
-第1步：FROM emp
-从 emp 表读取所有数据
-第2步：GROUP BY emp_type_id
-按 emp_type_id（员工类型ID）进行分组
-第3步：HAVING MIN(emp_id) > 1 ， 对每个分组计算最小的 emp_id，只保留最小值大于1的分组
-第4步：SELECT emp_type_id, MIN(emp_id)
-输出满足条件的分组的 emp_type_id 和该分组的最小 emp_id
+FROM emp ,从 emp 表读取所有数据
+GROUP BY emp_type_id, 按 emp_type_id（员工类型ID）进行分组
+HAVING MIN(emp_id) > 1，对每个分组计算最小的 emp_id，只保留最小值大于1的分组
+SELECT emp_type_id, MIN(emp_id) 输出满足条件的分组的 emp_type_id 和该分组的最小 emp_id
 
 4
 order为查询结果排序
@@ -183,6 +183,22 @@ WHERE 表1.列1 = 表2.列2;
 SELECT * FROM TableA 
 JOIN TableB ON conditionA
 JOIN TableC ON conditionB;
+
+UNION
+它的作用是将两个或多个 SELECT 语句的结果集纵向拼接（上下叠加）成一个结果集。
+SELECT column1, column2 FROM table1
+UNION
+SELECT column1, column2 FROM table2;
+
+使用UNION时，连接的各个表列数必须相同：上下两个查询返回的列数必须完全一致。对应位置的列，数据类型必须相同或兼容（比如都是字符串，或者都是数字）。最终结果集的列名，完全取决于第一个 SELECT 语句中定义的列名或别名。
+
+UNION ALL
+它的作用是将两个或多个 SELECT 语句的结果集纵向拼接（上下叠加）成一个结果集, 但不会去重，所以执行很快
+
+小知识： 
+若是在连接时 一行对应多行，那么mysql 会生成多行逐个连接
+
+连接多个虚拟表时， 大虚拟表是从左到右的表拼接出来的
 }//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -404,5 +420,9 @@ ENGINE=InnoDB DEFAULT CHARSET=utf8
 mysql 的字符串和标识符
 字符串通常用''包裹
 标识符通常用``包裹
+
+7
+条件
+条件只负责返回真或假，只负责判断
 }/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
