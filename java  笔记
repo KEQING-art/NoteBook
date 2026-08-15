@@ -1226,12 +1226,21 @@ stream.forEach(lambda表达式);
 stream.fileter(lambda条件表达式)
 这个方法是一个中间操作。
 
+流数据排序
+stream.sorted(lambda表达式)
+当lambda 表达式的返回值是正数的时候，不交换相邻数据的位置，反之交换
+lambda 表达式的参数:student1 指代 后一个数字, student2 前一个数字,。
+
 流数据映射
 stream.map(lambda表达式)
 这是个中间操作。
 这个方法会将每个原stream 数据加工，生成一个对应的新数据，然后将新数据放在，一个新的stream里。
 这个方法中的return 返回的数值，就是原数据加工后的数值。
 这个方法，lambda表达式中的代码块若是只有一句return ,就可以将lambda表达式中的{}  省略掉
+
+流数据摘取
+stream.limit(n)
+这个方法可以获取流的前n个数据。
 
 小知识
 中间操作只会返回一个新的stream 对象，这个对象是一个空壳，它保存了一个指向原stream的引用，它被写上了中间操作的规则，这些规则在进行终结操作的时候才会生效，而原来的stream 什么都不会改变。
