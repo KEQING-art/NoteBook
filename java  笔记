@@ -67,6 +67,7 @@ loginbutton.addClickListener(click->{ // 使用 lambda 语法
 
 字符串
 {/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+字符串方法
 查找字符串里的第二个字符
 char text = str1.charAt(2);
 
@@ -111,6 +112,10 @@ String text14 = str1.toLowerCase();
 
 将一个字符串中的空格清除
 String text15 = str1.trim(); 
+
+将几个字符串用指定的分隔符连接起来
+String(",",list<String>集合);
+String(",",字符串1,字符串2，字符串2...)
 
 小知识
 StringBuffer 和 String 差不多，用法都差不多。 StringBuffer 是引用变量
@@ -1252,10 +1257,19 @@ stream.limit(n)
 流数据合并
 stream.reduce(初始值,lambda表达式)
 这是个终结操作。
-这里的lambda 表达式写成(a,b)->{return a + b}，有返回值，返回值赋给了a。
+这里的lambda 表达式写成(a,b)->{代码块}，有返回值，返回值赋给了a。
 这个方法的作用是把流中的多个元素，按照你指定的规则，反复计算，最终“折叠”成单个结果
 这里的a 是历史累计的结果， b 是当前正在遍历的流中元素。
 这里的初始值可以不写，也可以写。若是写了，那么a 等于初始值，b 等于第一个元素，并且是a的数值类型。若是没写，那么a 等于流的第一个元素，b等于流的第二个元素, 且返回值类型成了optional<数据类型>。
+
+流数据收集
+stream().collect()
+这个方法的作用是将一个stream全部“收集”起来，根据括号里的Collectors.to数据类型，放进一个具体的数据结构里，然后返回这个数据类型。
+
+collector 流工具类
+引入collector: java.util.stream.Collectors。
+collector的方法: toList; toSet; toMap
+
 
 
 小知识
