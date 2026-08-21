@@ -692,10 +692,14 @@ background-image: url(地址);   //背景图片地址
 
 background-repeat: no-repeat/repeat/repeat-x/repeat-y;   // 你可以禁止图片重复， 也可以只允许x 轴方向或y 轴方向重复 
 
-background-position: center;    // 图片居中显示 
-这里的值可以是数值%, px，
+background-position:;  决定背景的在父元素内的位置 
+center;    // 图片居中显示 
+px px 或者 % %  //这里的第一个值表示距离左边的距离， 第二个值表示距离上边的距离
 
-background-size:cover/contain/数值 px px或 % %       //cover全覆盖，甚至超过父元素， contain 扩展至最大尺寸，以使其的宽度和高度完全适应内容区域。 px px 或 % % 可以自行调整图片大小， 宽高
+background-size:；  //决定图片大小 
+cover  //cover全覆盖，甚至超过父元素
+contain  //contain 扩展至最大尺寸，以使其的宽度和高度完全适应内容区域
+px px或 % %       // % 表示相对于父元素的大小。 第一个值表示宽， 第二个值表示高。
 
 小知识
 background可以将千米那几个属性合并起来写
