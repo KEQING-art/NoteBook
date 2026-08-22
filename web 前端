@@ -430,6 +430,9 @@ html中 ， 主要层级有： 文档流， 浮动，脱离文档流， 脱离�
 在这四个层级中， 只有脱离文档流是不同层叠上下文， 脱离文档流+ z-index 一定大于脱离文档流。
 脱离文档流是很特殊的， 他不意味着z-index 变大， 它意味着不再占据原来的空间， 从原来的排队中退出来， 变成了准层叠上下文。
 
+小知识
+脱离文档流会使标签隐式变成块级，可以设置宽高。
+
 4
 达成居中效果
 margin: 0 auto;     // 你可以使用 0 auto 来使块状组件达成居中效果。 两个组件的间距是两个组件的间距相加，两个组件的上下间距是最大的那个间距
@@ -543,8 +546,11 @@ first-line
 设置第一行的样式
 
 nth-child()
+括号里n 可以代表从0 递增的数字，n 若是等于0，是修饰不到标签的。
+这个属性数的是所有标签。
+括号里可以写 odd 和 even, 这代表了奇数和偶数。
 示例：.container>div:nth-child(1){} //这段代码的意思是，在container内的第一个div的样式
-括号里可以写 odd 和 even, 这代表了奇数和偶数
+      .container:nth-child(-n + 3)::after{}
 
 
 小知识：
@@ -736,17 +742,24 @@ css的display属性
 {///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 display: inline/block/flex/inline-flex/none(设置了这个属性组件就会消失)/inline-block;
 
-inline-block一个拥有完整块级盒模型能力的行内元素。
+inline-block
+一个拥有完整块级盒模型能力的行内元素。
 
-block可以设置宽高，行内不可以
+block
+可以设置宽高，行内不可以
 
-inline可以设置内边距，且内边距确实会生效并占据空间，但它不会影响行高和上下文的垂直布局流。;可以设置左右margin; 默认只有文字的面积
+inline
+可以设置内边距，且内边距确实会生效并占据空间，但它不会影响行高和上下文的垂直布局流。;可以设置左右margin; 默认只有文字的面积
 
-none可以将元素隐藏，甚至连占有的空间都不会留有。
+none
+可以将元素隐藏，甚至连占有的空间都不会留有。
 
-flex可以把父元素内标签成块处理，父元素变成块状元素。inline-flex可以把父元素变成行内元素。           //设置这两个其一的属性，标签的float, clear, vertical-align 都将不起作用
-flex 布局，可以使用以下属性:
-justify-content: ;  //justify-content 是控制子元素的水平对齐方式
+flex/inline-flex
+可以把父元素内标签成块处理，父元素变成块状元素。inline-flex可以把父元素变成行内元素。           
+设置这两个其一的属性，标签的float, clear, vertical-align 都将不起作用
+
+flex 的justify-content属性  
+这是控制子元素的水平对齐方式
 可以赋值一览:flex-start | flex-end | center | space-between | space-around | space-evenly    //父元素flex，父元素使用justify-content:center; 可以使子元素居中，
 flex-start 项目向水平方向的起点对齐
 flex-end 项目向水平方向的终点对齐   //最后一个标签，先排列到最后，然后是倒数第二个，倒数第三个
@@ -755,9 +768,11 @@ space-between  项目在每行上均匀的放置，从起点开始到终点
 space-evenly  项目在一行上均匀的放置， 项目之间， 项目与父元素的边缘之间， 这些距离都是一样的
 
 
-gap:;                              父元素flex， 然后使用gap 可以控制各个子元素的间隔
+flex的gap属性                              
+父元素flex， 然后使用gap 可以控制各个子元素的间隔。
 
-align-items:;     //align-items 控制的是子元素垂直对齐方式                    
+flex的align-items属性     
+这个控制的是子元素垂直对齐方式。                    
 可以赋值一览:flex-start | flex-end | center | baseline | stretch   
 flex-start  项目(子元素)的顶边向父元素的顶边对齐
 flex-end 项目的底边向父元素的底边对齐
@@ -766,20 +781,23 @@ baseline  各个项目与第一行文字基线对齐
 stretch  各个项目的高度被自上向下拉长到与容器相同的高度，
 
 
-flex-wrap:;  //flex-wrap 控制的是怎么换行
+flex的flex-wrap属性  
+这是控制的是怎么换行。
 可以赋值一览: nowrap、wrap、wrap-reserver;
 nowrap 不换行
 wrap  正常换行
 wrap-reserver  向上换行
 
 
-flex:; 属性控制的是项目的大小在一行中的表现，你必须得给项目设置
+flex的flex属性
+属性控制的是项目的大小在一行中的表现，这个属性。
 可以赋值一览: none, 1;
 none 项目不可被压缩，哪怕空间不够，这个项目也不会被压缩。
 “1”    项目自动填满这一行的水平剩余空间。  //若是一行中有三个项目，你给这三个项目设置了 flex: 1; 那么三个项目会占据相同的空间，将这一行瓜分掉，若是你只给三个项目其中一个设置，那么这个项目会撑满剩余空间
 
 
-flex-direction:; 这个属性控制的是dispaly:flex;属性下父元素的主轴和交叉轴,交叉轴永远垂直主轴  //小知识，你将主轴垂直后，align-items就控制水平排列, justify-content控制垂直排列
+flex的flex-direction属性
+这个控制的是dispaly:flex;属性下父元素的主轴和交叉轴,交叉轴永远垂直主轴  //小知识，你将主轴垂直后，align-items就控制水平排列, justify-content控制垂直排列
 可赋值一览; row、row-reverse、 column、column-reverse
 row 默认值
 row-reverse  主轴水平，从右到左
