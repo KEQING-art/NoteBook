@@ -282,7 +282,7 @@ meta 元素设置指的是通过标签属性进行设置。
 
 2
 meta元素的 charset属性
-<meta charset="UTF-8"> 使用utf-8
+<meta charset="UTF-8"> 使用utf-8解析网页
 
 3
 meta 元素的http-equiv 属性
