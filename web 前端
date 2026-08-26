@@ -1193,9 +1193,17 @@ window 的 parseInt() 方法
 window 的 parseFloat() 方法
 它可以将小数字符串转化为整数。
 
-setTimeout() 
-这个函数用于在**指定延迟时间（毫秒）**后执行一次函数或代码片段，常用于延迟任务、异步处理等场景。
-setTimeout(函数,延迟时间, 传入参数);
+window 的setTimeout() 
+这个函数用于在**指定延迟时间（毫秒）**后执行一次函数或代码片段，它是限制性后等待， 而且这个函数会返回自己的定时器编号。
+setTimeout(匿名函数/函数名,延迟时间, 传入参数);
+
+window 的setInterval()
+这个函数可以每隔几秒执行一次代码, 只不过它是先等待后执行，它会无限次定时执行。
+setTimeout(匿名函数/函数名,延迟时间, 传入参数);
+
+window 的clearInterval 
+这个方法可以消除计时器。
+clearInterval(计时器编号);
 
 3
 document 介绍
