@@ -1447,6 +1447,9 @@ Bom 是由一系列相关对象构成的。
 2
 window 介绍
 这是一个 全局对象，js会自动创建它 ,它还是一个顶层对象
+window 是一个浏览器窗口或一个frame 框架。
+window 对象里面的方法和属性都是全局的。
+
 
 window 的 alert()方法
 这个方法可以把括号里的内容，以弹窗的形式，在页面弹出来。
@@ -1457,24 +1460,34 @@ window 的 parseInt() 方法
 window 的 parseFloat() 方法
 它可以将小数字符串转化为整数。
 
-window 的setTimeout() 
+window 的setTimeout() 方法
 这个函数用于在**指定延迟时间（毫秒）**后执行一次函数或代码片段，它是限制性后等待， 而且这个函数会返回自己的定时器编号。
 setTimeout(匿名函数/函数名,延迟时间, 传入参数);
 
-window 的setInterval()
+window 的setInterval()方法
 这个函数可以每隔几秒执行一次代码, 只不过它是先等待后执行，它会无限次定时执行。
 setTimeout(匿名函数/函数名,延迟时间, 传入参数);
 
-window 的clearInterval 
+window 的clearInterval() 方法
 这个方法可以消除计时器。
 clearInterval(计时器编号);
 
-wimdow 的localStorage
+wimdow 的localStorage()方法
 localSorage 是window 的对象，这个对象保存的数据长期存在，下次访问该网页的时候可以直接读取。
 写入数据， window.localStorage.setItem('键名'，'键值')。  //强行改为字符串然后存入浏览器。
 读取数据， window.localStorage.getItem('键名')。
 清除全部localStorage数据, window.localStorage.clear() 。
 若存入的键值不是字符串，最好把数据改为json 数据后，再存入浏览器。
+
+window 的innerHeight 属性
+window.innerHeight。
+这个属性代表浏览器窗口的内容区域的高度，调用后返回浏览器窗口的内容区域的高度。
+相应的也有 innnerWidth 。
+
+window 的open() 方法
+window.opne()。
+这个方法可以打开一个新窗口。
+
 
 3
 console 介绍
