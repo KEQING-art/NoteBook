@@ -481,7 +481,7 @@ htmml中，两行若是行内的不会紧贴在一起。两行之中有一个是
 rgb(a,b,c)  可以定义颜色
 rgba(a,b,c,d)  可以定义颜色和透明度  当a = 0 时，完全透明， 当a = 1时，完全不透明
 
-6
+8
 px 
 指的是像素
 
@@ -500,6 +500,12 @@ vw 是 1/100 的视口宽度。
 vh 是 1/100 的视口高度。
 视口就是浏览器的页面可见部分。
 
+
+9
+data-*属性介绍
+所有标签都可以使用这些属性。
+这些属性的作用是给标签提供一些，不再标签内容展示的信息
+这些标签包括，data-part, data-words, data-category。
 }///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -1450,6 +1456,14 @@ window 介绍
 window 是一个浏览器窗口或一个frame 框架。
 window 对象里面的方法和属性都是全局的。
 
+window 的innerHeight 属性
+window.innerHeight。
+这个属性代表浏览器窗口的内容区域的高度，调用后返回浏览器窗口的内容区域的高度。
+相应的也有 innnerWidth 。
+
+window 的document 属性
+window.document 
+这个属性是页面的根节点。
 
 window 的 alert()方法
 这个方法可以把括号里的内容，以弹窗的形式，在页面弹出来。
@@ -1480,11 +1494,6 @@ localSorage 是window 的对象，这个对象保存的数据长期存在，下�
 读取数据， window.localStorage.getItem('键名')。
 清除全部localStorage数据, window.localStorage.clear() 。
 若存入的键值不是字符串，最好把数据改为json 数据后，再存入浏览器。
-
-window 的innerHeight 属性
-window.innerHeight。
-这个属性代表浏览器窗口的内容区域的高度，调用后返回浏览器窗口的内容区域的高度。
-相应的也有 innnerWidth 。
 
 window 的open() 方法
 window.opne()。
@@ -1568,29 +1577,17 @@ Dom
 DOM 是js操控网页的接口，他的作用更是将网页转化成一个javaScriipt对象，浏览器会根据dom模型，将结构文档html解析成一系列的节点，再由这些节点组成一个树状结构,不同的节点都有有不同的nodeType属性. 
 
 DOM 是文档对象模型，它会将标记语言的各个部分封装成对应的对象：
-Document 整个文档对象   //整个html 文档被封装成了文档对象
-Element  元素对象       //标签会封装成 元素对象
-Attribute  属性对象     //标签的属性会封装成 属性对象
-text  文本对象          //每个标签里面的文本内容会被封装成文本对象
-Comment  注释对象       //注释会被封装成注释对象
+node              // 所有dom节点都继承自node 
+Document 文档节点   //整个html 文档被封装成了文档节点，这是最上层的节点
+Element  元素节点       //标签会封装成元素节点
+Attribute  属性节点     //标签的属性会封装成 属性节点
+text  文本节点          //每个标签里面的文本内容会被封装成文本节点
+Comment  注释节点       //注释会被封装成注释节点
+
 
 使用dom 的操作步骤
 获取dom对象
 然后修改dom对象的属性或调用dom的方法
-
-2
-通过document对象获取页面对象
-var content = document.getElementsByTagName("标签名"); 这个方法返回的是一个数组， 你若是想指定一个标签，只需要在括号后面添加[下标]就行了
-var content = document.getElementsByClassName("类名");  这个方法返回的是一个数组， 你若是想指定一个标签，只需要在括号后面添加[下标]就行了
-var content = document.getElementsByName("标签的name");  这个方法返回的是一个数组， 你若是想指定一个标签，只需要在括号后面添加[下标]就行了
-var content = document.getElementsById("id名");  这个方法返回的是一个标签
-var content = document.querySelector("选择器");  这个方法只会返回第一个具有你指定选择器的标签， 括号里的选择器得这么写 ，若是类选择器就写：.选择起名， 若是id选择器就写: #选择起名 
-var content = document.querySelectorAll("选择器");  这个返回的是一个nodeList 节点集合，是一个有长度，右节点的伪数组
-
-小知识
-nodeList 节点集合， 可以使用方括号加下标 来获取对应的对象。 
-示例：var content = document.querySelectorAll("h1");  // 这行代码会返回所有的h1 对象，并把它们做成一个集合
-      content[0].InnerHtml = `你好`;  //将第一行代码的内容修改成“你好”
  
 3
 修改和获取document对象的内容
@@ -1687,11 +1684,77 @@ dom0中使用的事件源属性，是dom对象的属性，不是标签的属性�
 dom api
 {//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 1
-document 介绍
+document 节点介绍
 它是一个全局的对象
 
 document 的 write()方法
 这个方法可以将括号里的内容显示在页面上。
+
+document 的 querySlector方法 
+document.querySelector("选择器"); 
+这个方法可以返回第一个你指定的具有相应选择器的节点，但它返回的是拷贝的原始数据，指定元素改变这个数据并不会改变。
+
+document 的 querySelectorAll()方法
+document.querySelectorAll("选择器");  
+这个返回的是所有具有你指定选择的页面节点， 它们会组成一个nodeList节点，但它返回的是拷贝的原始数据，指定元素改变这个数据并不会改变。
+nodeList 节点集合， 可以使用方括号加下标 来获取对应的对象。 
+
+document 的getElementById()方法
+document.getElement('选择器')。
+这个方法可以返回第一个你指定的具有相应选择器的页面节点，但它返回的数据是原始数据，这个数据会随着指定元素的改变而改变。
+
+2
+element 节点介绍
+它并不继承document。
+
+element 的outerHTML属性
+element.outerHTML。
+这个属性会返回包含当前元素自身的标签 + 内部的所有内容， 这是个字符串。
+赋值outerHTML 会直接修改页面元素。
+
+element 的innerHTML属性
+element.innerHTML
+这个属性会返回内部的所有内容， 这是个字符串。
+赋值innerHTML 会直接修改标签内容。
+
+element 的firstChild属性
+element.firstChild。
+这个属性会返回节点的第一个儿子节点，这个内容是个字符串。
+
+element 的childNodes 属性
+element.childNodes
+这个属性会返回子节点集合，
+
+element 的style属性
+element.style。
+这个属性会返回内联样式的style属性，注意这个返回的不是一个字符串，而是一个可操作的样式对象。
+
+element 的querySelector 和querySelectorAll方法
+这两个方法和document方法用法一摸一样。
+
+element 的dataset属性
+element.dataset。
+这个属性可以返回所有data-* 属性组成的map对象，这个对象的键名，键值都会转化成字符串。
+你可以通过这个对象直接修改对应的data-* 属性，只需要找到对应的键名然后赋值就行了。你也可以通过这个对象，增加data-*属性。
+
+小知识
+有些情况下，单独的换行符，会被看成对一个子节点
+
+2
+node 介绍
+所有节点都继承他
+
+node 的 nodeType属性
+这个会返回节点的节点类型。
+
+node 的 nodeName属性
+这个会返回节点的名称，  元素节点返回标签的大写名称， 文本节点返回#text, 属性节点返回该属性名称, 注释节点返回#comment, 根节点返回#document。
+
+node 的 nodeValue属性
+这个会返回节点内容。文本节点会返回文本内容。属性节点会返回属性值。
+
+node 的 attributes属性
+这个会返回节点的所有属性节点的集合。
 }//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
