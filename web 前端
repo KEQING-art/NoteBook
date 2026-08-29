@@ -1081,6 +1081,35 @@ let str = new String(""); // 这是创建了一个对象
 字符串在创建，赋初值后，就无法被修改了，无论字符串是基本数据类型，还是引用数据类型。
 
 5
+Map数据类型介绍
+这是个引用数据类型。
+这是一个键值对集合，之不多里面的，键名和键值都是字符串。
+
+调用map的键值
+map.键名。
+
+7
+对象字面量介绍
+对象指的是一组键值对的集合。
+变量类型 变量名 = {代码块};  //这里的变量名其实指向对象的内存地址。
+所有数据类型都是Object 的子类。
+
+键值对介绍
+每一个键名都是一个属性,。
+键值可以是变量值，也可以是函数。
+
+键值对的调用
+调用属性， 变量名.键名， 变量名['键名']。
+增加属性， 直接凭空调用一个不存在的键名，然后给它复制就行了。
+修改属性， 你可以调用属性后，直接赋值这个属性。
+若调用的是一个函数，则可以在后面加上一个小括号()。
+当你使用中括号调用属性时，你其实可以往中括号里添加变量。
+
+对象字面量使用示例：
+let item = {isCollapsed: screen > 800;};
+var user= {age:18,habita:{},name:''}  //这是个对象字面量
+
+8
 加号功能介绍
 + 可以连接两个字符串，拼接两个字符串。
 + 连接一个数字和一个字符串时，会把数字转换成字符串，除此以外的数学运算符，会把字符串转化成数字，哪怕两边都是数字字符串。
@@ -1120,35 +1149,12 @@ in 介绍
 小知识:
 typeof 判断null 时， 返回的是 object
 
-6
+9
 转义字符介绍
 它是 \。
 
 转义字符的作用 
 在字符串的中，将后面的一个字符变成普通的文本字符 或 赋予后面的一个字符某种特殊的控制含义，示例： \n, \t。
-
-7
-对象字面量介绍
-对象指的是一组键值对的集合。
-变量类型 变量名 = {代码块};  //这里的变量名其实指向对象的内存地址。
-所有数据类型都是Object 的子类。
-
-键值对介绍
-每一个键名都是一个属性,。
-键值可以是变量值，也可以是函数。
-
-键值对的调用
-调用属性， 变量名.键名， 变量名['键名']。
-增加属性， 直接凭空调用一个不存在的键名，然后给它复制就行了。
-修改属性， 你可以调用属性后，直接赋值这个属性。
-若调用的是一个函数，则可以在后面加上一个小括号()。
-当你使用中括号调用属性时，你其实可以往中括号里添加变量。
-
-对象字面量使用示例：
-let item = {isCollapsed: screen > 800;};
-var user= {age:18,habita:{},name:''}  //这是个对象字面量
-
-
 
 小知识：
 
@@ -1588,30 +1594,6 @@ Comment  注释节点       //注释会被封装成注释节点
 使用dom 的操作步骤
 获取dom对象
 然后修改dom对象的属性或调用dom的方法
- 
-3
-修改和获取document对象的内容
-InnerHtml
-返回元素的文本内容，包括所有空白和内部 HTML 标签。
-我们可以修改这一标签的内容 content.InnerHtml = "内容"; 
-我们可以获取这一标签的内容 let texr = content.InnerHtml; 
-
-textContent
-元素和所有后代的文本内容，带有所有空白和 CSS 隐藏文本，但没有标签。
-content.textContent = "";    // 你也可以这么写， content.textContent.trim() 这样返回的就是去除两边的空白字符后的文本
-
-小知识：
-innerHtml 会获取可解析的html 代码; textContent 会获取纯文字
-innerHtml 有可能会执行恶意脚本; textContent 不会
-
-4
-修改document获取对象的style属性
-方法一：
-content.setAttribute("style","属性:属性值; 属性:属性值; 属性:属性值;");
-方法二：
-content.style.属性=""； 
-实例： content.style.width="300px"; 这条代码在script标签内，把content 标签的宽改成了300px 
-       content.setAttribute("style","width:300px; height:200px; background:red;");
 
 5
 Dom0事件
@@ -1624,30 +1606,16 @@ document.getElementsById("1").onclick =function(){
 }
 </script>
 
+小知识
+dom0事件能只为，事件源提供一个事件类型的一个函数执行，不能提供同一个事件类型的多个函数执行 
+dom0中使用的事件源属性，是dom对象的属性，不是标签的属性。
 
-
-
+6
 Dom2事件
 事件监听
 事件源.addEventListener(eventType, callback); 
 
-事件监听使用实例一：
-在js中，获得指定按钮标签，通过指定方法(addEventListener)修改标签的onclick ,这样点击一个按钮可以执行多个函数。
-<button id="1"></button> //在这个实例中， 你点击button只会执行事件2
-<script>
-var content = document.getElementsById("1");
-content.addEventListener("click", function(){
-  console.log("事件1")
-})
-content.addEventListener("click", function(){
-  console.log("事件2")
-})
-</script>
-
-
-
 事件源：哪个dom元素触发了事件
-callback: 事件触发的函数
 
 eventType: 事件类型
 事件分为鼠标事件，键盘事件、焦点事件、表单事件
@@ -1672,9 +1640,17 @@ blur  失去焦点触发，示例：输入框失去焦点时触发
 input 用户输入时触发，示例： 输入框输入内容时
 submit 用户提交时触发，示例： 按钮提交时 
 
-小知识
-dom0事件能只为，事件源提供一个事件类型的一个函数执行，不能提供同一个事件类型的多个函数执行 
-dom0中使用的事件源属性，是dom对象的属性，不是标签的属性。
+事件监听使用实例一：
+<button id="1"></button> //在这个实例中， 你点击button只会执行事件2
+<script>
+var content = document.getElementsById("1");
+content.addEventListener("click", function(){
+  console.log("事件1")
+})
+content.addEventListener("click", function(){
+  console.log("事件2")
+})
+</script>
 }//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -1703,6 +1679,14 @@ document 的getElementById()方法
 document.getElement('选择器')。
 这个方法可以返回第一个你指定的具有相应选择器的页面节点，但它返回的数据是原始数据，这个数据会随着指定元素的改变而改变。
 
+document 的createElement() 方法
+document.createElement('tagName')。
+这个方法可以创建一个新的节点，这个节点一开始并不会显示在页面上。
+
+document 的createTextNode()方法
+document.createTextNode('文本内容')
+这个方法可以创建一个纯文本节点。
+
 2
 element 节点介绍
 它并不继承document。
@@ -1715,7 +1699,7 @@ element.outerHTML。
 element 的innerHTML属性
 element.innerHTML
 这个属性会返回内部的所有内容， 这是个字符串。
-赋值innerHTML 会直接修改标签内容。
+赋值innerHTML 会直接修改标签内容，赋值"" 给element.innerHTML, 会清空element节点内容。
 
 element 的firstChild属性
 element.firstChild。
@@ -1729,16 +1713,21 @@ element 的style属性
 element.style。
 这个属性会返回内联样式的style属性，注意这个返回的不是一个字符串，而是一个可操作的样式对象。
 
-element 的querySelector 和querySelectorAll方法
-这两个方法和document方法用法一摸一样。
-
 element 的dataset属性
 element.dataset。
 这个属性可以返回所有data-* 属性组成的map对象，这个对象的键名，键值都会转化成字符串。
 你可以通过这个对象直接修改对应的data-* 属性，只需要找到对应的键名然后赋值就行了。你也可以通过这个对象，增加data-*属性。
 
+element的 classList 属性
+element.classList
+这个属性会返回一个元素 class 属性的动态，只读的 DOMTokenList 集合， 动态意味着html的class改变， classList也会同步改变， 只读意味着你不能直接赋值方式修改classList的值。
+可以使用 add()、remove()、replace() 和 toggle() 方法修改其关联的 DOMTokenList。
+
+element 的querySelector 和querySelectorAll方法
+这两个方法和document方法用法一摸一样。
+
 小知识
-有些情况下，单独的换行符，会被看成对一个子节点
+有些情况下，单独的换行符，会被看成对一个子节点。
 
 2
 node 介绍
@@ -1754,7 +1743,24 @@ node 的 nodeValue属性
 这个会返回节点内容。文本节点会返回文本内容。属性节点会返回属性值。
 
 node 的 attributes属性
-这个会返回节点的所有属性节点的集合。
+这个会返回节点的所有属性节点的集合，里面的属性都是字符串。
+调用这个集合的元素需要使用('属性名')。
+设置这个集合的元素需要使用('属性名', 设置内容)。
+通过attributes得到的属性是属性节点 。
+
+node 的 setAttribute()方法
+节点.setAttributes("属性","属性值");
+
+node 的appendChild()方法
+节点.appendChild(节点)。
+这个方法可以在所有子节点之后添加一个节点。
+
+node 的insertBefore()方法
+节点.insertBefore(newNode, referenceNode)
+这个方法可以在某个子节点之前添加一个节点， 注意newNode指的是新节点，而不是新节点名。
+
+小知识
+很多情况下， 你可以直接通过 节点.属性，完成设置或修改，这样得到的值不是字符串。
 }//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
