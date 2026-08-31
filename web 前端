@@ -1163,15 +1163,19 @@ Promise 对象
 它是异步编程的一种解决方案。
 
 Promise 的then((response)=>{})方法
-它是用来为 Promise 注册“成功/失败”的回调函数，并且返回一个新的 Promise 对象，从而支持链式调用。
-then 方法里的回调函数会接受上一个方法里的回调函数返回值。
+它是用来为 Promise 注册“成功/失败”的回调函数，它会立刻返回一个新的 Promise 对象，从而支持链式调用。
+then 方法里的回调函数会接受上一个 Promise 传递过来的结果值。
+then 方法里的回调函数若是返回了Promise，会产看他的状态时pending 还是fulfilled,  若是pending 那么等待Promise对象变成fulfilled，然后把Promise里的值传给下一个Promise方法。如果Promise的状态变成了rejected, 那么then方法会把内部的拒绝原因（reason）提取出来，传递给后续的 .catch()。
+then 方法里的回调函数若是返回了普通值，then方法的Promise 会立刻变成fuldilled, 然后将这个传递给给下一个then方法。
+then 方法里的回调函数什么也没返回，then方法的Promise 会立刻变成fuldilled, 然后将undefined 传递给下一个then方法。
+then 方法里的回调函数抛出了错误，那么then方法 的Promise 会立刻变成rejected, 然后将抛出的错误传递给后续的 .catch()。
 
 Response对象
 它是浏览器包装服务器返回数据的一个对象
 
 Response 的json()方法
 response.json();
-这个方法会立刻返回一个 状态为pending 的Promise对象，，然后等待完整读取响应流(Response)，自动将 JSON 格式的文本解析为 JavaScript 对象（或数组、字符串等），Promise的状态变为fulfilled, 然后将js对象包裹在Promise里， 最后返回Promise对象。
+这个方法会立刻返回一个 状态为pending 的Promise对象，然后等待完整读取响应流(Response)，自动将 JSON 格式的文本解析为 JavaScript 对象（或数组、字符串等），Promise的状态变为fulfilled, 然后将js对象包裹在Promise里。
 
 8
 加号功能介绍
