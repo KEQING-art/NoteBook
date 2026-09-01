@@ -1168,20 +1168,36 @@ idea 中你可以在开始页面的customize修改全局设置
 Apache maven介绍
 它是一个项目管理和构建工具
 
-maven 的核心功能
+maven 的核心功能介绍
 依赖管理： Maven 通过 pom.xml（Project Object Model）文件管理项目依赖。   //通过对项目的管理，maven 可以做到 ，自动从中央仓库自动下载所需的 jar 包，自动下载依赖的依赖（传递性依赖）。
 项目构建： Maven 提供了标准化的构建生命周期
 
-Maven home path  //maven的安装路径
-java idea 中, 这个路径决定了， 项目pom的mvn compile 等等 maven 代码如何执行的
+local reposity 介绍
+Maven 下载并缓存依赖的本地目录， maven 下载的依赖保存在这里。 你所有版本的maven 都可以共用一个本地仓库
 
-User settings file 
-用户的maven配置文件, 它在conf 里,这个文件控制着镜像，服务器认证（访问私有仓库需要账户密码），本地仓库路径
+conf 的 setting.xml 介绍
+用户的maven配置文件。 这个文件控制着镜像，服务器认证（访问私有仓库需要账户密码），本地仓库路径
 idea 会读取此文件，来决定在哪里下载文件，连接哪些仓库
 
-本地仓库
-本地仓库，是你在java ide中设置的Local repository
-Maven 下载并缓存依赖的本地目录， maven 下载的依赖保存在这里。 你所有版本的maven 都可以共用一个本地仓库
+maven 项目结构介绍
+$(basedir}                                    存放pom.xml和所有的子目录
+${basedir}/pom.xml                            Maven 的项目配置文件
+${basedir}/src/main/java                      项目的java源代码
+${basedir}/src/main/resources                 项目的资源，比如说property文件
+${basedir}/src/test/java                      项目的测试类，比如说JUnit代码
+${basedir}/src/test/resources                 测试使用的资源
+
+maven 的mvn clean compile 命令
+编译命令，Maven会自动扫描src/main/java下的代码并完成编译工作，执行完，会在根目录下生成target/classes 目录(存放所有的class)
+
+maven 的mvn clean package 命令
+编译并打包命令，这个命令是compile和package的集合，也就是说会先执行compile命令，然后在执行jar打包命令，这个的结果会把所有的ava文件和资源打包成一个jarjar 是java的一个压缩格式，方便我们灵活的运用多个代码。
+
+maven 的mvn clean installmvn 命令
+执行安装命令，这个命令是compile和package、install的集合，也就是说会先执行compile命令，然后在执行jar打包命令，然后执行install命令安装到本地的Maven仓库目录里，这个目录是 ${user_home}/.m2
+
+maven 的mvn compile exec:java -Dexec.mainClass=${main} 命令
+这个命令的意思是在compile执行完后，执行运行Java的命令，具体执行哪个Java类是由-Dexec.mainclass=${main} 参数指定的，比如我们想执行com.youkeda.Test类，那么这个完整的命令就是mvn compile exec:java -Dexec.mainClass=com.youkeda.Test
 }////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
