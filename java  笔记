@@ -1164,40 +1164,6 @@ java的ide
 全局设置
 idea 中你可以在开始页面的customize修改全局设置
 
-2
-Apache maven介绍
-它是一个项目管理和构建工具
-
-maven 的核心功能介绍
-依赖管理： Maven 通过 pom.xml（Project Object Model）文件管理项目依赖。   //通过对项目的管理，maven 可以做到 ，自动从中央仓库自动下载所需的 jar 包，自动下载依赖的依赖（传递性依赖）。
-项目构建： Maven 提供了标准化的构建生命周期
-
-local reposity 介绍
-Maven 下载并缓存依赖的本地目录， maven 下载的依赖保存在这里。 你所有版本的maven 都可以共用一个本地仓库
-
-conf 的 setting.xml 介绍
-用户的maven配置文件。 这个文件控制着镜像，服务器认证（访问私有仓库需要账户密码），本地仓库路径
-idea 会读取此文件，来决定在哪里下载文件，连接哪些仓库
-
-maven 项目结构介绍
-$(basedir}                                    存放pom.xml和所有的子目录
-${basedir}/pom.xml                            Maven 的项目配置文件
-${basedir}/src/main/java                      项目的java源代码
-${basedir}/src/main/resources                 项目的资源，比如说property文件
-${basedir}/src/test/java                      项目的测试类，比如说JUnit代码
-${basedir}/src/test/resources                 测试使用的资源
-
-maven 的mvn clean compile 命令
-编译命令，Maven会自动扫描src/main/java下的代码并完成编译工作，执行完，会在根目录下生成target/classes 目录(存放所有的class)
-
-maven 的mvn clean package 命令
-编译并打包命令，这个命令是compile和package的集合，也就是说会先执行compile命令，然后在执行jar打包命令，这个的结果会把所有的ava文件和资源打包成一个jarjar 是java的一个压缩格式，方便我们灵活的运用多个代码。
-
-maven 的mvn clean installmvn 命令
-执行安装命令，这个命令是compile和package、install的集合，也就是说会先执行compile命令，然后在执行jar打包命令，然后执行install命令安装到本地的Maven仓库目录里，这个目录是 ${user_home}/.m2
-
-maven 的mvn compile exec:java -Dexec.mainClass=${main} 命令
-这个命令的意思是在compile执行完后，执行运行Java的命令，具体执行哪个Java类是由-Dexec.mainclass=${main} 参数指定的，比如我们想执行com.youkeda.Test类，那么这个完整的命令就是mvn compile exec:java -Dexec.mainClass=com.youkeda.Test
 }////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -1601,6 +1567,100 @@ CompletableFuture的方法thenAccept(lambda表达式)
 
 小知识
 以Async结尾的CompletableFuture的方法，执行任务的进程是放在线程池里的，他不会随着人物的结束而消失。
+}///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+maven
+{///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+1
+Apache maven介绍
+它是一个项目管理和构建工具
+
+maven 的核心功能介绍
+依赖管理： Maven 通过 pom.xml（Project Object Model）文件管理项目依赖。   //通过对项目的管理，maven 可以做到 ，自动从中央仓库自动下载所需的 jar 包，自动下载依赖的依赖（传递性依赖）。
+项目构建： Maven 提供了标准化的构建生命周期
+
+2
+local reposity 介绍
+Maven 下载并缓存依赖的本地目录， maven 下载的依赖保存在这里。 你所有版本的maven 都可以共用一个本地仓库
+
+conf 的 setting.xml 介绍
+用户的maven配置文件。 这个文件控制着镜像，服务器认证（访问私有仓库需要账户密码），本地仓库路径
+idea 会读取此文件，来决定在哪里下载文件，连接哪些仓库
+
+3
+maven 项目结构介绍
+$(basedir}                                    存放pom.xml和所有的子目录
+${basedir}/pom.xml                            Maven 的项目配置文件
+${basedir}/src/main/java                      项目的java源代码
+${basedir}/src/main/resources                 项目的资源，比如说property文件
+${basedir}/src/test/java                      项目的测试类，比如说JUnit代码
+${basedir}/src/test/resources                 测试使用的资源
+
+4
+maven 的mvn clean compile 命令
+编译命令，Maven会自动扫描src/main/java下的代码并完成编译工作，执行完，会在根目录下生成target/classes 目录(存放所有的class)
+
+maven 的mvn clean package 命令
+编译并打包命令，这个命令是compile和package的集合，也就是说会先执行compile命令，然后再执行打包命令，这个的结果会把所有的ava文件和资源打包成一个java的压缩格式，方便我们灵活的运用多个代码。
+打包的java文件名是 [artifactId]-[version].格式
+
+maven 的mvn clean installmvn 命令
+执行安装命令，这个命令是compile和package、install的集合，也就是说会先执行compile命令，然后在执行jar打包命令，然后执行install命令安装到本地的Maven仓库目录里，这个目录是 ${user_home}/.m2
+
+maven 的mvn compile exec:java -Dexec.mainClass=${main} 命令
+这个命令的意思是在compile执行完后，执行运行Java的命令，具体执行哪个Java类是由-Dexec.mainclass=${main} 参数指定的，比如我们想执行com.youkeda.Test类，那么这个完整的命令就是mvn compile exec:java -Dexec.mainClass=com.youkeda.Test
+
+5
+pom文件介绍
+它由四部分：maven 坐标、maven 属性、maven 工程依赖、maven 的插件
+它是xml 格式， xml格式会严格遵守标记语言格式， 会有开始标签和结束标签。
+
+pom文件的maven 坐标介绍
+坐标决定了决定了maven 工程部署后存在maven仓库的文件位置。
+它由四个标签组成<groupId>、<artifactId>、<packaging>、<version>
+
+maven 坐标的group标签
+它的主要作用是定义当前项目所属的组织、公司或团队的全局唯一标识。 它的命名规范，通常采用域名的反向书写方式，示例：com.youkeda.course。必须全部使用小写字母，和标签符号(.)和连字符(-)
+
+maven 坐标的artifactId标签
+它的主要作用是定义具体的项目或模块名称。
+它的命名只能使用小写字母和连字符（-）组合
+在同一个组织（groupId）下，<artifactId> 用于唯一区分不同的项目或模块。它与 groupId 和 version 结合，构成了完整的 Maven 坐标
+
+maven 坐标的packaging标签
+执行打包命令后会把整个工程打包成packaging指定的文件格式，默认情况下packaging的值是jar。
+它的值还有jar、war、ear、pom
+
+maven 坐标的version标签
+三位版本号 x.x.x , 第一个x代表第几个大版本， 第2个x代表第几次新增功能，第3个x代表第几次修bug。
+snapshot， z这个单词的意思是快照，若是再版本号后面用连字符(-)连接上这个单词，就代表当前程序不稳定，随时会更改 
+
+pom文件的maven 属性
+maven属性配置就是用来做参数配置的。
+它是在<properties>标签之内，这里面的标签可以自定义，标签名一般是小写字母 + "." 。
+
+maven 属性的 java.version 标签
+这是一个自定义的标签。
+在properties标签里面， 你可以使用${自定义标签}，在别的标签中，带入这个标签的值， 且这个值是动态值。
+
+maven 属性的 maven.compiler.source 标签
+这个标签可以指定maven编译源代码时候所用的jdk版本, 换句话而言它会用你指定的jdk版本去检查你写的代码。
+但这个标签无法限制你调用的高版本的底层 API（核心类库）， 如果你在代码中使用了 Java 11 才引入的 String.isBlank() 方法，由于本地 JDK 17 的类库中包含这个方法，代码依然可以成功编译并打包。
+
+maven 属性的 project.build.sourceEncoding 标签
+这个标签可以指定工程代码源文件的文件编码格式，一般情况下，我们设置成utf-8。
+
+maven 属性的 maven.compiler.target 标签
+这个标签作用是指定编译后生成的 .class 字节码文件的版本号。
+
+maven 属性的 maven.compiler.release 标签
+它的作用是指定maven编译源代码时候所用的jdk版本，并检查是否使用高版本的api, 然后生成指定的 .class 字节码文件的版本号。
+它里面的内容直接写 数字即可， 8就代表jdk8。
+这个标签是 Java 9 才引入的新特性，因此需要你的 maven-compiler-plugin 插件版本在 3.6.0 以上，并且运行 Maven 的 JDK 版本也要在 9 或以上才能生效。
 }///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
