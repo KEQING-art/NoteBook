@@ -1739,6 +1739,26 @@ java.lang.annotation.Documented
 3
 @AliasFor("别名")
 这个注解可以写到注解里属性的前面，注意是 定义注解的前面，用以表示这个属性还有另一个属性名。
+
+4
+spring 注解一览
+@service、@Component、@Controller、@Reposity。
+
+@service 介绍
+org.springframework.stereotype.Service
+它代表的是Service Bean，一般情况下我们使用它，
+
+@Component 介绍
+org.springframework.stereotype.Component
+它是通用的Bean注解，其余三个注解都是扩展自Component
+
+@Controller 介绍
+org.springframework.stereotype.Controller
+它作用于 Web Bean。
+
+@Reposity 介绍
+org.springframework.stereotype.Repositor
+它作用于持久化相关Bean
 }///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -1769,11 +1789,20 @@ spring5 依赖
 3
 IoC 控制反转介绍
 它的接口类是org.springframework.context.ApplicationContext
-它是面向对象编程的一个设计原则，可以用来降低计算机代码的耦合度。
-它是整个 Spring 应用的“运行时大脑”和核心总控中心。
+它是 Spring IoC 容器的高级核心接口，它定义了容器必须具备的基础能力（如获取 Bean、发布事件、加载资源等）。
+所有的Java 对象都会通过loC 容器转变为 Bean (Spring对象的一种称呼，以后我们都用Bean来表示Java对象)，构成应用程序主干和由SpringloC 容器管理的对象称为beans，beans 和它们之间的依赖关系反映在容器使用的配置元数据中。基本上所有的Bean都是由接口+实现类完成的，用户想要获取 Bean的实例直接从loC 容器获取就可以了，不需要关心实现类
 
-IoC 控制反转作用
-它是管理所有 Bean（对象）的仓库。它负责读取配置（如 XML、注解或 Java Config），实例化 Bean，自动解析并注入 Bean 之间的依赖关系（DI），管理它们的完整生命周期，并在应用关闭时妥善销毁 Bean 以释放资源。
+Annotation 类型的 IoC容器
+它的类是org.springframework.context.annotation.AnnotationConfigApplicationContext
+它是一个具体的类，它通过层层继承最终实现了 ApplicationContext 接口，从而具备了容器所需的所有功能。
+
+Annotation 类型的 IoC容器的实例化
+ApplicationContext context = new AnnotationConfigApplicationContext("包名"/Class clazz);
+若括号里的是包名，这段代码的含义就是启动loC容器，并且会自动加载包下的Bean，哪些 Bean 会被加载呢?只要引用了Spring注解的类都可以被加载
+
+Annotatin 类型的IOC容器的getBeen方法
+context.getBeen()。
+括号里可以填入类名.class, 用于查找指定类唯一的对象，若对象不是唯一的，则会报错。
 }///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
