@@ -1,0 +1,39 @@
+
+jdbc
+{///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+下载mysql 的驱动依赖
+    <dependency>
+        <groupId>com.mysql</groupId>
+        <artifactId>mysql-connector-j</artifactId>
+        <version>8.0.33</version>
+    </dependency>
+
+在项目中，mysql的连接类
+Class.forName("com.mysql.cj.jdbc.Driver");
+
+获取数据库的连接网址，数据库用户名，数据库密码
+String url = "jdbc:mysql://localhost:3306/cdc?serverTimezone=Asia/Shanghai&useSSL=false";
+String name = "root";
+String password = "124895887a";
+
+获取数据库的连接
+Connection connection = DriverManager.getConnection(url,name,password);
+
+预编译sql语句
+String sql = "insert into emp (emp_name, emp_id,emp_type_id) values(?, ?, ?)";      //? 这个相当于一个占位符， 第一个占位符的下标是1
+PreparedStatement preparedStatement = connection.prepareStatement(sql);             //通过preparedStatement 预编译sql 语句
+preparedStatement.setString(1,name1); // 将占位符替换成数据
+preparedStatement.setInt(2,id);
+preparedStatement.setInt(3,3);
+
+执行sql的增删改语句， 接收返回值
+int i = preparedStatement.executeUpdate(); 
+
+执行sql的查语句，接受一个ResultSet结果集
+ResultSet resultset = preparedStatement.executeQuery();
+resultSet 可以指向其他行， 可以借助.next() ，指向下一行
+resultSet一开始指向结果集的前面，使用next()能够取出第一行的内容，可以借助.get类型()方法，往括号里输入对应下标，或对应的列名，取出相应类型数据。 实例： resultSet.getInt(1); 取出所在行的第一列的内容
+
+关闭数据库
+connection.close();
+}////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

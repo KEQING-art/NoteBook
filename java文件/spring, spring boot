@@ -1,0 +1,186 @@
+spring
+{///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+1
+spring 介绍
+spring 是面向接口编程， 多数情况下，spring会有接口和实现类。
+
+spring 配置元数据介绍
+它大概有两种方法配置元数据，一种是基于xml，一种是基于annotation 方案的，主流是基于annotation的。
+
+2
+spring5 依赖
+<dependency>
+  <groupId>org.springframework</groupId>
+  <artifactId>spring-context</artifactId>
+  <version>5.2.6.RELEASE</version>
+</dependency>
+
+3
+IoC 控制反转接口介绍
+它的接口类是org.springframework.context.ApplicationContext
+它是 Spring IoC 容器的高级核心接口，它定义了容器必须具备的基础能力（如获取 Bean、发布事件、加载资源等）。
+
+Annotation 类型的 IoC容器
+它的类是org.springframework.context.annotation.AnnotationConfigApplicationContext
+它是容器的实现类，它通过层层继承最终实现了 ApplicationContext 接口，从而具备了容器所需的所有功能。
+
+Annotation 类型的 IoC容器的实例化
+ApplicationContext context = new AnnotationConfigApplicationContext("包名"/Class clazz);
+若括号里的是包名，这段代码的含义就是启动loC容器，并且会自动加载包下的Bean，哪些 Bean 会被加载呢?只要引用了Spring注解的类都可以被加载
+
+Annotatin 类型的IOC容器的getBeen方法
+context.getBeen()。
+括号里可以填入类名.class, 用于查找指定类唯一的对象，若对象不是唯一的，则会报错。
+
+4
+spring 的Resource类
+org.springframework.core.io.Resource
+
+Resource对象的getInputStream()方法
+resource.getInputStream()
+这个方法的作用是打开该资源，返回一个用于读取资源内容的 InputStream（输入流）。
+
+spring 的ResourceLoader类
+org.springframework.core.io.ResourceLoader
+这个类的对象可以提供一个统一的接口来访问各种外部资源。
+这个类是spring的目标类。
+
+ReaourceLoader 对象的getResource()方法
+resourceLoader.getResource("路径")
+这个方法可以读取一个文件或网页的内容，并将其包装进一个spring 的resource对象，然后返回这个对象。
+classpath 路径， "classpath: classpath路径"。
+file 路径， "file: 工程路径"。
+http 路径, "网页的http地址"  // 根据http 地址可以直接爬取一个网页的信息。
+
+5
+spring bean介绍
+目标类被 Spring 容器实例化，并经过完整的生命周期管理（如依赖注入、初始化等）后，放入IOC容器中，这个“对象”称为 Bean。
+手动实例化一个目标类，这个对象不是bean。
+
+spring bean 的生命周期
+实例化bean->完成依赖注入->afterPropertiesSet->Bean init->destroy
+
+Bean init
+这其实就是一个方法，它的方法名是任意的。
+这个方法在目标类中，它被@PostConstruct注解修饰，在目标类被IOC容器实例化后，这个方法会自动执行。
+
+@PostConstruct注解介绍
+javax.annotation.PostConstruct
+它可以使spring 目标类,在IOC容器实例化后，这个方法会自动执行。
+
+小知识
+被spring 标记为目标类后，在spring 容器启动后，只要这个类的注解是单例，且不是懒加载，那么这个类会自动被new出来。
+
+6
+spring 目标类注解一览
+@service、@Component、@Controller、@Reposity。
+这四个注解，可以使类，变成spring 的目标类。
+
+@service 介绍
+org.springframework.stereotype.Service
+它在 Spring 框架中主要用于标识业务逻辑层的组件，其核心作用是将类注册为 Spring 容器管理的 Bean，从而支持依赖注入、事务管理等功能。
+
+@Component 介绍
+org.springframework.stereotype.Component
+它是通用的Bean注解，其余三个注解都是扩展自Component
+
+@Controller 介绍
+org.springframework.stereotype.Controller
+它作用于 Web Bean。
+
+@Reposity 介绍
+org.springframework.stereotype.Repositor
+它作用于持久化相关Bean
+
+7
+spring 的依赖注入(DI)
+这是spring 最核心的技术点。
+spring的所有技术方案都是基于DI 发展的
+
+spring 的依赖注入注解
+@Autowired 
+org.springframework.beans.factory.annotation.Autowired
+它的作用是让 Spring 容器在运行时自动将匹配的 Bean 注入到目标类的字段、构造器或 Setter 方法中，从而避免手动创建对象或显式调用赋值方法，实现控制反转（IoC）和依赖注入（DI）。 //注意目标类字段所处的类必须是被spring 管理的。
+
+8
+spring controller
+它是一个被@controller 修饰的类，它是Spring MVC 的控制器也同样是一个bean。
+它作为 MVC 设计模式中的“C”（Controller），它负责接收客户端（如浏览器）发来的 HTTP 请求。
+
+@Controller 注解
+它可以修饰一个类，将其变为spring conteoller。
+它的主要作用是将一个普通的 Java 类标识为 Spring MVC 的控制器（Controller）。
+它里面的方法会被识别为请求处理方法，负责将不同的 URL 请求路由到对应的业务逻辑上。
+
+@controller 的return 
+它的return 可以调用resources 里的文件。
+当你使用了模板引擎以及你返回的字符串带不带后缀，那么spring 默认去 src/main/resources/templates调用文件。
+当你使用index后缀，spring 默认去 src/main/resources/static调用文件, 然后返回文件。
+当你使用forward: 前缀, spring 去 src/main/resources/static调用文件, 然后返回文件。
+
+@RequestMapping("路径") 注解
+它的作用是将客户端的 HTTP 请求（如 URL 路径、请求方式等）与后端控制器（Controller）中的具体处理方法建立绑定关系。
+它的路径模板/.../....
+它可以接收get和post 请求。
+标注在类上：定义该控制器所有方法的公共基础路径（前缀）。
+标注在方法上：定义具体处理方法的url请求路径。最终的完整请求路径是“类级别路径 + 方法级别路径”。
+
+@GwtMapping("路径")注解
+它的作用和@RequestMapping 一样， 但他只能接收get请求。
+
+@RequestParam("注解属性名 = url的参数名")
+org.springframework.web.bind.annotation.RequestParam
+这个注解可以返回url的参数名的值并将它赋值给后面的函数形参, 这个参数值是字符串，若后面形参数据类型是基本数据类型那么参数值可以自动转化。
+注解的额外用法， 你可以使用required = false, 将一个url参数指定为不必须被传递，示例：@RequestParam("注解属性名 = url的参数名", required = false)
+
+@Responsebody注解
+这个注解可以将控制器（Controller）方法的返回值直接写入 HTTP 响应体（Response Body）中，而不是去解析渲染视图（如 HTML 页面）。
+如果返回的是一个 Java 对象（如 Map、List、自定义对象），Spring 会利用 Jackson 等库将其自动序列化为 JSON 格式。
+如果返回的是字符串，可能会直接输出文本。
+这个注解可以将响应头中的 Content-Type 设置为对应的格式（如 application/json）
+
+@RestController注解
+它相当于 @Controller + @ResponseBody 的组合。只要类上加了 @RestController，该类下所有方法的返回值都会默认被转成 JSON 写入响应体中。
+
+小知识
+一般会把controller类存放到control子包中。
+web服务器，必须能够解析url, 然后提供资源给调用者，这一操作称为路由。
+
+9
+spring mvc
+它是 Spring 框架提供的一个轻量级 Web 开发框架，专门用来处理 Web 应用程序中的请求和响应。
+
+mvc模式
+M（Model，模型）：负责处理数据和业务逻辑（比如你写的 Service 和 Dao 层）。
+V（View，视图）：负责数据的展示（比如 HTML 页面，或者前后端分离时返回的 JSON 数据）。
+C（Controller，控制器）：负责接收用户的 HTTP 请求，调用 Model 处理业务，然后把结果交给 View 展示。这就是你写的 @Controller 类的作用。
+
+spring mvc 的注解
+它的所有注解都在org.springframework.web.bind.annotation 里。
+}///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+springboot
+{///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+1
+spring boot 介绍
+它的核心是spring, 它是一个方案。
+
+spring boot 依赖
+<parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>4.1.0</version>
+</parent>
+
+2
+spring boot 的前端存放地址
+src/resource/static
+
+3
+spring boot 运行的IPV4的本地地址是
+http://127.0.0.1:端口
+}///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -1,70 +1,4 @@
 
-使用vaddin编译页面
-{//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-java中如何创建一个注册页面{
-使用vaadin作为前端。
-要用包路径引入 vaadin 的功能 例如imoort com.vaadin.flow.component.orderedlayout.VerticalLayout . 这样就可以在类中继承父类，进而使用父类的方法例如:
-这个例子时使用 vaddin 创建空白填空 // 创建空白也是页面的一部分
-mport com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.textfield.TextField;
-import com.vaadin.flow.router.Route;
-
-public class Todo extends VerticalLayout {
-
-    public Todo() {
-
-        TextField field = new TextField();
-        field.setLable(); 给一个填空起个名
-        field.setPlaceholder();给一个填空一个初始信息
-        add(field);        
-    }
-}
-java 中 使用vaddin将填空充实一下
-setLabel(String label)
-setPlaceholder(String placeholder)
-setValue(String value)
-
-
-
-2 // 为注册页设置一个按钮
-使用按钮 并用 Lambda 函数使button 能返回一些值
-import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.textfield.TextField;
-
-Button button = new Button(); 
-button.setText() 给按钮起个名
-button.addClickListener(click->{ // 这就是调用lambda 函数
-   String userNameText = 填空名.getValue();
-    Boolean text = "admin".equals(userNameText); 布尔判断
-    if(test){
-        System.out.print(...);
-    }
-})
-add(button); 添加这个按钮
-在这个函数里面 可以使用getValue 来获取填空的值 例如 Steing text = field.getValue();
-
-额外小知识
-给 text 赋值时 可以在这么赋 = text + "login";
-"admin".equals(...); 这个函数可以判断两个数据等不等
-
-3 
-使用按钮的提示信息
-import com.vaadin.flow.component.notification.Notification; 这是要引入的头文件
-Notification notification  = new Notification(); 声明一个操作实例
-notification.setDuration(); 这是提示信息的存在时间，空格里填时间
-loginbutton.addClickListener(click->{ // 使用 lambda 语法
-    。。。。
-   notification.setText(提示信息的内容);
-   notification.open(); 使提示信息现实；
-})
-
-按钮小知识：        button.setThemeName("tertiary"); // 将这个按钮的框架删掉
-}//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
-
 字符串
 {/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 1
@@ -195,8 +129,6 @@ final
 类
 {//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 1
-类中的构造方法
-
 在类中使用构造方法
 修饰符 方法名(){
     代码块；
@@ -207,9 +139,6 @@ final
 若你类是子类，子类的构造方法的第一行会默认调用父类的无参构造方法。
 类中构造方法前面的修饰符和这个类前面的修饰符是一样的。示例：若你类是class myclass{} 则生成的构造方法是 myclass()；若你类是public class myclass{} 则生成的构造方法是 public myclass()
 
-
-
-类中的普通方法
 
 在类中使用普通方法
 修饰符 数据类型 方法名(){
@@ -234,7 +163,8 @@ final
 这个对象被声明和指定为子类，可以通过继承获得父类的public变量和方法，也可以继承protected 变量和方法， 在同一个包中，还能继承没有修饰符的变量和方法。但不能继承构造方法； 想调用构造方法必须使用 super 在构造方法里调用。
 注意事项：子类继承了父类，那么在声明对象时，无论如何都会调用一次父类的空构造函数，若是父类没有构造函数，则不输出任何东西；若是有空的构造函数，则输出空的构造函数；若是只有有参构造函数，则会报错，解决 这个问题需要在构造函数第一行写super(); ，用来调用有参构造函数
 
-3
+小知识：
+一个方法的参数相同和参数名相同，则他们的方法签名相同，编译器无法分辨他们。
 
 4
 super的用法
@@ -247,8 +177,6 @@ this可以在函数中，指定变量是类本身的变量，而不是参数变�
 this可以在构造方法中，调用本类构造
 
 5
-抽象类
-
 抽象类介绍
 抽象类指的是被abstract 修饰的类。 
 
@@ -302,11 +230,6 @@ class outer{
 匿名类一般是  父类(接口) 父类名(接口名) = new 父类名(){ 代码块}; 这里的代码块就是匿名类的内容
 匿名类可以用接口和类生成
 
-9
-intence 方法
-intenceof 可以判断一个实例是不是一个类的父类或子类 ， object intanceof class
-intanceof 的判断是依靠 new type() 而不是 type 变量名 .
-
 10
 包装类
 包装类不是简单的基本数据类型，对于基本数据类型而言没有什么方法 ， 但对于包装类而言，包装类有很多方法
@@ -318,13 +241,13 @@ toString() 可以将Integer, Double, Boolean等转化为字符串
 parseInt(String s) 将字符串转化成数值类型
 valueOf(String s) 将将字符串转化成Integer类型
 
-Integer 的方法
-Integer.max(int/Integer,int/Integer) 返回最大值
-
 装箱
 包装类 变量名 = new 包装类名(基本数据类型);   小提示:你如果输入一个数字的字符串 ， 那么装箱成Integer时 ， 会变成对应的数字
 
-11
+Integer 的方法
+Integer.max(int/Integer,int/Integer) 返回最大值
+
+12
 Format类
 NumberFormat
 Format的子类NumberFormat , NumberFormat有两个重要方法 format() , parse()
@@ -360,85 +283,87 @@ System.out.println(number.intValue());
 1
 工具类介绍
 工具类分为能实体化的工具类和无法实体花的工具类
-
-2
-能实体化的工具类
-Scanner、random
-
-无法实体化工具类一览:
-collections、Math、Arrays、String
-
-3
+工具类分为能实例化和不能被实例化。
 
 4
-collections 的引入
-import java.util.Collections;
-
 collections的介绍
-collections 是集合工具类
-
-collections 的方法:
+java.util.Collections;
+它是集合工具类。
+它不能被实例化。
 
 将集合排序 
 Collections.sort(集合,lambda表达式);
 这里的lambda表达式是, (a,b)->{代码块},有return, 返回值决定相邻两个元素交不交换。
 
-4
-Math 的引入
-import java.lang.Math;
-
+5
 Math的介绍
-Math 是数学工具类
+java.lang.Math;
+它是数学工具类
+它不能被实例化。
 
-Math 的方法:
-
-返回一个最大的整数数字 
-Math.(num1,num2); 
+Math的 max() 方法
+Math.max(num1,num2); 
+这个方法可以返回一个最大的整数数字 
 
 自然数e 、圆周率PI
 Math.E、 Math.PI 
 
-计算自然对数的参数是x的值
-public static double log(double x)
+Math的log()方法
+Math.log(double x)
+这个方法可以计算自然对数的参数是x的值
 
-计算底数是10的对数的参数是x的值 
-public static double log10(double x)  
-
-5
-Arrays介绍
-Arrays 是数组工具类
+Math的log10()方法
+Math.log10(double x)
+这个方法可以计算底数是10的对数的参数是x的值 
 
 6
-Scanner 的引入
-import java.util.Scanner
+Arrays介绍
+java.util.Arrays。
+Arrays 是数组工具类。
+它不能被实例化。
 
-Scanner的方法 
+Arrays的asList()方法
+这个方法可以将数组变成一个List 集合，并将其返回。
+Arrays.asList(数组)
+Arrays.asList("element1","element2".....)
 
-接收文件
+Arrays的asList()方法返回的list 注意事项
+大小固定（不可增删）：你不能对它调用 add() 或 remove() 方法。
+双向联动（引用问题）：这个 List 和原始数组是共享底层数据的。如果你修改了数组里的值，List 里的值也会变；
+你若是想返回一个能够使用方法的list 可以这么做，new ArrayList<>(Arrays.asList("element1", "element2", "element3")); 
+
+7
+Scanner 的介绍
+java.util.Scanner
+它能被实例化。
+
+Scanner 的构造方法接收文件
 Scanner sc = new Scanner(File);
 
-接受标准数据流 
+Scanner 的构造方法接受标准数据流 
 Scanner sc = new Scanner(System.in);
 
 小知识
 除了nextLine() 之外 ， next() 和 next类型() 都是读取一个token ,nextLine()是读取中一整行，使光标移到 /n 后面
 关闭scanner 会导致往后的scanner 类 不能使用，相当于直接关闭了这个接口。当 Scanner 包装的是文件或网络流时，关闭它是必须的
 
-7
-random 的引入
-import java.util.Random;
+8
+random 的介绍
+java.util.Random;
+它能被实例化。
 
-random的方法
-
-获取一个随机整数
+random 实例的nextIny()方法
 r.nextInt(); 
+这个方法可以获取一个随机整数
 这个方法可以指定获取范围，只要在括号里输入一个正整数，就可以生成0-这个正整数(不报错这个正整数)之间的数。
 
-8
-String的方法
+9
+String 的介绍
+它不能被实例化。
 
-数字转化为字符串
-String.valueOf(数字);  //返回字符串
+String 的valueOf()方法
+String.valueOf(数字);  
+这个 方法可以将数字转化为字符串，并将其返回。
 }///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -448,8 +373,12 @@ String.valueOf(数字);  //返回字符串
 集合
 {///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 1
-collection
-Collection collection = new ArrayList();
+Collection 集合介绍
+它是一个接口。
+它是list, set 的父类。
+
+collection声明
+Collection 变量名 = new ArrayList();
 
 collection的方法,一览：
 boolean c.add(Object) 若是没有添加参数则返回false
@@ -462,11 +391,13 @@ boolean c.remove(Object) 删除那个集合中的一个元素
 boolean c.removeAll(collection) 删除这个参数里的所有元素(彻底删除)
 boolean c.retains(collection) 只保留那些包含在一个参数里的元素
 int c.size() 看看这个集合的大小
-Object[] c.toArray() 这个方法会把collection 变成一个数组
 
+2
+List集合介绍
+它是一个接口，他不能被实例化。
 
-List集合
-List list = new Array();
+List 声明
+List 变量名 = new ArrayList();
 
 List 方法, 一览：
 void list.add(index, Object) 在下标为index的位置上添加Object 
@@ -474,14 +405,20 @@ boolean list.addAll(index , Collection)  在index位置后添加容器collection
 int list.indexOf(Object)  查找object 在list中第一次出现的位置 
 Object remove(index) 删除index上的元素
 Object set(index, Object) 将index上的元素替换成Object
-    list.contains(Object) 检查list有没有Object
+Boolean list.contains(Object) 检查list有没有Object
 int list.lastIndexOf(Object) 检查Object 最后出现的位置
-    list.addAll(List)  将一个List集合复制到list中
+Boolean list.addAll(List)  将一个List集合复制到list中
 int list.size() 看看这个集合的大小
 Object[] list.toArray() 这个方法会把collection 变成一个数组
 
+3
+set集合介绍
+它是一个接口。
+它里面不允许重复。
+它有三种声明类型，HashSet, TreeSet。
+TreeSet 是有序但不允许重复，它通过平衡二叉树实现。
 
-set集合
+set集合声明
 Set set = new HashSet();
 
 set 方法，一览：
@@ -494,33 +431,25 @@ set.toArray() 将set转化成一个数组返回一个数组
 set.remove(Object) 在set中将Object彻底删除
 set.removeAll(Collection) 将collection中的元素从set中彻底删除
 
-set的其他类型
-Set还有其他声明类型 例如TreeSet（有序不允许重复）， 这个类型通过平衡二叉树实现
+小知识
+我们可以利用set的不允许重复特性，从collection中提取出不重复的数据 ，然后利用toArray 数组化set。 最后利用遍历数组，将collection里的数据移除只剩下重复的数据
 
-集合的实例方法
-集合.forEach(lambda表达式) 
+4
+集合实例.forEach(lambda表达式) 
 这个方法可以一个一个遍历list集合， 并一次一次执行你指定的lambda 表达式。
 这里的lambda 表达式是 (f)->{代码块} ,没有返回值
 
-集合.sort(lambda表达式)
+集合实例.sort(lambda表达式)
 这个方法可以把list集合排序。
 这里的lambda表达式是 (a,b)->{代码块}, 有返回值，返回值决定交不交换两个相邻元素 
 
-集合.stream()
+集合实例.stream()
 这个stream() 方法可以将一个集合转化成一条流，也就是将集合转化成一个Stream对象。
 
 小知识
-java 的集合不支持基本数据类型
-
-我们可以利用set的不允许重复特性，从collection中提取出不重复的数据 ，然后利用toArray 数组化set。 最后利用遍历数组，将collection里的数据移除只剩下重复的数据
-
 集合有collection(无序允许重复) , list（有序允许重复） , set（无序不允许重复） , Map(key 值不允许重复)。
 
-list, set 是collection的子类。
-
-集合只能存储引用类型数据。
-
-2
+5
 迭代器Iterator
 Iterator it = collection.Iterator();
 
@@ -529,9 +458,16 @@ Boolean it.hasNxet() 检查it前是否存在元素
 Object it.next() 使it使it指向下一元素并返回他的值
        it.remove() 删除it指向的元素
 
-3
-Map
-声明 Map map = new HashMap();
+6
+Map介绍
+它是一个键值对集合。
+它默认，键名和键值都是Object 类型。
+它有三个声明类型  HashMap,TreeMap(有序的),LinkedHashMap()。 
+
+Map 声明
+Map 变量名 = new HashMap();
+
+map 的方法
 map.put(key, value);  往map里存数据
 map.get(key) 取出map里的数据
 map.remove(key) 移除键对应的数据
@@ -543,39 +479,33 @@ map.values() 返回map所有值,你得用collection存放
 map.containsKey(key) 检查是否存在这个key
 map.containsValue(Value) 检查是否存在这个值
 
-Map由三个类型  HashMap,TreeMap(有序的),LinkedHashMap()。 
+7
+泛型介绍
+泛型可以给集合设定存储的数据。
+泛型的结构是<>，它需要写到声明数据类型的后面。
+泛型不支持基本数据类型。
 
-4
-泛型
-泛型可以给集合设定存储的数据
-泛型的结构是<>
+list使用泛型
+List<数据类型> 变量名 = new ArrayList<>();
 
-泛型使用示例:
-List<String> strings = new ArrayList<>();
-Collection<String> collection = new ArrayList<>();
-Set<String> set = new HashSet<>();
+Collection使用泛型
+Collection<数据类型> 变量名 = new ArrayList<>();
 
-5
+Set使用泛型
+Set<数据类型> 变量名 = new HashSet<>();
+
+Map使用泛型
+Map<数据类型, 数据类型> 变量名 = new HashMap<>();
+
+8
 ArrayList
-arraylist 是一个可以自动扩容的数组
+它是一个可以自动扩容的数组
 
-引入arrayList
+引入ArrayList
 import java.util.ArrayList;
 
-Arrays.asList()
+Arrays.asList()方法
 它的核心作用是：将一个数组（Array）转换为一个列表（List）。
-
-Arrays引入
-import java.util.Arrays;
-
-Arrays.asList()用法
-List<String> list = Arrays.asList(数组)
-List<String> list = Arrays.asList("element1","element2".....)
-List<String> safeList = new ArrayList<>(Arrays.asList("element1", "element2", "element3"));   // 这个用法可以使用add() 和 remove()方法
-
-Arrays.asList() 注意事项
-大小固定（不可增删）：你不能对它调用 add() 或 remove() 方法。
-双向联动（引用问题）：这个 List 和原始数组是共享底层数据的。如果你修改了数组里的值，List 里的值也会变；
 
 小知识
 ArrayList 不是线程安全的。如果在多线程环境下同时修改它，会导致数据错乱。
@@ -587,202 +517,34 @@ ArrayList 不是线程安全的。如果在多线程环境下同时修改它，�
 
 文件
 {////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-文件的小方法 文件指针.exists() 判断文件是否否存在
-
 1
-使用Apache commons读取文件 需要导入
-<dependency>
-  <groupId>commons-io</groupId>
-  <artifactId>commons-io</artifactId>
-  <version>2.10.0</version>
-</dependency>
-
-
 文件读取
-声明文件 //这相当于把nameFile 当成了指针
 File nameFile = new File("路径");
-复制文件内容给变量
-try{
-    String content = FileUtils.readFileToString(nameFile,"utf-8"或者java.nio.charset.StandardCharsets.UTF_8);  // 注意在try 里面声明的变量不能在外部使用
-    lines = FileUtils.readLines(文件, "utf-8"); //将文件以字符串的形式一行一行赋值
-}catch(Exception e){
-    e.printtStacktrace();
-}
+这相当于把nameFile 当成了指针
 
+将文件内容转化成字符串
+FileUtils.readFileToString(nameFile,"utf-8"或者java.nio.charset.StandardCharsets.UTF_8); 
+这个方法可以将文件内容变成字符串返回。
+这个方法需要被捕捉异常。
+若文件是空的，那么这个方法会报错，想解决这个问题，需要进行判断。
 
-文件路径
-./  这相当于回到当前项目的根路径
-./name.txt 回到当前项目的根路径的name.txt 的文件
+将文件内容一行一行的转化成字符串
+lines = FileUtils.readLines(nameFile, "utf-8"); 
+这个方法可以将文件以字符串的形式一行一行赋值
+这个方法需要被捕捉异常。
 
+检验文件
+nameFile.exists() 判断文件是否否存在
+这个方法可以返回true或false。
 
-2
-使用jason 进行数据的序列化和反序列化
-
-声明一个jason 实例
-ObjectMapper mapper = new ObjectMapper();//我们可以使用这个实例使用jason的方法
-
-序列化：//将一个对象转化成字符串存入文件
-try{
-    String text = mapper.writeValueAsString(可以是个集合，也可以是个对象); // 把对象变成son 格式字符串存入文件中
-}catch(Exception e){
-    e.printStacktrace();
-}
-
-需要注意的是 User 变量 （自己定义的类）
-User 具有LocalDateTime gmtCreated 变量
-想让他以yyyy-MM-dd HH:mm:ss 打出就需要在这个变量上加
-@JsonDeserialize(using = LocalDateTimeDeserializer.class)
-@JsonSerialize(using = LocalDateTimeSerializer.class)
-@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
-
-反序列化： //将将文件提取出的jason 格式内容 转化为集合或对象
-想要完成反序列化，就需要先将文件内容转化成字符串
-try{
-    String content = FileUtils.readFileToString(文件指针, "utf-8"); 序列化// 这么写的前提是文件内容已经是 json 格式
-    List<User> users = mapper.readValue(content,ty new TypeReference<List<User>>() { // 如果User 是个对象那么 写User.class
-            });// 这是把jason 格式的文件序列化
-}catch(Exception e){
-    
-}
-反向序列化小知识： 
-若文件是空的，那么反序列化的 String content =FileUtils.readFileToString(文件指针, "utf-8");会报错，想解决这个问题，需要进行判断
-if(content == null||content.trim().isEmpty()){
-    list = new ArrayList<>();
-}else {
-    List<String> users = mapper.readValue(content, new TypeReference<List>() {
-    });
-    list.addAll(users);
-}
-
-3
-文件的方法
-getName() 获取文件的名字 String
-getParent() 获取父路径 Filr
-getPath() 获取路径名的字符串 String
-isAbsolutr() 检查此路径是否是绝对路径 Boolean
-canRead() 检查此路径是否可以被访问
-canWrite() 检查是否可以修改文件内容
-isDirectory() 检查此文件是否是一个文件夹
-isFile() 检查此文件是否是一个标准文件
-lastModified() 获取此文件最后一次被修改的时间 long
-length() 获取此文件的长度 long
-delete() 删除此路径的文件 Boolean
-list() 获取此文件下的文件名称 和 此文件名称 String[]
-listFiles() 获取此文件的路径 和 其文件下的文件路径 File[]
-mkdir() 创建此抽象路径的指定目录（不会创建父目录） Boolean
-mkdirs() 创建此抽象路径的指定目录(哪怕没有父目录 他也会连带创建) Boolean
-rename(File) 重新命名文件 Boolean
-toString() 获取此文件的字符串名称 String
-equals(文件路径) 检查 括号里的文件路径和指定文件路径是否一样 Boolean
-4
-想将字符串写入文件
+将字符串写入文件
 FileUtils.writeStringToFile(文件指针,字符串,"utf-8",ture(这里写true 可以文件内容后面写内容));   没有文件他会自己创建一个文件
-像删除文件
+
+删除文件
 FileUtils.delete(文件指针);
-}/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-
-
-
-2026 4 6
-设置一个登录页面
-{///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-import com.vaadin.flow.component.html.H1;// 标题的接口
-import com.vaadin.flow.component.html.Label;//提示信息的接口
-import com.vaadin.flow.component.login.LoginForm;//登录主体的接口
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;//水平容器的接口
-import com.vaadin.flow.component.orderedlayout.VerticalLayout;
-import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.router.Route;
-
-public class LoginView extends VerticalLayout { // 继承垂直结构
-    private LoginForm login = new LoginForm();// 设置一个登录主体，最好加private
-    public LoginView(){
-
-        setJustifyContentMode(JustifyContentMode.CENTER);
-        setAlignItems(Alignment.CENTER); // 这两句话将页面的所有组件在各个方向居中
-
-        login.setForgotPasswordButtonVisible(false);// 这句话将页面的主体的忘记密码删除
-        
-        H1 h1 = new H1("TODO"); // 设置一个标题
-
-        HorizontalLayout regLayOut = new HorizontalLayout(); // 设置一个水平容器
-        regLayOut.setAlignItems(Alignment.CENTER); // 将水平容器的内容居中对齐，在垂直方向
-        Label tip = new Label("Don't have an account?"); // 提示信息
-        Button button = new Button("Sign up here");  // 设置一个按钮
-        button.setThemeName("tertiary"); // 将这个按钮的框架删掉
-        regLayOut.add( tip,button); // 将两个组件添加到水平容器中
-
-        add(h1,regLayOut,logiwn); // 按顺序添加全部组件
-    }
-}
-设置一个的登录主体
-import com.vaadin.flow.component.login.LoginForm;//登录主体的接口
-    private LoginForm login = new LoginForm();// 设置一个登录主体，最好加private
-    login.setForgotPasswordButtonVisible(false);// 这句话将页面的主体的忘记密码删除
-
-设置一个标题
-import com.vaadin.flow.component.html.H1;// 标题的接口
-H1 h1 = new H1("TODO"); // 设置一个标题
-
-设置一个提示信息
-import com.vaadin.flow.component.html.Label;//提示信息的接口
-Label tip = new Label("Don't have an account?"); // 提示信息
-
-设置一个水平容器
-HorizontalLayout regLayOut = new HorizontalLayout(); // 设置一个水平容器
-regLayOut.setAlignItems(Alignment.CENTER); // 将水平容器的内容居中对齐，在垂直方向
-regLayOut.add( tip,button); // 将两个组件添加到水平容器中
-
-将组件陆续添加进去
-add.(); //添加顺序就是排列顺序
-}
-
-
-完善注册按钮：
-我们注意到 click 本身是一个参数，他的类型是 ClickEvent
-button.addClickListener(click->{  
-    onSign(click); //  跳转到注册窗口
-})
-public void onSign(ClickEvent event){
-    getUI.ifPresent(ui->{   // 此方法旨在跳转到注册窗口
-        ui.navigate("地址");
-    })
-}
-
-完善点击登录页面的提示信息：
-loginForm.addLoginListener(this::onLogin);
-
-public void onLogin(ClickEvent event){  此方法可以点击login 后，提示信息，也可以跳转页面
-        Notification notification = new notification();
-        notification.setText("");
-        notification
-}
-
-cookie 技术的使用：
-cookie技术用于存储用户状态 // 我们可以在用户点击登陆时记下他的信息
-Cookie cookie = new Cookie("username",userName); // 这是声明一个cookie ,里面的"username" 是创建一个页面属性，可以随时被引用， username 指的用户名
-cookie.setPath("/"); // 这句话标宋hicookie 写到根路径下面
-VaadinService.getCurrentResponse().addCookie(cookie); // 这是把cookie 的信息保存下来
-
-
-import com.vaadin.flow.router.AfterNavigationEvent; 这是引入一个页面开启后的观察员
-public class Todo extends VerticalLayout implements AfterNavigationObserver { 在你的类首行接入它后，可以使用它的实例方法，点击第一个，就能生成如下代码
-    @Override
-    public void afterNavigation(AfterNavigationEvent afterNavigationEvent) {
-        for(Cookie cookie : VaadinService.getCurrentRequest().getCookies()){} // 在这里你可以用VaadinService.getCurrentRequest().getCookies() 获取Cookie 的集合，然后检查。若是检查不到该用户，可以返回登陆页面
-            getUI.ifPresent(ui->{   // 此方法旨在跳转到注册窗口
-        ui.navigate("地址");
-    })
-}
-
-声明一个垂直容器：
-VerticalLayout todolist = new VerticalLayout(); 
-todolist.add()// 垂直容器里可以添加复选框
-
-声明一个复选框：
-Checkbox checkbox = new Checkbox(字符串); // 复选框就是一个带前框的字符串
+小知识
+若是项目被打包成了jar 文件，那么文件路径只能使用classpath, 这个时候可以使用spring 的ResourceLoader来获取文件资源。
 }/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -871,28 +633,13 @@ duration.toDays()
 duration.toHours()
 
 将duration 转化为毫秒数
-duration.toMillis()
-
-
-6
-import java.util.Date   这是一个很大程度上已经过时了的类
-Date date = new Date();
-
-7
-判断两个localDate的时间的关系
-是否相等可以使用  Boolean justice = date1.isEqual(date2);
-在另一个前面     Boolean isBefore = date1.isEqual(date2);
-在另一个后面     Boolean isAfter = date1.isAfter(date2);
-
-8
-我们可以设定一个时间
-LocalDate localdate = LocalDate.of(年，月，日);
+duration.toMillis() 
 {//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
 
-q
+
 java网络编程
 {////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 1
@@ -910,12 +657,12 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 
 我们实例化这三个对象
-    OkHttpClient okHttpClient = new OkHttpClient();
-    Request request = new Request.Builder().url(url).build();
-    Call call = okHttpClient.newCall(request);
-    Response rep = call.execute();
-    String result = response.body().string(); 
-    通过以上三步获取这个url网站的信息。
+OkHttpClient okHttpClient = new OkHttpClient();
+Request request = new Request.Builder().url(url).build();
+Call call = okHttpClient.newCall(request);
+Response rep = call.execute();
+String result = response.body().string(); 
+通过以上三步获取这个url网站的信息。
 
 2
 执行post 操作
@@ -964,12 +711,6 @@ call.execuate().body().code(); 获取状态码
 Map contentObj = JSON.parseObject(content, Map.class); 将json 数据转化为Map类型
 Map dataObj = (Map)contentObj.get("data");
 
-6
-fastJson 库
-类型 contentObj = JSON.parseObject(content,类型.class);  将网页获取的JSON信息转化为我们想要的类型
-String param = JSON.toJSONString(datas);  我们再把MAP类型的datas转化为json格式  （要让网页看所以转为JSON格式）
-json 中 大括号表示对象 / 集合 Map、HashMap、JSONObject      中括号表示数组 / 列表 List、ArrayList、JSONArray
-我们往往把 json的数组类型 转化为java的list集合接口类型
 
 7
 如何看待网页的信息
@@ -1080,41 +821,48 @@ Request request = new Request.Builder().url(url).post(body).addHeader("User-Agen
 
 json 数据
 {////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+1
+json数据介绍
 json数据是网页看的数据， 前端需要向服务器请求数据， 服务器将数据以json格式返回给前端。
 
-1
-序列化(把数据变成json 格式)
-方法一
-ObjectMapper mapper = new ObjectMapper();
-String jsonBody = null;
-jsonBody = mapper.writeValueAsString(formData); // 将数据转化成json格式
+json结构
+大括号的内容类似于Map, 可以把json 数据转化成 Map、HashMap、JSONObject。
+中括号的内容类似于数组, 可以把json 数据转化成 数组，List、ArrayList、JSONArray。
 
+2
+java原生的方法
+以下是介绍java原生关于json的操作。
 
+ObjectMapper 类介绍
+这个类实例化后，可以给我们提供处理json的方法。
+类实例化：ObjectMapper mapper = new ObjectMapper();
 
-方法二
-我们需要引入
+ObjectMapper 对象的writeValueAsString()方法
+objectMapper.wirteValueAsString()
+它可以将 Java 对象序列化为 JSON 格式的字符串。
+
+ObejectMapper 对象的readValue()方法
+mapper.readValue(json格式数据, java类型) {   // 如果User 是个对象那么 写User.class   
+它可以将 JSON 格式的数据反序列化为 Java 对象。
+这里的json 格式的数据指的是JSON 字符串、字节数组、文件流等
+这里的java类型可以是数据类型.class ，当json数据是数组，集合，或包含泛型的集合时，可以使用 new TypeReference<数据类型>。
+
+3
+引入依赖
 <dependency>
  <groupId>com.alibaba</groupId>
  <artifactId>fastjson</artifactId>
  <version>1.2.62</version>
 </dependency>
-private static final MediaType JSON_TYPE = MediaType.parse("application/json;charset utf-8"); 然后我们需要声明一个 ， 这句话的作用是告诉计算机我使用的json格式 
-String param = JSON.toJSONString(datas);  我们再把MAP类型的datas转化为json格式  （要让网页看所以转为JSON格式）
 
-2
-反序列化（将将文件提取出的jason 格式内容 转化为集合或对象）
-方法一
-String content = FileUtils.readFileToString(文件指针, "utf-8"); 反序列化// 这么写的前提是文件内容已经是 json 格式
-List<User> users = mapper.readValue(content,ty new TypeReference<List<User>>() { // 如果User 是个对象那么 写User.class   // 这是把jason 格式的文件序列化
+toJSONString()方法
+toJSONString(datas);  
+这个方法可以使datas 装化成json 字符串。
+MAP类型的datas可以转化为json格式  （要让网页看所以转为JSON格式）
 
-若文件是空的，那么反序列化的 String content =FileUtils.readFileToString(文件指针, "utf-8");会报错，想解决这个问题，需要进行判断
-if(content == null||content.trim().isEmpty()){
-    list = new ArrayList<>();
-}else {
-    List<String> users = mapper.readValue(content, new TypeReference<List>() {
-    });
-    list.addAll(users);
-}
+parseObject()方法
+parseObject(content,类型.class);  
+这个方法可以将网页获取的JSON信息转化为我们想要的类型
 }////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -1155,60 +903,6 @@ try{
 重写一个方法的时候，不管是类继承父类，还是类继承接口，父类的声明异常范围必须大于等于子类，也可以是父类没有声明，子类声明了
 编译时异常是比较特殊的异常， 因为你若是throw 了编译异常， 你就必须在函数头上声明这个异常
 }////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
-
-java的ide
-{///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-全局设置
-idea 中你可以在开始页面的customize修改全局设置
-
-}////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
-
-jdbc
-{///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-下载mysql 的驱动依赖
-    <dependency>
-        <groupId>com.mysql</groupId>
-        <artifactId>mysql-connector-j</artifactId>
-        <version>8.0.33</version>
-    </dependency>
-
-在项目中，mysql的连接类
-Class.forName("com.mysql.cj.jdbc.Driver");
-
-获取数据库的连接网址，数据库用户名，数据库密码
-String url = "jdbc:mysql://localhost:3306/cdc?serverTimezone=Asia/Shanghai&useSSL=false";
-String name = "root";
-String password = "124895887a";
-
-获取数据库的连接
-Connection connection = DriverManager.getConnection(url,name,password);
-
-预编译sql语句
-String sql = "insert into emp (emp_name, emp_id,emp_type_id) values(?, ?, ?)";      //? 这个相当于一个占位符， 第一个占位符的下标是1
-PreparedStatement preparedStatement = connection.prepareStatement(sql);             //通过preparedStatement 预编译sql 语句
-preparedStatement.setString(1,name1); // 将占位符替换成数据
-preparedStatement.setInt(2,id);
-preparedStatement.setInt(3,3);
-
-执行sql的增删改语句， 接收返回值
-int i = preparedStatement.executeUpdate(); 
-
-执行sql的查语句，接受一个ResultSet结果集
-ResultSet resultset = preparedStatement.executeQuery();
-resultSet 可以指向其他行， 可以借助.next() ，指向下一行
-resultSet一开始指向结果集的前面，使用next()能够取出第一行的内容，可以借助.get类型()方法，往括号里输入对应下标，或对应的列名，取出相应类型数据。 实例： resultSet.getInt(1); 取出所在行的第一列的内容
-
-关闭数据库
-connection.close();
-}////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
@@ -1352,112 +1046,23 @@ collector的方法: toList; toSet; toMap
 并行流不该适用的场景
 顺序无法保证：并行流处理完的数据，最终顺序可能是乱的。
 线程安全问题：如果你的流水线中有修改外部变量的操作（比如往一个非线程安全的 ArrayList 里 add 元素），并行流会导致严重的数据错乱甚至崩溃。
+
+8
+inputStream介绍
+下面会介绍处理inputStream的方法。
+
+<dependency>
+  <groupId>commons-io</groupId>
+  <artifactId>commons-io</artifactId>
+  <version>2.10.0</version>
+</dependency>
+
+commons-io的IOUtils.toString()方法
+IOUtils.toString(inputStream, "编码格式");
+这个方法可以将输入流（InputStream）中的所有内容读取出来，并按照指定的字符编码（UTF-8）转换为一个字符串（String）。
+这个方法需要铺货异常。
 }////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-
-
-
-设计模式
-{////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-1
-DAO模式，能搞帮助我们更好的处理java 与 数据库，web服务, 文件系统的关系。准确的来说DAO 是一个结构模式
-
-DAO总体结构为
-模型对象
-用于封装数据， 对应数据库表的结构。 表中有什么字段， 模型对象就要有对应的私有变量
-模型对象要有 set 和get 方法，以用于设置和取出相应的值
-模型对象要有 toString 方法，以用于输出模型对象的变量
-模型对象要有 无参构造方法。
-模型对象要有 全惨构造方法，以用于一步给模型对象的变量全部赋值
-
-DAO接口
-这个接口是规定我们在访问数据库的表时，会使用什么方法。
-
-DAO实现
-这其实是个类，这个类继承了DAO接口，用以实现DAO结构中的方法。
-这个类的命名，可以这么写 "表名DAO"
-
-数据源
-数据源可以设置一个接口用来保存DBSconfig(数据库配置)，数据库配置包括用户名，密码，数据库连接。 对于数据库的配置，变量名最好用大写，例如： PASSWORD.
-数据源可以设置一个类用以实现与数据库的连接和关闭， 你可以把这个类命名为"connectionUtil"。
-
-小知识：
-lombok 对于编码帮助非常大，通过lombok自带的注解， 能够使DAO模型对象 自动拥有set, get, toString, 无参和全参构造。
-lombok 也可以帮助你在，使用模型对象变量的方法时， 自动写出那些方法。你可以借助allset ,allget 方法。
-lombok注解一览：
-@Data  //生成构造方法，getter和setter方法
-@NoArgsConstructor //生成无参构造方法
-@AllArgsConstructor //生成全参构造方法
-@ToString //生成toString方法
-
-
-2
-单例模式
-
-单例模式介绍
-保证一个类只有一个实例
-
-如何使用单例模式
-将类的构造方法设置为私有， 这样别的类就不能 new 出实例，示例: private 类名(){}。
-在类中，new 出一个private static自己, 示例: private static 类名 变量名 = new 类名(); 
-在类中，加入一个方法，能够返回这个实例对象，这样外部类就可以通过这个方法得到这个类。
-
-注意: 不能在类中，加入能够实例化这个类的方法。这个唯一的对象是通过在本类中实例化完成的，若是这个类没有其他方法能够实例化这个类，那么外部类就没有办法实例化这个类。
-
-3
-简单工厂模式
-
-简单工厂的介绍
-简单工厂是用来根据一些条件生产一些对象。
-
-简单工厂的使用
-它是用来根据不同条件生产不同对象的类，这个类可以是个无实体的工具类也可以是唯一类。
-工厂里生产对象的具体类是以抽象接口和抽象类为基础的类，这样工厂生产的对象是一种对象。
-
-简单工厂及其方法的命名
-简单工厂一般以xxxFactory 命名。
-简单工厂里的方法一般以getxxx、createxxx、buildxxx等等，命名。  
-
-4
-抽象工厂模式
-
-抽象工厂介绍
-当简单工厂需要处理很多种产品时，例如：水果、黄金等等产品，一个工厂可能并不好用，这时你可能需要多个工厂，每个工厂生产一些种类的产品。
-
-抽象工厂的使用
-设立一个接口里面有所有工厂的方法，例如，生产水果的方法，生产黄金的方法。
-具体的工厂类继承这个接口，从接口种选取方法重写。
-我们可以设立一个生产工厂实例的方法，这个方法可以生产出所有工厂实例。
-
-5
-观察者模式
-
-观察者模式介绍
-观察者模式的核心是知道观察什么，什么对象发生了变化发出通知。
-观察者模式需要被观察者和观察者。
-
-Observable类
-这个类是java提供的，谁继承了这个类就代表是需要被观察的类。
-
-Observable 提供的setChanged()
-这个方法就是标记被观察者对象发生的变化
-
-Observable 提供的notifyObservers()
-这个方法是发送通知的。
-这个方法通知会发给被观察者的观察者。
-这个方法的括号可以填入任意对象
-
-Obervable 提供的addObserver(Observer o)
-这个方法可以添加被观察者的观察者数量
-
-Observer类
-这个类是java提供的，谁继承了这个类就代表是观察者。
-
-Observer 提供的update(Observable o, object arg)
-这个方法的作用就是接受通知。
-第一个参数是被观察者对象。第二个参数是notifyObservers()括号里的额外的信息
-}////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
@@ -1574,113 +1179,6 @@ CompletableFuture的方法thenAccept(lambda表达式)
 
 
 
-maven
-{///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-1
-Apache maven介绍
-它是一个项目管理和构建工具
-
-maven 的核心功能介绍
-依赖管理： Maven 通过 pom.xml（Project Object Model）文件管理项目依赖。   //通过对项目的管理，maven 可以做到 ，自动从中央仓库自动下载所需的 jar 包，自动下载依赖的依赖（传递性依赖）。
-项目构建： Maven 提供了标准化的构建生命周期
-
-2
-local reposity 介绍
-Maven 下载并缓存依赖的本地目录， maven 下载的依赖保存在这里。 你所有版本的maven 都可以共用一个本地仓库
-
-conf 的 setting.xml 介绍
-用户的maven配置文件。 这个文件控制着镜像，服务器认证（访问私有仓库需要账户密码），本地仓库路径
-idea 会读取此文件，来决定在哪里下载文件，连接哪些仓库
-
-3
-maven 项目结构介绍
-$(basedir}                                    存放pom.xml和所有的子目录
-${basedir}/pom.xml                            Maven 的项目配置文件
-${basedir}/src/main/java                      项目的java源代码
-${basedir}/src/main/resources                 项目的资源，比如说property文件
-${basedir}/src/test/java                      项目的测试类，比如说JUnit代码
-${basedir}/src/test/resources                 测试使用的资源
-
-4
-maven 的mvn clean compile 命令
-编译命令，Maven会自动扫描src/main/java下的代码并完成编译工作，执行完，会在根目录下生成target/classes 目录(存放所有的class)
-
-maven 的mvn clean package 命令
-编译并打包命令，这个命令是compile和package的集合，也就是说会先执行compile命令，然后再执行打包命令，这个的结果会把所有的ava文件和资源打包成一个java的压缩格式，方便我们灵活的运用多个代码。
-打包的java文件名是 [artifactId]-[version].格式
-
-maven 的mvn clean installmvn 命令
-执行安装命令，这个命令是compile和package、install的集合，也就是说会先执行compile命令，然后在执行jar打包命令，然后执行install命令安装到本地的Maven仓库目录里，这个目录是 ${user_home}/.m2
-
-maven 的mvn compile exec:java -Dexec.mainClass=${main} 命令
-这个命令的意思是在compile执行完后，执行运行Java的命令，具体执行哪个Java类是由-Dexec.mainclass=${main} 参数指定的，比如我们想执行com.youkeda.Test类，那么这个完整的命令就是mvn compile exec:java -Dexec.mainClass=com.youkeda.Test
-
-5
-pom文件介绍
-它由四部分：maven 坐标、maven 属性、maven 工程依赖、maven 的插件
-它是xml 格式， xml格式会严格遵守标记语言格式， 会有开始标签和结束标签。
-
-pom文件的maven 坐标介绍
-坐标决定了决定了maven 工程部署后存在maven仓库的文件位置。
-它由四个标签组成<groupId>、<artifactId>、<packaging>、<version>
-
-maven 坐标的group标签
-它的主要作用是定义当前项目所属的组织、公司或团队的全局唯一标识。 它的命名规范，通常采用域名的反向书写方式，示例：com.youkeda.course。必须全部使用小写字母，和标签符号(.)和连字符(-)
-
-maven 坐标的artifactId标签
-它的主要作用是定义具体的项目或模块名称。
-它的命名只能使用小写字母和连字符（-）组合
-在同一个组织（groupId）下，<artifactId> 用于唯一区分不同的项目或模块。它与 groupId 和 version 结合，构成了完整的 Maven 坐标
-
-maven 坐标的packaging标签
-执行打包命令后会把整个工程打包成packaging指定的文件格式，默认情况下packaging的值是jar。
-它的值还有jar、war、ear、pom
-
-maven 坐标的version标签
-三位版本号 x.x.x , 第一个x代表第几个大版本， 第2个x代表第几次新增功能，第3个x代表第几次修bug。
-snapshot， z这个单词的意思是快照，若是再版本号后面用连字符(-)连接上这个单词，就代表当前程序不稳定，随时会更改 
-
-pom文件的maven 属性
-maven属性配置就是用来做参数配置的。
-它是在<properties>标签之内，这里面的标签可以自定义，标签名一般是小写字母 + "." 。
-
-maven 属性的 java.version 标签
-这是一个自定义的标签。
-在properties标签里面， 你可以使用${自定义标签}，在别的标签中，带入这个标签的值， 且这个值是动态值。
-
-maven 属性的 maven.compiler.source 标签
-这个标签可以指定maven编译源代码时候所用的jdk版本, 换句话而言它会用你指定的jdk版本去检查你写的代码。
-但这个标签无法限制你调用的高版本的底层 API（核心类库）， 如果你在代码中使用了 Java 11 才引入的 String.isBlank() 方法，由于本地 JDK 17 的类库中包含这个方法，代码依然可以成功编译并打包。
-
-maven 属性的 project.build.sourceEncoding 标签
-这个标签可以指定工程代码源文件的文件编码格式，一般情况下，我们设置成utf-8。
-
-maven 属性的 maven.compiler.target 标签
-这个标签作用是指定编译后生成的 .class 字节码文件的版本号。
-
-maven 属性的 maven.compiler.release 标签
-它的作用是指定maven编译源代码时候所用的jdk版本，并检查是否使用高版本的api, 然后生成指定的 .class 字节码文件的版本号。
-它里面的内容直接写 数字即可， 8就代表jdk8。
-这个标签是 Java 9 才引入的新特性，因此需要你的 maven-compiler-plugin 插件版本在 3.6.0 以上，并且运行 Maven 的 JDK 版本也要在 9 或以上才能生效。
-
-maven 的工程依赖介绍
-它就是用于指定当前工程依赖其他代码库的。
-它被dependencies 标签包裹， 里面可以有多个dependency 标签。
-我们在 pom.xml 里声明了dependency信息，maven会先去本地仓库内查找对应的文件，如果没有找到那么就会触发从中央仓库下载行为，下载完会存在本地仓库内。
-
-maven 工程依赖的dependency 介绍
-每一个dependency内部 其实就是一个maven坐标
-我们会把别人写的dependency 称为第三方库， 我们自己写的称为第二方库
-
-maven 的插件介绍
-它包裹在<build> <plugins> </plugins> </build>里。
-插件标签是<plugin></plugin>
-每个插件标签内部起始是maven坐标。 
-}///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
 
 annotation
 {///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1741,90 +1239,13 @@ java.lang.annotation.Documented
 3
 @AliasFor("别名")
 这个注解可以写到注解里属性的前面，注意是 定义注解的前面，用以表示这个属性还有另一个属性名。
-
-4
-spring 注解一览
-@service、@Component、@Controller、@Reposity。
-
-@service 介绍
-org.springframework.stereotype.Service
-它代表的是Service Bean，一般情况下我们使用它，
-
-@Component 介绍
-org.springframework.stereotype.Component
-它是通用的Bean注解，其余三个注解都是扩展自Component
-
-@Controller 介绍
-org.springframework.stereotype.Controller
-它作用于 Web Bean。
-
-@Reposity 介绍
-org.springframework.stereotype.Repositor
-它作用于持久化相关Bean
 }///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
 
 
-spring
-{///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-1
-spring 介绍
-spring 是面向接口编程， 多数情况下，spring会有接口和实现类。
-
-spring 配置元数据介绍
-它大概有两种方法配置元数据，一种是基于xml，一种是基于annotation 方案的，主流是基于annotation的。
-
-spring 的依赖注入(DI)
-这是spring 最核心的技术点。
-spring的所有技术方案都是基于DI 发展的
-
-2
-spring5 依赖
-<dependency>
-  <groupId>org.springframework</groupId>
-  <artifactId>spring-context</artifactId>
-  <version>5.2.6.RELEASE</version>
-</dependency>
-
-3
-IoC 控制反转接口介绍
-它的接口类是org.springframework.context.ApplicationContext
-它是 Spring IoC 容器的高级核心接口，它定义了容器必须具备的基础能力（如获取 Bean、发布事件、加载资源等）。
-Java 对象都会通过loC 容器转变为 Bean (Spring对象的一种称呼，以后我们都用Bean来表示Java对象)，构成应用程序主干和由SpringloC 容器管理的对象称为beans，beans 和它们之间的依赖关系反映在容器使用的配置元数据中。基本上所有的Bean都是由接口+实现类完成的，用户想要获取 Bean的实例直接从loC 容器获取就可以了，不需要关心实现类
-
-Annotation 类型的 IoC容器
-它的类是org.springframework.context.annotation.AnnotationConfigApplicationContext
-它是容器的实现类，它通过层层继承最终实现了 ApplicationContext 接口，从而具备了容器所需的所有功能。
-
-Annotation 类型的 IoC容器的实例化
-ApplicationContext context = new AnnotationConfigApplicationContext("包名"/Class clazz);
-若括号里的是包名，这段代码的含义就是启动loC容器，并且会自动加载包下的Bean，哪些 Bean 会被加载呢?只要引用了Spring注解的类都可以被加载
-
-Annotatin 类型的IOC容器的getBeen方法
-context.getBeen()。
-括号里可以填入类名.class, 用于查找指定类唯一的对象，若对象不是唯一的，则会报错。
-}///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
-
-UML图中标识
-{////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-+ 号  public
-- 号  private
-# 号  protected
-~ 号  package/default
-}////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
-
-
-代码可读性：
+java代码可读性：
 {/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 代码可读性：构造方法是标准的入口。把复杂的逻辑（读文件、解析 JSON、循环创建组件）放在构造方法里，符合 Java 的开发规范，别人看代码更容易理解。
 小驼峰命名法：方法、变量名
@@ -1837,23 +1258,62 @@ UML图中标识
 
 
 
-java项目运行方法
+
+java的关键字
 {////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-第一步运行项目里的数据库文件
-打开数据库小黑窗，创建一个数据库，输入source D:/zhuomian/babyMom/baby.sql（文件路径）;
+1
+break 和 continue 的使用
+两种用法 ， 一种带标签 ， 一种不带标签
+带标签的用法: outer: for(){ inner:for(){break outer;}} 这个break 是跳出整个循环
+不带标签的用法; for(){for(){break;}} 这个break 是跳出内循环
 
-第二部运行后端
-打开java idea , 打开项目文件 ， 检查项目的backend 文件
-检查pom 文件的  <properties>或build 里的java版本
-打开 project structs 安装相应的 sdk , 并检查modules里的 sdk 对不对
-如果application 文件没有启动按钮 ， 那就看看pom文件有没有被视为maven 文件
+2
+class 关键字介绍
+介绍class关键字的用法。
 
-第三步运行前端
-在项目文件的front 文件里 ，打开小黑窗 
-输入命令 npm.install ,  等待进度条跑完，生成node_modules 文件夹
-然后输入命令 npm run dev 或 npm run serve 启动项目
-成功后 按住ctrl 键，点击local 链接
-}///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+类对象
+具体类.class
+这个语法可以获取具体类的 Class 对象。
+
+类对象的.getClassLoader()方法
+具体类.class.getClassLoader()
+这个方法可以返回类的类加载器，很多情况下类加载器负责加载当前应用程序的类路径（Classpath）下的类。
+
+类加载器的方法
+类加载器.getResourceAsStream("路径");
+这个方法的作用是将资源文件（如配置文件、图片、模板等）以输入流（InputStream）的形式加载到内存中，供程序读取， 换句话而言这个方法会返回一个输入流。
+这个路径是相对于classpath 的根目录， 绝对不能以/ 开头。
+
+3
+intence 关键字
+intenceof 可以判断一个实例是不是一个类的父类或子类 ， object intanceof class
+intanceof 的判断是依靠 new type() 而不是 type 变量名 .
+}////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+java的数据类型
+{////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+1
+数据类型
+数据类型分为引用数据类型和基本数据类型。
+
+引用数值类型
+它的变量名是一个地址。
+它的赋值操作传递的是引用（内存地址）。
+
+基本数据类型
+它的变量名，其对应的内存空间里直接存储的就是“值”本身。
+它赋值操作是值传递。
+
+2
+数组
+声明数组并为数组声明空间 : type[] name = new type[个数];
+为数组整体赋值 type[] name = {内容1,内容2，内容3}
+为数组的个别下标赋值 name[下标] = new type(内容); 或 name[下标] = 内容;
+}////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
@@ -1861,12 +1321,6 @@ java项目运行方法
 
 琐碎的语法
 {////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-1
-数组
-声明数组并为数组声明空间 : type[] name = new type[个数];
-为数组整体赋值 type[] name = {内容1,内容2，内容3}
-为数组的个别下标赋值 name[下标] = new type(内容); 或 name[下标] = 内容;
-
 2
 equals() 函数
 equals() 函数可以对比String类型，比较他们的内容 ；
@@ -1894,16 +1348,15 @@ static{代码块}
 静态代码块推荐写在属性声明之后。
 
 5
-方法签名
-一个方法的参数相同和参数名相同，则他们的方法签名相同，编译器无法分辨他们。
-
-6
 成员变量与局部变量
 成员变量是在类中的， 局部变量是在方法中的
 
-7
-break 和 continue 的使用
-两种用法 ， 一种带标签 ， 一种不带标签
-带标签的用法: outer: for(){ inner:for(){break outer;}} 这个break 是跳出整个循环
-不带标签的用法; for(){for(){break;}} 这个break 是跳出内循环
+6
+classpath 介绍
+它是 JVM（Java 虚拟机）用来寻找和加载 .class 字节码文件以及资源文件（如配置文件、图片等）的“搜索地图”。
+在maven 项目中， classpath 就是指src/main/java 或 src/main/resources 里面的内容
+
+8
+java 路径
+磁盘名:/文件名/.....
 }////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

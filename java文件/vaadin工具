@@ -1,0 +1,166 @@
+
+使用vaddin编译页面
+{//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+java中如何创建一个注册页面{
+使用vaadin作为前端。
+要用包路径引入 vaadin 的功能 例如imoort com.vaadin.flow.component.orderedlayout.VerticalLayout . 这样就可以在类中继承父类，进而使用父类的方法例如:
+这个例子时使用 vaddin 创建空白填空 // 创建空白也是页面的一部分
+mport com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.router.Route;
+
+public class Todo extends VerticalLayout {
+
+    public Todo() {
+
+        TextField field = new TextField();
+        field.setLable(); 给一个填空起个名
+        field.setPlaceholder();给一个填空一个初始信息
+        add(field);        
+    }
+}
+java 中 使用vaddin将填空充实一下
+setLabel(String label)
+setPlaceholder(String placeholder)
+setValue(String value)
+
+
+
+2 // 为注册页设置一个按钮
+使用按钮 并用 Lambda 函数使button 能返回一些值
+import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.textfield.TextField;
+
+Button button = new Button(); 
+button.setText() 给按钮起个名
+button.addClickListener(click->{ // 这就是调用lambda 函数
+   String userNameText = 填空名.getValue();
+    Boolean text = "admin".equals(userNameText); 布尔判断
+    if(test){
+        System.out.print(...);
+    }
+})
+add(button); 添加这个按钮
+在这个函数里面 可以使用getValue 来获取填空的值 例如 Steing text = field.getValue();
+
+额外小知识
+给 text 赋值时 可以在这么赋 = text + "login";
+"admin".equals(...); 这个函数可以判断两个数据等不等
+
+3 
+使用按钮的提示信息
+import com.vaadin.flow.component.notification.Notification; 这是要引入的头文件
+Notification notification  = new Notification(); 声明一个操作实例
+notification.setDuration(); 这是提示信息的存在时间，空格里填时间
+loginbutton.addClickListener(click->{ // 使用 lambda 语法
+    。。。。
+   notification.setText(提示信息的内容);
+   notification.open(); 使提示信息现实；
+})
+
+按钮小知识：        button.setThemeName("tertiary"); // 将这个按钮的框架删掉
+}//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+设置一个登录页面
+{///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+import com.vaadin.flow.component.html.H1;// 标题的接口
+import com.vaadin.flow.component.html.Label;//提示信息的接口
+import com.vaadin.flow.component.login.LoginForm;//登录主体的接口
+import com.vaadin.flow.component.orderedlayout.HorizontalLayout;//水平容器的接口
+import com.vaadin.flow.component.orderedlayout.VerticalLayout;
+import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.router.Route;
+
+public class LoginView extends VerticalLayout { // 继承垂直结构
+    private LoginForm login = new LoginForm();// 设置一个登录主体，最好加private
+    public LoginView(){
+
+        setJustifyContentMode(JustifyContentMode.CENTER);
+        setAlignItems(Alignment.CENTER); // 这两句话将页面的所有组件在各个方向居中
+
+        login.setForgotPasswordButtonVisible(false);// 这句话将页面的主体的忘记密码删除
+        
+        H1 h1 = new H1("TODO"); // 设置一个标题
+
+        HorizontalLayout regLayOut = new HorizontalLayout(); // 设置一个水平容器
+        regLayOut.setAlignItems(Alignment.CENTER); // 将水平容器的内容居中对齐，在垂直方向
+        Label tip = new Label("Don't have an account?"); // 提示信息
+        Button button = new Button("Sign up here");  // 设置一个按钮
+        button.setThemeName("tertiary"); // 将这个按钮的框架删掉
+        regLayOut.add( tip,button); // 将两个组件添加到水平容器中
+
+        add(h1,regLayOut,logiwn); // 按顺序添加全部组件
+    }
+}
+设置一个的登录主体
+import com.vaadin.flow.component.login.LoginForm;//登录主体的接口
+    private LoginForm login = new LoginForm();// 设置一个登录主体，最好加private
+    login.setForgotPasswordButtonVisible(false);// 这句话将页面的主体的忘记密码删除
+
+设置一个标题
+import com.vaadin.flow.component.html.H1;// 标题的接口
+H1 h1 = new H1("TODO"); // 设置一个标题
+
+设置一个提示信息
+import com.vaadin.flow.component.html.Label;//提示信息的接口
+Label tip = new Label("Don't have an account?"); // 提示信息
+
+设置一个水平容器
+HorizontalLayout regLayOut = new HorizontalLayout(); // 设置一个水平容器
+regLayOut.setAlignItems(Alignment.CENTER); // 将水平容器的内容居中对齐，在垂直方向
+regLayOut.add( tip,button); // 将两个组件添加到水平容器中
+
+将组件陆续添加进去
+add.(); //添加顺序就是排列顺序
+}
+
+
+完善注册按钮：
+我们注意到 click 本身是一个参数，他的类型是 ClickEvent
+button.addClickListener(click->{  
+    onSign(click); //  跳转到注册窗口
+})
+public void onSign(ClickEvent event){
+    getUI.ifPresent(ui->{   // 此方法旨在跳转到注册窗口
+        ui.navigate("地址");
+    })
+}
+
+完善点击登录页面的提示信息：
+loginForm.addLoginListener(this::onLogin);
+
+public void onLogin(ClickEvent event){  此方法可以点击login 后，提示信息，也可以跳转页面
+        Notification notification = new notification();
+        notification.setText("");
+        notification
+}
+
+cookie 技术的使用：
+cookie技术用于存储用户状态 // 我们可以在用户点击登陆时记下他的信息
+Cookie cookie = new Cookie("username",userName); // 这是声明一个cookie ,里面的"username" 是创建一个页面属性，可以随时被引用， username 指的用户名
+cookie.setPath("/"); // 这句话标宋hicookie 写到根路径下面
+VaadinService.getCurrentResponse().addCookie(cookie); // 这是把cookie 的信息保存下来
+
+
+import com.vaadin.flow.router.AfterNavigationEvent; 这是引入一个页面开启后的观察员
+public class Todo extends VerticalLayout implements AfterNavigationObserver { 在你的类首行接入它后，可以使用它的实例方法，点击第一个，就能生成如下代码
+    @Override
+    public void afterNavigation(AfterNavigationEvent afterNavigationEvent) {
+        for(Cookie cookie : VaadinService.getCurrentRequest().getCookies()){} // 在这里你可以用VaadinService.getCurrentRequest().getCookies() 获取Cookie 的集合，然后检查。若是检查不到该用户，可以返回登陆页面
+            getUI.ifPresent(ui->{   // 此方法旨在跳转到注册窗口
+        ui.navigate("地址");
+    })
+}
+
+声明一个垂直容器：
+VerticalLayout todolist = new VerticalLayout(); 
+todolist.add()// 垂直容器里可以添加复选框
+
+声明一个复选框：
+Checkbox checkbox = new Checkbox(字符串); // 复选框就是一个带前框的字符串
+}/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
