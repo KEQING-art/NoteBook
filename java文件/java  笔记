@@ -801,7 +801,8 @@ socket实例.getInputStream();
 这个方法会返回一个SocketInputStream实例,这个实例的类的父接口是InputStream。
 
 Socket 的getRemoteSocketAddress()方法
-
+socket实例.getRemoteSocketAddress()
+这个方法可以获取当前 Socket 所连接的远程端点（Endpoint）的网络地址。
 
 Socket 的close()方法
 socket实例.close()
