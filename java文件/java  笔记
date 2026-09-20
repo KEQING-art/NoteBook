@@ -1143,6 +1143,7 @@ Runnable是一个接口，里面只有一个 run() 方法。你实现这个接�
 你需要通过Tread的构造方法 new Thread()。
 第一个形参是Runnable 接口。
 第二个形参是线程名。
+这个方法会将Runnable 实例赋值到Thread实例的target 变量，
 
 Runnable 接口的方法 run()
 这是Runable 仅有的抽象方法。
