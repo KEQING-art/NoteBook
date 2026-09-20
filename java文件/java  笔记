@@ -1150,13 +1150,11 @@ Runnable 接口的方法 run()
 
 4
 concurrent 类介绍
+java.util.concurrent;
 这是java 提供的并发编程包
 
-concurrent 类的引入
-import java.util.concurrent;
-
 AutomicInteger 类介绍
-这是一个concurrent里的数字类，就像基本数据类型一样，他可以存储数字。
+这是一个concurrent包里的数字类，就像基本数据类型一样，他可以存储数字。
 
 AutomicInteger 的方法get()
 这个方法可以获取里面的数据
@@ -1189,7 +1187,6 @@ AutomicInteger 的方法incrementAndGet()
 小知识
 Compltable 类的方法执行结束的一瞬间，若是后面还有方法，都会立即触发后面的方法。
 synchronized  这个关键字是同步锁，只能放在方法上，它的作用是同一时刻只能由一个线程执行此方法。
-
 
 7
 CompletableFuture 类介绍
