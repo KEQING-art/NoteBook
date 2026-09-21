@@ -800,12 +800,12 @@ new Socket("IP地址", 服务端的端口号)；
 Socket 的getOutputStream()方法
 socket实例.getOutputStream();
 这个方法可以返回一个SocketOutputStream实例，这个实例的类的父接口是OutputStream。
-你可以通过这个SocketInputStream实例，发送客户端的请求，或发送服务端的响应。
+你可以通过这个SocketInputStream实例的write，发送客户端的请求，或发送服务端的响应, 。
 
 Socket 的getInputStream()方法
 socket实例.getInputStream();
 这个方法会返回一个SocketInputStream实例,这个实例的类的父接口是InputStream。
-你可以通过这个SocketInputStream实例，接受客户端的请求，或服务端的发送的响应。
+你可以通过这个SocketInputStream实例的read方法，接受客户端的请求，或服务端的发送的响应。
 
 Socket 的getRemoteSocketAddress()方法
 socket实例.getRemoteSocketAddress()
