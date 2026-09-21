@@ -800,10 +800,12 @@ new Socket("IP地址", 服务端的端口号)；
 Socket 的getOutputStream()方法
 socket实例.getOutputStream();
 这个方法可以返回一个SocketOutputStream实例，这个实例的类的父接口是OutputStream。
+你可以通过这个SocketInputStream实例，发送客户端的请求，或发送服务端的响应。
 
 Socket 的getInputStream()方法
 socket实例.getInputStream();
 这个方法会返回一个SocketInputStream实例,这个实例的类的父接口是InputStream。
+你可以通过这个SocketInputStream实例，接受客户端的请求，或服务端的发送的响应。
 
 Socket 的getRemoteSocketAddress()方法
 socket实例.getRemoteSocketAddress()
@@ -1087,7 +1089,7 @@ outputStream实例.write(数据);
 这里的数据可以是单个字节byte。
 这里的数据可以是字节数组byte[], 出这个形参之外，你可以选择性的设置偏移量形参(下标的起始位置), 长度形参(从下标算起往前读取数据)，若是不写后面两个形参，那就是整个数组传进去。
 若是OutputStream实例没被缓冲流包装过，这个这个方法的作用是将数据写到OS内核的 TCP 发送缓冲区（SendQ）。
-若是OutputStream实例被缓冲流包装过，这个方法会将数据写到java缓冲区
+若是OutputStream实例被缓冲流包装过，这个方法会将数据写到java缓冲区。
 
 OutputStream的flush() 方法
 OutputStream实例.flush() 
