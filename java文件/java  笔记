@@ -819,7 +819,7 @@ socket实例.close()
 ServerSocket 类介绍
 这个类可以实现TCP通信。
 它是java提供的一台网络编程api
-它相当于服务端，可以监听固定端口，接受请求。
+它相当于服务端，可以监听固定端口，接受请求，实例化一个它，就相当于启动了一个web 服务器。
 
 ServerSocket 构造方法
 new ServerSocket(服务端的端口号)；
