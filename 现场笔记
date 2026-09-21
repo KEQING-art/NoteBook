@@ -39,3 +39,6 @@ InputStream 类
 BufferedReader类的 readLine)方法
 这个方法可以读取bufferedReader实例里面的信息，直到遇到\n, 将信息返回。
 
+
+函数式接口
+只有一个方法的接口。
