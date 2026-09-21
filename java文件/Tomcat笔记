@@ -1,0 +1,50 @@
+
+Tomcat的文件
+{////////////////////////////////////////////////////////////////////////////////////////////////////////
+1
+Tomcat文件结构介绍
+apache-tomcat-10.1.24/
+├── bin/ ← 启动和关闭脚本
+├── conf/ ← 配置文件
+├── lib/ ← Tomcat运行需要的jar包
+├── logs/ ← 日志文件
+├── temp/ ← 临时文件
+├── webapps/ ← Web应用部署目录（重点！）
+├── work/ ← JSP编译后的文件
+└── LICENSE ← 许可证等文档
+
+2
+bin文件的作用
+它的作用是启动和关闭脚本总开关，双击 startup.bat 启动，shutdown.bat 关闭。
+
+lib文件的作用
+Tomcat运行依赖的jar包, 后厨的厨具库 不用管，Tomcat自己用的。
+
+conf文件的作用
+它的作用是配置文件、控制面板、改端口等配置（一般不用动）
+
+logs文件的作用
+它是日志文件，可以监控录像，出了bug来这里找错误信息。
+
+temp文件的作用
+它是临时文件相当于临时杂物间，不用管Tomcat会自动清理。
+
+webapps 文件的作用
+Web应用部署目录，你要部署的Web应用放这里
+
+work文件的作用
+JSP编译后的Java文件，不用管，Tomcat会自动管理
+
+3
+conf 文件的server.xml文件介绍
+这里面储存着tomcat启动的端口，使用的http协议版本...
+
+conf 文件的server.xml文件的关键一段配置
+<Connector port="8080" protocol="HTTP/1.1" connectionTimeout="20000" redirectPort="8443" />
+这里的<connector></Connector>，它是连接器（Connector）配置。Connector是Tomcat里负责"接收HTTP请求"的组件，和java中ServerSocket 角色一样。
+这里的port="8080" ：它是监听的端口号。
+这里的protocol="HTTP/1.1" ，它使用的协议的HTTP协议版本。
+这里的connectionTimeout="20000"，它的意思是客户端20秒内没发请求就断开连接。
+这里的redirectPort="8443"，他的意思是如果客户端用HTTPS访问，重定向到8443端口。
+}//////////////////////////////////////////////////////////////////////////////////////////////////////////
+
