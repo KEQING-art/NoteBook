@@ -30,7 +30,7 @@ temp文件的作用
 它是临时文件相当于临时杂物间，不用管Tomcat会自动清理。
 
 webapps 文件的作用
-Web应用部署目录，你要部署的Web应用放这里
+Web应用部署目录，你的Web应用就部署在这里。Tomcat启动时会自动扫描这个目录，把里面的每个文件夹当成一个Web应用。
 
 work文件的作用
 JSP编译后的Java文件，不用管，Tomcat会自动管理
@@ -46,6 +46,21 @@ conf 文件的server.xml文件的关键一段配置
 这里的protocol="HTTP/1.1" ，它使用的协议的HTTP协议版本。
 这里的connectionTimeout="20000"，它的意思是客户端20秒内没发请求就断开连接。
 这里的redirectPort="8443"，他的意思是如果客户端用HTTPS访问，重定向到8443端口。
+
+4
+webapps 文件结构
+webapps/
+├── ROOT/ ← 默认Web应用（访问localhost:8080看到的就是它）
+├── docs/ ← Tomcat官方文档
+├── examples/ ← 示例代码（JSP和Servlet示例）
+├── manager/ ← 管理界面（可以管理已部署的应用）
+└── host-manager/ ← 虚拟主机管理
+
+webapps里web应用的上下文路径介绍
+上下文路径再url里所处的位置：协议://IP:端口(上下文路径)。
+上下文路径就是URL里web应用的名字。
+示例：http://localhost:8080/docs
+注意：想要访问Tomcat的web应用，就是使用协议://IP:端口(上下文路径)。
 }//////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
