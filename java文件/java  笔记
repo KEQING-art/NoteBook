@@ -201,47 +201,49 @@ class outer{
 匿名类可以重写，相对应实例的类或接口，只不过只对这个实例生效。
 
 10
-包装类
+包装类介绍
 包装类不是简单的基本数据类型，对于基本数据类型而言没有什么方法 ， 但对于包装类而言，包装类有很多方法
 
-拆箱
+拆箱介绍
 包装类可以转化成基本数据类型，基本数据类型，也可以转化成包装类 , 方法:
 变量名.byteValue() 返回byte基本数据类型 ， 我们可以把byte 换称其他基本类型
 toString() 可以将Integer, Double, Boolean等转化为字符串
 parseInt(String s) 将字符串转化成数值类型
 valueOf(String s) 将将字符串转化成Integer类型
 
-装箱
-包装类 变量名 = new 包装类名(基本数据类型);   小提示:你如果输入一个数字的字符串 ， 那么装箱成Integer时 ， 会变成对应的数字
+装箱介绍
+包装类 变量名 = 包装类.valueOf();
+括号可以传相对应的基本数据类型。
+括号可以传相对应基本数据类型的字符串。
+当包装类是Boolean时，往括号里传字符串，只要字符串内容等于 "true"（不区分大小写）时才为 true，其他任何情况（包括 null、任意乱码）都为 false
+当包装类是Character时，括号里不能传字符串，只能传相对应的基本数据类型。。
 
-Integer 的方法
-Integer.max(int/Integer,int/Integer) 返回最大值
+Integer 的max()方法
+Integer.max(int/Integer,int/Integer);
+这是个静态方法。
+这个方法可以两个数字中的最大值
 
-12
-Format类
-NumberFormat
-Format的子类NumberFormat , NumberFormat有两个重要方法 format() , parse()
-format 负责将数字转化成字符串
-parse 负责将字符串转化成数字
+11
+枚举类介绍
+枚举类是一种特殊的类，它是用来表示一组固定的、有限的常量集合。
+它可以有自己的属性、方法、构造器。
+它隐式继承了java.lang.Enum，不能继承其他类，但可以实现接口。
 
-NumberFormate 使用方法
-将一个数字转化成指定环境的格式
-方法一
-locales = new Locale[]{Locale.CHINA};
-numberFormat = new NumberFormat[3];
-for(int i = 0;i < 1;i++){
-    numberFormat[i*3] = NumberFormat.getNumberInstance(locales[i]); 返回指定语言的数字格式
-    numberFormat[i*3 + 1] = NumberFormat.getPercentInstance(locales[i]);    返回指定语言的百分比格式
-    numberFormat[i*3 + 2] = NumberFormat.getCurrencyInstance(locales[i]); 返回指定的货币格式
-}
-System.out.println(numberFormat[i*3].format(db) );
-System.out.println(numberFormat[i*3+1].format(db));
-System.out.println(numberFormat[i*3+2].format(db));
+声明枚举类
+访问修饰符 非访问修饰符 enum 类名 {代码块}
 
-方法二
-NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.CHINA);
-Number number = numberFormat.parse("123");
-System.out.println(number.intValue());
+枚举类的常量
+常量1, 常量2.....
+每一个常量都自动被public static final修饰。
+每一个常量都是枚举类的实例。
+
+枚举类的name()方法
+枚举实例.name()
+这个方法可以返回枚举实例的名称字符串。
+
+枚举类的ordinal()方法
+枚举实例.ordinal();
+这个方法可以返回枚举实例的序号。
 }//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -326,6 +328,40 @@ random 实例的nextIny()方法
 r.nextInt(); 
 这个方法可以获取一个随机整数
 这个方法可以指定获取范围，只要在括号里输入一个正整数，就可以生成0-这个正整数(不报错这个正整数)之间的数。
+}///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+Format抽象类
+{///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+NumberFormat类
+text.NumberFormat
+NumberFormat 是Format的子类
+
+NumberFormat有两个重要方法 format() , parse()
+format 负责将数字转化成字符串
+parse 负责将字符串转化成数字
+
+NumberFormate 使用方法
+将一个数字转化成指定环境的格式
+方法一
+locales = new Locale[]{Locale.CHINA};
+numberFormat = new NumberFormat[3];
+for(int i = 0;i < 1;i++){
+    numberFormat[i*3] = NumberFormat.getNumberInstance(locales[i]); 返回指定语言的数字格式
+    numberFormat[i*3 + 1] = NumberFormat.getPercentInstance(locales[i]);    返回指定语言的百分比格式
+    numberFormat[i*3 + 2] = NumberFormat.getCurrencyInstance(locales[i]); 返回指定的货币格式
+}
+System.out.println(numberFormat[i*3].format(db) );
+System.out.println(numberFormat[i*3+1].format(db));
+System.out.println(numberFormat[i*3+2].format(db));
+
+方法二
+NumberFormat numberFormat = NumberFormat.getNumberInstance(Locale.CHINA);
+Number number = numberFormat.parse("123");
+System.out.println(number.intValue());
 }///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
