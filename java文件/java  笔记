@@ -516,86 +516,97 @@ FileUtils.delete(文件指针);
 时间
 {//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 1
-引入时间
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-
 介绍时间
-LocalDateTime 声明一个有日期，又有时间的变量，包含年月日，时分秒
-LocalDate 声明一个有日期的变量，包含年、月、日
-LocalTime 声明一个有时间的变量，包含时、分、秒、纳秒
-
-声明变量
-LocalDateTime time = LocalDateTime.now(); 为一个变量赋值
+java.time.LocalDateTime, LocalDateTime 是一个有日期，又有时间的变量，包含年月日，时分秒
+java.time.LocalDate, LocalDate 是一个有日期的变量，包含年、月、日。
+java.time.LocalTime, LocalTime 是一个有时间的变量，包含时、分、秒、纳秒
 
 2
-字符串、时间互相转化
+DateTimeFormatter类介绍
+java.time.format.DateTimeFormatter;
+这个类可以使字符串变量、时间变量互相转化
 
-引入DateTimeFormatter类
-import java.time.format.DateTimeFormatter;
+DateTimeFormatter类的ofPattern()方法
+DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+这个方法是个静态方法。
+这个方法的作用是返回一个DateTimeFormatter实例，这个实例有一个固定的模板。
+括号里面的格式可以自定义时间格式。
 
-介绍DateTimeFormatter类
-这是自定义时间接口，它可以将一个DateTime 变量转化为字符串，也可以将字符串转化为时间
+DateTimeFormatter类的format()方法
+DateTimeFormatter实例.format(时间);
+这个方法可以将时间转化成DateTimeFormatter实例中固定格式的字符串，将其返回。
 
-声明DateTimeFormatter变量
-DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-dtf变量可以自定义时间格式
-
-利用DateTimeFormatter变量，实现字符串和时间的相互转化
-dtf.format(时间); //将时间转化为字符串
-dtf.parse(字符串, 时间格式) /将字符串转化为时间
+DateTimeFormatter类的parse()方法
+DateTimeFormatter实例.parse(字符串);
+这个方法可以将字符串转化成DateTimeFormatter实例中固定格式的时间，将其返回。
+注意这里的字符串需要和DateTimeFormatter实例中固定格式一致。
 
 使用示例:
 DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-String str1 = "2021-05-01 18:00:00";//将一个时间字符串转为时间需要格式一样
+String str1 = "2021-05-01 18:00:00";
 LocalDateTime time = LocalDateTime.parse(str1,dtf);
 
 4
-时间的方法
+LocalDateTime类的now()方法
+LocalDateTime.now();
+这个方法是个静态方法。
+这个方法可以返回现在的时间。
 
-得到一个时间里的年 
-now.getYear();
+LocalDateTime类的getYeat()方法
+LocalDateTime实例.getYear();
+这个方法返回一个时间里的年 
 
-得到一个时间里的月 
-now.getMonth().getValue();
+LocalDateTime类的getMonth()方法
+LocalDateTime实例.getMonth();
+这个方法会返回Month枚举类的其中一个常量。
 
-得到一个时间里的天数    
-now.getDayOfMonth();
+LocalDateTime类的getDayOfMonth()方法
+LocalDateTime实例.getDayOfMonth();
+这个方法可以返回一个时间里的天数    
 
-得到一个时间里的所在第几周    
-now.getDayOfWeek().getValue();
+LocalDateTime类的getDayOfMonth()方法 
+now.getDayOfWeek();
+这个方法可以返回该日期时间对象所表示的日期是星期几，注意它返回的是DayOfWeek 枚举类其中一个常量。
 
 时间转化为字符串
 now.toString()
 
 5
-计算两个时间的之差
+Month枚举类类介绍
+time.Month。
+这个枚举类中存储了12个月份常量，每个月份常量都对应着正确的数字
 
-引入Duration类
-import java.time.Duration;
+Month枚举类的getValue()方法
+Month枚举类常量.getValue()
+这个方法会返回这个枚举类常量的整形序号。
 
-介绍duration
-Duration只能接收带有时间维度的对象,如以下三种 ：LocalTime（纯时间）、LocalDateTime（日期+时间）、Instant（时间戳）
-他不能接受LocalDate（纯日期）
+6
+DayOfWeek枚举类介绍
+time.DayOfWeek。
+这个枚举类中存储了7个日期常量，每个日期常量都对应着正确的数字
 
-声明Duration变量
-Duration duration = Duration;
+DayOfWeek枚举类的getValue()方法
+DayOfWeek枚举类常量.getValue()
+这个方法会返回这个枚举类常量的整形序号。
 
-Duration变量的方法:
+7
+Duration 类介绍
+java.time.Duration;
+这个类可用于计算两个时间的之差。
+这个类只能接收带有时间维度的对象,如以下三种 ：LocalTime（纯时间）、LocalDateTime（日期+时间）、Instant（时间戳），它不能接受LocalDate（纯日期）。
 
-计算两个时间之差
-duration.between(起始时间, 结束时间) 
-这个方法会返回一个duration。
+Duration类的between()方法
+Duration.between(起始时间, 结束时间) 
+这是个静态方法。
+这个方法会返回一个duration，其中包含着两个时间之差。
 
-将duration 转化为天数
-duration.toDays()
+Duration类的toDays()方法
+Duration实例.toDays()
+这个方法可以将duration中的时间差转化为天数。
 
-将duration 转化为小时数
-duration.toHours()
-
-将duration 转化为毫秒数
-duration.toMillis() 
+Duration类的toHours()方法
+Duration实例.toHours()
+这个方法可以将duration中的时间差转化为小时数。
 {//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
