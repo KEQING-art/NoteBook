@@ -1,0 +1,42 @@
+Servlet
+{////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+1
+Servlet规范 介绍
+它是Java社区制定的一套标准，它定义了：
+1. Servlet接口（Servlet Interface）——你的Java类要实现什么方法，才能被Tomcat调用。
+2. 请求和响应对象——Tomcat把HTTP请求解析成什么对象给你用，你把响应写到什么对象里。
+3. 部署描述文件——你怎么告诉Tomcat"哪个URL对应哪个Servlet"。
+4. 过滤器、监听器——在Servlet处理之前/之后可以插入的额外逻辑。
+
+Servlet类 介绍
+它是符合Servlet规范的Java类，负责处理具体的HTTP请求。
+
+Servlet容器（Servlet Container）
+实现了Servlet规范的服务器，如Tomcat。它负责管理Servlet的生命周期、调用Servlet的方法。
+
+2
+Servlet 接口介绍
+javax.servlet.Servlet
+Servlet 接口有五个方法。
+
+init() 方法
+void init(ServletConfig config) throws ServletException
+这个方法负责初始化方法
+Tomcat创建Servlet实例后，会调用这个方法做初始化。比如读配置文件、连接数据库等"启动时要做的事"放在这里。
+
+getServletConfi()方法
+ServletConfig getServletConfig(); 
+返回Servlet的配置信息对象，通过它可以获取在web.xml或注解中配置的初始化参数。
+
+service()方法
+void service(ServletRequest req, ServletResponse res)throws ServletException, IOException; 
+每次浏览器发来请求，Tomcat都会调用这个方法来处理。 req 是请求对象， res 是响应对象。你的业务逻辑就写在这里。
+
+getServlet()方法
+String getServletInfo(); 
+返回Servlet的描述信息，比如作者、版本等。很少用到。
+
+destroy()方法
+void destroy();
+销毁方法。Tomcat关闭或Servlet被卸载时调用。用来做清理工作——关闭数据库连接、释放资源等。在整个生命周期中只被调用一次。
+}////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
