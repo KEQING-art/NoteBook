@@ -166,13 +166,15 @@ void MergeList_L(LinkList &LA, LinkList &LB){ //这里的LA、LB是头节点， 
 
 链表：合并多项式实战
 {/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+1
 原理解释
-有两条链表，分别表示两个多项式。
-你设置一个pc指针，指向其中一条链表的头节点，设置两个指针(pz, pb)分别指向那两条链表的的第一个节点。
+有两条链表，分别表示两个指数递增多项式。
+你设置一个pc指针，指向其中一条链表的头节点，设置两个指针(pa, pb)分别指向那两条链表的的头节点。
 你需要比较指向两个第一个节点的指针的值。
 若是其中一个指数较小，就将他接在pc的后面，相应的较小的指针指向它的后一个节点。
 若是pa, pb的指数相同就选一个节点将这两个节点的值相加，然后将这个节点接在pc后面，pa、pb 向后指向下一个节点。但有一个例外若是相加的值等于0，那么pa, pa指向的这两个节点消失，pa,pb指向后一个节点。
 
+2
 多项式的结构体
 typedef struct PNode{
   float coef;
@@ -180,9 +182,56 @@ typedef struct PNode{
   struct PNode *next;
 }PNode, *Polynomial;
 
+3
 创建多项式代码演示
-void CreatePolyn(Polynomial &p, int n){
+void CreatePolyn(Polynomial p, int n){ //这里的p 将指向头节点, n 代表几个多项式
   p = new PNode;
+  p->next = NULL;
+  for(int i = 1; i <= n; i++){
+    PNode a;
+    cin>>a.coef>>a.expn;
+    a.next = null;
+    p->next = &a;
+    p = p->next;
+  }
+}
+
+3
+多项式的相加
+void AddPolyn(Polynomial pa, Polynomial &pb){  // pa, pb 代表多项式的头节点
+  Polynomial PB = pb; 
+  Polynomial pc = pa;
+  pa = pa->next;
+  pb = pb->next;
+  while(pa && pb){
+    if(pa->expn == pb->expn){
+      pa->cofe += pb->cofe;
+      if(pa->cofe == 0){
+        Polynomial r = pa; pa = pa->next; delete r;
+        r = pb; pb = pb->next; delete r;
+        r = nullptr;
+      }else{
+          pc->next = pa;
+          pc = pc->next;
+          pa = pa->next;
+          Polynomial r = pb;
+          pb = pb->next;
+          delete r;
+          r = nullptr;
+      }   
+    }else if(pa->expn > pb->expn){
+      pc->next = pb;
+      pc = pc->next;
+      pb = pb->next; 
+    }else if(pa->expn < pb->expn){
+      pc->next = pa;
+      pc = pc->next;
+      pa = pa->next; 
+    }
+  }
+  pc->next = pa?pa:pb;
+  pb = nullptr;
+  delete PB; 
 }
 }/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
