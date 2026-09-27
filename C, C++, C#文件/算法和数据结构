@@ -419,12 +419,12 @@ LeetCode实战: k个一组翻转链表
 
 
 C语言源码
-ListLinkPtr reverseKGroup(ListLinkPtr &head, int k){
-  int n = 0;
+ListLinkPtr reverseKGroup(ListLinkPtr &head, int k){ //head指的是头节点
   ListLinkPtr s = new ListLink;
-  LinkListPtr pb = s;
   ListLinkPtr pa = head->next;
+  ListLinkPtr pb = s;
 
+  int n = 0;  
   while(pa){
     pa = pa->next;
     n++;
@@ -433,18 +433,23 @@ ListLinkPtr reverseKGroup(ListLinkPtr &head, int k){
   pa = head->next;
   int x = n/k;
 
-  for(int i = 0;i < n; i++){
-    for(int j = 0; j < x; j++){
+  for(int i = 0;i < x; i++){
+    for(int j = 0; j < k; j++){
+      ListLinkPtr temp = pa->next;
+      pa->next = pb->next;
       pb->next = pa;
-      pa = pa->next;
+      pa = temp;
     }
-    for(int j = 0; j < x; j++){
+    for(int j = 0; j < k; j++){
       pb = pb->next; 
     }
   }
+
   pb->next = pa;
+
   delete head;
   head = nullptr;
+  
   return s;
 }
 }/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
