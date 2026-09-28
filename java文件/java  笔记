@@ -1122,18 +1122,8 @@ InputStream实例.read(数据)
 若直接读取到数据末尾或流已关闭时，返回-1。
 若无数据但流未关闭，线程会阻塞，等待数据到来。
 
-commons-io的依赖
-<dependency>
-  <groupId>commons-io</groupId>
-  <artifactId>commons-io</artifactId>
-  <version>2.10.0</version>
-</dependency>
-
-commons-io的IOUtils.toString()方法
-IOUtils.toString(inputStream实例, "编码格式");
-这个方法可以将输入流（InputStream）中的所有内容读取出来，并按照指定的字符编码（UTF-8）转换为一个字符串（String）。
-这个方法需要铺货异常。
-
+InputStream接口的readLine()方法
+InputStream实例.read(数据)
 2
 OutputStream 接口介绍
 它负责"把字节数据从内存写到外部"，比如写文件、发网络请求。
@@ -1149,6 +1139,22 @@ OutputStream的flush() 方法
 OutputStream实例.flush() 
 若是OutputStream实例没被缓冲流包装过，这个方法无效。
 若是OutputStream实例被缓冲流包装过，这个方法的作用是将再java缓冲区的数据写入到OS 内核的 TCP 发送缓冲区（SendQ）。
+
+3
+commons-io的依赖
+<dependency>
+  <groupId>commons-io</groupId>
+  <artifactId>commons-io</artifactId>
+  <version>2.10.0</version>
+</dependency>
+
+commons-io的IOUtils.toString()方法
+IOUtils.toString(inputStream实例, "编码格式");
+这个方法可以将输入流（InputStream）中的所有内容读取出来，并按照指定的字符编码（UTF-8）转换为一个字符串（String）。
+这个方法需要铺货异常。
+
+4
+InputS
 }////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
