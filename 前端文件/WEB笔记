@@ -118,7 +118,7 @@ delete 请求删除资源，它的特点是删除数据。
 请求头是一堆键值对，每一行一个，格式是 名字: 值 。它携带的是请求的"附加信息"，它告诉服务器"我是谁""我能接受什么""我的数据是什么格式"等等。
 Host，它的是目标服务器的地址。 示例：Host: www.baidu.com
 User-Agent，它是发出请求的浏览器信息（什么浏览器、什么版本）。 示例：User-Agent: Chrome/120.0
-Content-Type 它表示请求体的数据类型。 示例：Content-Type:application/json
+Content-Type 它表示请求体的数据类型。 示例：Content-Type:application/json  //若是请求体没有，Content-Type 也就不用写了。
 Content-Length 它是请求体的字节长度。   示例：Content-Length: 25
 Accept 它白哦是客户端能接受的响应类型。 示例：Accept: text/html
 Cookie 它表示客户端携带的Cookie信息。  示例：Cookie: JSESSIONID=abc123
