@@ -13,6 +13,55 @@ spring 依赖
   <artifactId>spring-context</artifactId>
   <version>5.2.6.RELEASE</version>
 </dependency>
+}///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+spring Resourse
+}///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+spring 的Resource类
+org.springframework.core.io.Resource
+
+Resource对象的getInputStream()方法
+resource.getInputStream()
+这个方法的作用是打开该资源，返回一个用于读取资源内容的 InputStream（输入流）。
+
+spring 的ResourceLoader类
+org.springframework.core.io.ResourceLoader
+这个类的对象可以提供一个统一的接口来访问各种外部资源。
+这个类是spring的目标类。
+
+ReaourceLoader 对象的getResource()方法
+resourceLoader.getResource("路径")
+这个方法可以读取一个文件或网页的内容，并将其包装进一个spring 的resource对象，然后返回这个对象。
+classpath 路径， "classpath: classpath路径"。
+file 路径， "file: 工程路径"。
+http 路径, "网页的http地址"  // 根据http 地址可以直接爬取一个网页的信息。
+}///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+spring bean
+}///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+1
+IoC 控制反转接口介绍
+它的接口类是org.springframework.context.ApplicationContext
+它是 Spring IoC 容器的高级核心接口，它定义了容器必须具备的基础能力（如获取 Bean、发布事件、加载资源等）。
+
+Annotation 类型的 IoC容器
+它的类是org.springframework.context.annotation.AnnotationConfigApplicationContext
+它是容器的实现类，它通过层层继承最终实现了 ApplicationContext 接口，从而具备了容器所需的所有功能。
+
+Annotation 类型的 IoC容器的实例化
+ApplicationContext context = new AnnotationConfigApplicationContext("包名"/Class clazz);
+若括号里的是包名，这段代码的含义就是启动loC容器，并且会自动加载包下的目标类，目标类是被spring 的@service、@Component、@Controller、@Reposity 注解修饰的类。
+
+Annotatin 类型的IOC容器getBeen方法
+context.getBeen()。
+括号里可以填入类名.class, 用于查找指定类唯一的对象，若对象不是唯一的，则会报错。
 
 2
 spring 目标类注解一览
@@ -36,53 +85,6 @@ org.springframework.stereotype.Repositor
 它作用于持久化相关Bean
 
 3
-IoC 控制反转接口介绍
-它的接口类是org.springframework.context.ApplicationContext
-它是 Spring IoC 容器的高级核心接口，它定义了容器必须具备的基础能力（如获取 Bean、发布事件、加载资源等）。
-
-Annotation 类型的 IoC容器
-它的类是org.springframework.context.annotation.AnnotationConfigApplicationContext
-它是容器的实现类，它通过层层继承最终实现了 ApplicationContext 接口，从而具备了容器所需的所有功能。
-
-Annotation 类型的 IoC容器的实例化
-ApplicationContext context = new AnnotationConfigApplicationContext("包名"/Class clazz);
-若括号里的是包名，这段代码的含义就是启动loC容器，并且会自动加载包下的Bean，哪些 Bean 会被加载呢?只要引用了Spring注解的类都可以被加载
-
-Annotatin 类型的IOC容器getBeen方法
-context.getBeen()。
-括号里可以填入类名.class, 用于查找指定类唯一的对象，若对象不是唯一的，则会报错。
-
-4
-spring 的依赖注入(DI)
-这是spring 最核心的技术点。
-spring的所有技术方案都是基于DI 发展的
-
-spring 的依赖注入注解
-@Autowired 
-org.springframework.beans.factory.annotation.Autowired
-它的作用是让 Spring 容器在运行时自动将匹配的 Bean 注入到目标类的字段、构造器或 Setter 方法中，从而避免手动创建对象或显式调用赋值方法，实现控制反转（IoC）和依赖注入（DI）。 //注意目标类字段所处的类必须是被spring 管理的。
-
-5
-spring 的Resource类
-org.springframework.core.io.Resource
-
-Resource对象的getInputStream()方法
-resource.getInputStream()
-这个方法的作用是打开该资源，返回一个用于读取资源内容的 InputStream（输入流）。
-
-spring 的ResourceLoader类
-org.springframework.core.io.ResourceLoader
-这个类的对象可以提供一个统一的接口来访问各种外部资源。
-这个类是spring的目标类。
-
-ReaourceLoader 对象的getResource()方法
-resourceLoader.getResource("路径")
-这个方法可以读取一个文件或网页的内容，并将其包装进一个spring 的resource对象，然后返回这个对象。
-classpath 路径， "classpath: classpath路径"。
-file 路径， "file: 工程路径"。
-http 路径, "网页的http地址"  // 根据http 地址可以直接爬取一个网页的信息。
-
-6
 spring bean介绍
 目标类被 Spring 容器实例化，并经过完整的生命周期管理（如依赖注入、初始化等）后，放入IOC容器中，这个“对象”称为 Bean。
 手动实例化一个目标类，这个对象不是bean。
@@ -101,7 +103,42 @@ javax.annotation.PostConstruct
 小知识
 被spring 标记为目标类后，在spring 容器启动后，只要这个类的注解是单例，且不是懒加载，那么这个类会自动被new出来。
 
-7
+4
+spring 的依赖注入(DI)
+这是spring 最核心的技术点。
+spring的所有技术方案都是基于DI 发展的
+
+spring 的依赖注入注解
+@Autowired 
+org.springframework.beans.factory.annotation.Autowired
+它的作用是让 Spring 容器在运行时自动将匹配的 Bean 注入到目标类的字段、构造器或 Setter 方法中，从而避免手动创建对象或显式调用赋值方法，实现控制反转（IoC）和依赖注入（DI）。 
+}///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+spring MVC
+}///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+spring mvc
+它是一款基于 MVC（Model-View-Controller）设计模式 的轻量级 Java Web 开发框架，构建于 Servlet API 之上。
+它专门用来处理 Web 应用程序中的请求和响应。
+
+mvc模式
+M（Model，模型）：封装业务数据与业务逻辑，负责与数据层交互，是整个 MVC 的唯一数据源。
+V（View，视图）：负责数据的展示（比如 HTML 页面，或者前后端分离时返回的 JSON 数据），支持 JSP、Thymeleaf、FreeMarker 等模板引擎，也可以返回 JSON/XML 数据（前后端分离场景）。
+C（Controller，控制器）：作为请求调度的核心，负责接收用户的 HTTP 请求，调用 Model 处理业务，然后把结果交给 View 展示。这就是你写的 @Controller 类的作用。
+
+spring mvc 的注解
+它的所有注解都在org.springframework.web.bind.annotation 里。
+}///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+spring controller 
+}///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 spring controller
 它是一个被@controller 修饰的类，它是Spring MVC 的控制器也同样是一个bean。
 它作为 MVC 设计模式中的“C”（Controller），这种类负责接收客户端（如浏览器）发来的 HTTP 请求。
@@ -140,19 +177,22 @@ org.springframework.web.bind.annotation.RequestParam
 
 @RestController注解
 它相当于 @Controller + @ResponseBody 的组合。只要类上加了 @RestController，该类下所有方法的返回值都会默认被转成 JSON 写入响应体中。
+}///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-8
-spring mvc
-它是一款基于 MVC（Model-View-Controller）设计模式 的轻量级 Java Web 开发框架，构建于 Servlet API 之上。
-它专门用来处理 Web 应用程序中的请求和响应。
 
-mvc模式
-M（Model，模型）：封装业务数据与业务逻辑，负责与数据层交互，是整个 MVC 的唯一数据源。
-V（View，视图）：负责数据的展示（比如 HTML 页面，或者前后端分离时返回的 JSON 数据），支持 JSP、Thymeleaf、FreeMarker 等模板引擎，也可以返回 JSON/XML 数据（前后端分离场景）。
-C（Controller，控制器）：作为请求调度的核心，负责接收用户的 HTTP 请求，调用 Model 处理业务，然后把结果交给 View 展示。这就是你写的 @Controller 类的作用。
 
-spring mvc 的注解
-它的所有注解都在org.springframework.web.bind.annotation 里。
+
+
+
+spring 的Model类
+{///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Model类介绍
+org.springframework.ui.Model;
+它是spring MVC的M。
+
+Model类的使用介绍
+在Controller类的方法中，引入一个Model形参，往Model里加入属性，最后return 的时候，模板引擎会将MOdel对象传递到return 的模板文件。
+
 }///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
