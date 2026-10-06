@@ -161,7 +161,8 @@ spring controller
 它里面的方法会被识别为请求处理方法，负责将不同的 URL 请求路由到对应的业务逻辑上。
 
 @controller 方法的return 
-它的return 可以交给 ViewResolver 解析，视图解析器根据 prefix + 返回值 + suffix 拼接出完整路径。
+它的返回值是字符串代表文件名。 
+它的返回值 可以交给 ViewResolver 解析，视图解析器根据 prefix + 返回值 + suffix 拼接出完整路径。
 当你使用了模板引擎以及你返回的字符串带不带后缀，那么spring 默认去 src/main/resources/templates调用文件。
 当你使用forward: 前缀, spring 去 src/main/resources/static调用文件, 然后返回文件。
 
