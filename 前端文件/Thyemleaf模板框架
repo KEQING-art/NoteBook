@@ -41,7 +41,7 @@ xmlns:th="http://www.thymeleaf.org"
 th:each 属性介绍
 th:each = "变量名 : ${变量}"
 它相当于java的 增强for循环, 。
-这里的变量名, Thymeleaf 会用这个变量名自动创建一个迭代变量。
+这里的变量名, Thymeleaf 会用这个变量名自动创建一个模板里的局部迭代变量， 这个变量对的作用范围是当前标签及子标签内。
 这里的变量得是数组, list, map。
 
 th:each 属性的可选参数介绍
