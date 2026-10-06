@@ -204,7 +204,7 @@ org.springframework.ui.Model;
 它是spring MVC的M。
 
 Model类的使用介绍
-在Controller类的方法中，引入一个Model形参，往Model里加入属性，最后return 的时候，模板引擎会将MOdel对象传递到return 的模板文件, 这些变量会变成模板变量。。
+在Controller类的方法中，引入一个Model形参，往Model里加入属性，最后return 的时候，模板引擎会将MOdel对象传递到return 的模板文件, 这些变量会变成模板变量。
 
 2
 Model 类的addAttribute()方法
