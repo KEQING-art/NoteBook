@@ -784,12 +784,32 @@ C语言
 char* convert(char* s, int numRows){
 	int n = strlen(s), r = numRows;
 	if(r == 1 || r == n) return s;
-	char** mat = (char**)malloc(r * sizeof(char*))
-	int* columSize = (int*) malloc(numsRows * sizeof(int))
+
+
+	char** mat = (char**)malloc(r * sizeof(char*))          // 设置n 阶矩阵的头指针，并给这个头指针，开阔r 个char* 的空间， 头指针指向第一个char*空间的第一个字节
+ 
+	int* columSize = (int*) malloc(numsRows * sizeof(int))  // 设置n 阶矩阵每行存放数值的个数
 	memset(columSize, 0, sizeof(int) * numRows);
-	for(int i = 0; i < r; i++){
-		mat[i] = 
+
+	for(int i = 0; i < r; i++){                             // n 阶矩阵指针
+		mat[i] = (char*)malloc((n) * sizeof(char));
+		memset(mat[i], 0, sizeof(char) * (n));
 	}
+	
+	for(int i = 0, x = 0, t = r * 2 - 2; i < n; i++){       //逐行遍历压缩矩阵
+		mat[x][columSize[x]++] = s[i];
+		i % t < r - 1 ? ++x : --x;
+	}
+
+	int pos = 0;
+	for(int i = 0; i< r; i ++){
+		for(int j = 0;i < columSize[i]; j++){
+			s[pos++] = mat[i][j];
+		}
+		free(mat[i]);
+	}
+	free(columSize);
+	free(mat);
 }
 }////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
