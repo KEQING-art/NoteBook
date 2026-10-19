@@ -33,7 +33,34 @@ idea 开发的步骤
 
 servlet 的六大对象和三大作用域 
 
-servlet 生命周期
+servlet 的生命周期
 四个阶段：创建对象(构造函数), 初始化(init), service, destroy
 第一次访问的把servlet 对象创建出来。
 初始化: 可以连接数据库。
+service 方法。
+
+servlet 调用时机
+servlet 类当第一次被访问的时候, 调用new 构造函数()，当servlet 类被创建的时候tomcat调用init方法。
+浏览器访问一次，tomcat就开一个线程调用servlet的service方法。
+应用关闭的时候， tomcat调用destroy方法。
+servlet 始终是单实例。
+
+<load-on-stand>n</load-on-stand> 这里的n>=0, 谁小谁先实例化
+
+
+servlet 的service 方法
+service(request, response){
+ if(请求方式是get){调用doGet()方法}
+ .....
+}
+
+当请求来的时候， tomcat 自动生成request, response对象。
+
+HttpServletRequest 类的对象是请求对象，封装了浏览器发来的所有信息。
+request类的setCaracterEncoding 方法可以设置解码的码
+request类的getContextPath() 方法可以获得请求的上下文路径
+
+getParameterValues(String s){} // 获取指定片段的字符串
+
+绝对路径
+/myapp/hello, 这里的第一个/ 代表主机+ 端口
