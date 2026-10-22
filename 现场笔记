@@ -32,6 +32,20 @@ idea 开发的步骤
 7. 启动
 
 servlet 的六大对象和三大作用域 
+request 对象, session 对象, response对象, application对象。
+request, reponse对象, 执行servlet方法前，这两个对象被创建，在一个方法结束后，这两个对象被销毁。
+session 对象, 不同的页面共享一个session。 
+application 对象, 在同一个应用中, 都可以被访问。
+对象的setAttribute()方法, getAttribute(),它返回Object对象, removeAttribute()。
+
+请求转发
+RequestDispatcher 请求传发器
+RequestDispatcher类的forward(目标地址)方法
+
+PrintWriter 类的close()方法执行后， PrintWriter println方法发出的信息就被发出去了。
+
+重定向
+response.sendRedirect(); 跨域请求
 
 servlet 的生命周期
 四个阶段：创建对象(构造函数), 初始化(init), service, destroy
