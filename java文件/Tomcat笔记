@@ -121,6 +121,40 @@ Servlet访问路径的书写结构:/Servlet路径
 
 
 
+xml 文件的其他标签
+{//////////////////////////////////////////////////////////////////////////////////////////////////////////
+web.xml文件的声明
+<?xml version="1.0" encoding="UTF-8"?>
+这条声明放到文件开头，可以告诉解析器"这是XML文件、编码用的什么"。
+
+web.xml文件的根元素
+<web-app ...> </web-app>
+它表示这是一个Web应用配置文件。
+
+web.xml文件的根元素的属性
+xmlns=""  这个属性是xml的命名空间
+xmlns:xsi="" 和 xsi:schemaLocation=""  这两个属性可以指定XML Schema（XML模式定义）的位置
+version=""  这个属性是Web应用规范版本号，6.0对应Servlet 6.0规范
+
+web.xml文件的welcome-file-list标签
+<welcome-file-list></welcome-file-list>
+它的作用是当用户访问一个目录但不指定文件名时，Tomcat按这个列表里面的标签顺序找文件。
+这就是为什么，Tomcat项目启动后，你访问一个web项目的目录，能出现网页的原因，因为Tomcat会自动代开index文件。
+
+web.xml的display-name标签
+<display-name></display-name>
+这个标签是应用的显示名称，在Tomcat管理界面里会显示这个名字。
+
+web.xml文件的welcome-file
+<welcome-file></welcome-file>
+你需要在标签内加入打开的文件。
+它的作用是在welcome-file-list标签内，添加一个按顺序打开的文件。
+}//////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
 java web应用项目结构及其里面的文件介绍
 {//////////////////////////////////////////////////////////////////////////////////////////////////////////
 标准 java web项目结构介绍
@@ -150,33 +184,6 @@ WEB-INF目录是受保护的——浏览器不能直接访问WEB-INF里面的东
 WEB-INF文件的web.xml文件介绍
 这个文件叫做部署描述符。
 它是 Web 应用的"配置中心"——Servlet 怎么注册、欢迎页面是什么、过滤器怎么配，都在这里写。
-
-web.xml文件的声明
-<?xml version="1.0" encoding="UTF-8"?>
-这条声明放到文件开头，可以告诉解析器"这是XML文件、编码用的什么"。
-
-web.xml文件的根元素
-<web-app ...> </web-app>
-它表示这是一个Web应用配置文件。
-
-web.xml文件的根元素的属性
-xmlns=""  这个属性是xml的命名空间
-xmlns:xsi="" 和 xsi:schemaLocation=""  这两个属性可以指定XML Schema（XML模式定义）的位置
-version=""  这个属性是Web应用规范版本号，6.0对应Servlet 6.0规范
-
-web.xml文件的welcome-file-list标签
-<welcome-file-list></welcome-file-list>
-它的作用是当用户访问一个目录但不指定文件名时，Tomcat按这个列表里面的标签顺序找文件。
-这就是为什么，Tomcat项目启动后，你访问一个web项目的目录，能出现网页的原因，因为Tomcat会自动代开index文件。
-
-web.xml的display-name标签
-<display-name></display-name>
-这个标签是应用的显示名称，在Tomcat管理界面里会显示这个名字。
-
-web.xml文件的welcome-file
-<welcome-file></welcome-file>
-你需要在标签内加入打开的文件。
-它的作用是在welcome-file-list标签内，添加一个按顺序打开的文件。
 
 3
 WEB-INF的classes 文件存放内容介绍
