@@ -47,11 +47,6 @@ PrintWriter 类的close()方法执行后， PrintWriter println方法发出的�
 重定向
 response.sendRedirect(); 跨域请求
 
-servlet 的生命周期
-四个阶段：创建对象(构造函数), 初始化(init), service, destroy
-第一次访问的把servlet 对象创建出来。
-初始化: 可以连接数据库。
-service 方法。
 
 servlet 调用时机
 servlet 类当第一次被访问的时候, 调用new 构造函数()，当servlet 类被创建的时候tomcat调用init方法。
