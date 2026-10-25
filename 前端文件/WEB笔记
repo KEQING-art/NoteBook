@@ -124,6 +124,13 @@ Accept 它白哦是客户端能接受的响应类型。 示例：Accept: text/ht
 Cookie 它表示客户端携带的Cookie信息。  示例：Cookie: JSESSIONID=abc123
 Referer  它表示从哪个页面跳过来的。  示例：Referer: http://a.com
 
+
+请求头的Content-Type属性介绍
+Content-Type: 值 ,它表示请求体的数据类型, 若是请求体没有，Content-Type 也就不用写了。。
+值可以是application/json;charset=UTF-8, 这代表返回JSON 字符串。
+值可以是application/octet-stream,	这代表下载文件（配合字节流）。
+值可以是image/jpeg、image/png,	输出图片。
+
 请求体介绍
 请求体是请求的"货物"——真正要发送给服务器的数据。
 
