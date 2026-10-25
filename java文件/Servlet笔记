@@ -227,7 +227,13 @@ HttpServletRequest实例.setContentTyype("响应内容类型和编码")
 
 HttpServletResponse 接口的getWriter() 方法
 HttpServletRequest实例.getWriter()
-这个方法返回的就是PrintWriter 实例，这个PrintWriter 的实例底层被 Servlet 容器包装到了 HTTP 响应体里，println()最终会作为 HTTP 响应体发给浏览器。
+这个方法返回的就是PrintWriter 实例，这个PrintWriter 的实例底层被 Servlet 容器包装到了 HTTP 响应体里。
+需要注意用了 getWriter() 就不能用 getOutputStream()。
+
+HttpServletResponse 接口的getOutputStream()方法
+HttpServletRequest实例.getOutputStream()
+这个方法返回的就是OutputStream() 实例, 这个OutputStream实例的方法会写入到响应报文中。
+需要注意, 用了 getWriter() 就不能用 getOutputStream()。
 
 HttpServletResponse 接口的sendRedirect() 方法
 HttpServletRequest实例.sendRedirect("目标路径");
