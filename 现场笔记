@@ -28,16 +28,5 @@ idea 开发的步骤
 6. 部署模块
 7. 启动
 
-请求转发
-RequestDispatcher 请求传发器
-RequestDispatcher类的forward(目标地址)方法
-
-PrintWriter 类的close()方法执行后， PrintWriter println方法发出的信息就被发出去了。
-
 重定向
 response.sendRedirect(); 跨域请求
-
-request类的getContextPath() 方法可以获得请求的上下文路径
-
-绝对路径
-/myapp/hello, 这里的第一个/ 代表主机+ 端口
