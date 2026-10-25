@@ -140,6 +140,25 @@ ServletContext 接口, 它全限定名: jakarta.servlet.http.HttpSession
 
 
 
+HttpServlet抽象类
+{/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+1
+HttpServlet 抽象类的继承过程介绍
+Servlet（接口） ← 定义5个方法
+↑
+GenericServlet（抽象类） ← 实现了init/destroy/getServletConfig等，
+只留service()抽象
+↑
+HttpServlet（抽象类） ← 把service()实现了，根据HTTP方法分发到
+doGet/doPost
+↑
+你的Servlet（具体类） ← 只重写doGet/doPost就行！
+}/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
 HttpServletRequeset接口
 {/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 HttpServletRequest 接口
@@ -177,6 +196,18 @@ HttpServletRequest实例.getHeader("请求头的参数名");
 HttpServletRequest 接口的getContextPath()方法
 HttpServletRequest实例.getContextPath();
 这个方法可以返回启动web应用的上下文路径
+
+HttpServletRequest 接口的setAttribute()方法
+HttpServletRequest 实例.setAttribute("属性名", 属性值);
+这个方法可以给HttpServletRequest实例的属性修改值。
+
+HttpServletRequest 接口的getAttribute()方法
+HttpServletRequest 实例.getAttribute(属性名);
+这个方法可以返回HttpServletRequest实例的属性值, 返回的值是Object类型。
+
+HttpServletRequest 接口的getRequestDispatcher()方法
+HttpServletRequest 实例.getRequestDispatcher("/目标路径");
+这个方法可以返回一个请求转换器，这个转换器连接着一个web应用内的地址，这个地址是: /上下文路径/目标路径
 }/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -185,6 +216,10 @@ HttpServletRequest实例.getContextPath();
 
 HttpServletResponse 接口
 {/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+HttpServletResponse 接口介绍
+它的全限定名是:jakarta.servlet.http.HttpServletResponse
+HttpServletResponse实例是响应对象，服务器通过它向浏览器发送数据。
+
 HttpServletResponse 接口的setContentType()方法
 HttpServletRequest实例.setContentTyype(响应内容类型和编码)
 这里的相应内容和编码可以是text/html;charset=UTF-8，这代表相应的内容是html, 而编码类型是UTF-8。
@@ -192,25 +227,26 @@ HttpServletRequest实例.setContentTyype(响应内容类型和编码)
 HttpServletResponse 接口的getWriter() 方法
 HttpServletRequest实例.getWriter()
 这个方法返回的就是PrintWriter 实例，这个PrintWriter 的实例底层被 Servlet 容器包装到了 HTTP 响应体里，println()最终会作为 HTTP 响应体发给浏览器。
+
+HttpServletResponse 接口的sendRedirect() 方法
+HttpServletRequest实例.sendRedirect("目标路径");
+这个方法的路径是相对于服务器根的，需要写出上下文路径, 也就是: /上下文路径/....
 }/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
 
 
-HttpServlet抽象类
-{/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-1
-HttpServlet 抽象类的继承过程介绍
-Servlet（接口） ← 定义5个方法
-↑
-GenericServlet（抽象类） ← 实现了init/destroy/getServletConfig等，
-只留service()抽象
-↑
-HttpServlet（抽象类） ← 把service()实现了，根据HTTP方法分发到
-doGet/doPost
-↑
-你的Servlet（具体类） ← 只重写doGet/doPost就行！
+RequestDispatcher 接口
+}/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+RequestDispatcher 接口介绍
+它的全限定名是jakarta.servlet.RequestDispatcher。
+它的实例对象称为RequestDispatcher 请求传发器。
+它的实现类由 Tomcat 提供，我们不用 new（也 new 不出来），直接通过 request 对象拿现成的用就行。
+
+RequestDispatcher类的forward()方法
+RequestDispatcher实例.forward(HttpServletRequest 实例, HttpServletResponse 实例);
+这个方法可以将这两个实例对象转送到请求转发器的指定地址的对象。
 }/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -256,7 +292,7 @@ ServletContext 接口介绍
 它和你的代码无关，是由Servlet容器自动创建的。
 
 ServletContext 接口的setAttribute()方法
-ServletContext 实例.setAttribute(属性名, 属性值);
+ServletContext 实例.setAttribute("属性名", 属性值);
 这个方法可以给ServletContext实例的属性修改值。
 
 ServletContext 接口的getAttribute()方法
@@ -267,6 +303,4 @@ ServletContext 实例.getAttribute(属性名);
 
 
 
-ServletRequest 接口
-}//////////////////////////////////////////////////////////////////////////////////////////////////////////
-}//////////////////////////////////////////////////////////////////////////////////////////////////////////
+
