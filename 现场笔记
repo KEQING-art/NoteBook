@@ -1,9 +1,6 @@
-servlet 类，是满足 servlet 规范的java类。
+
 
 java代码，先编码，再编译
-
-WEB-INF 再tomcat 中是一个受保护的目录，浏览器不能直接访问它， 只有Tomcat内部才能读取里面的数据
-WEB-INF/classes/ （放编译后的 class 文件）
 
 tomcat 已经有了的jar包， 自己的项目不要再导入lib.
 javac命令
@@ -54,14 +51,6 @@ servlet 类当第一次被访问的时候, 调用new 构造函数()，当servlet
 应用关闭的时候， tomcat调用destroy方法。
 servlet 始终是单实例。
 
-<load-on-stand>n</load-on-stand> 这里的n>=0, 谁小谁先实例化
-
-
-servlet 的service 方法
-service(request, response){
- if(请求方式是get){调用doGet()方法}
- .....
-}
 
 当请求来的时候， tomcat 自动生成request, response对象。
 
