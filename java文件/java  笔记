@@ -1344,6 +1344,7 @@ new PrintWriter(底层流);
 PrintWriter 类的println()方法
 PrintWriter 实例.println(字符串);
 这个方法会把数据以文本形式输出，并在末尾自动追加一个换行符。
+若PrintWriter实例通过response.getWriter()获得，那么注意 `println` 只是往响应体写文本，页面上要换行得写 `<br>
 
 PrintWriter 类的close()方法
 PrintWriter 实例.close();
