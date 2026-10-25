@@ -144,6 +144,7 @@ HttpServletRequeset接口
 {/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 HttpServletRequest 接口
 它的全限定名是: jakarta.servlet.http.HttpServletRequest
+它代表请求对象。
 
 HttpServletRequest 接口的hashCode()方法
 HttpServletRequest实例.hasCode()
@@ -155,8 +156,28 @@ HttpServletRequest实例.setCharacterEncoding("编码类型");
 
 HttpServletRequest 接口的getParameter()方法
 HttpServletRequest实例.getParameter("参数名");
-这个方法可以获得参数名的值, 返回一个字符串的值。
-{/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+这个方法可以获得参数名的值, 返回一个字符串的值，如果没有对应的参数名就返回null，若是有同名的多个值就只返回第一个。
+
+HttpServletRequest 接口的getParameterValues()方法
+HttpServletRequest实例.getParameterValues("参数名");
+这个方法可以获得指定名称的所有参数值，返回String[]。
+
+HttpServletRequest 接口的getMethod()方法
+HttpServletRequest实例.getMethod()
+这个方法可以返回请求对象的请求方式(GET/POST)，返回字符串。
+
+HttpServletRequest 接口的getRemoteAddr()方法
+HttpServletRequest实例.getRemoteAddr();
+这个可以返回客户端的IP，返回字符串。
+
+HttpServletRequest 接口的getHeader()方法
+HttpServletRequest实例.getHeader("请求头的参数名");
+这个方法可以返回请求头中，指定参数的参数值，返回字符串。
+
+HttpServletRequest 接口的getContextPath()方法
+HttpServletRequest实例.getContextPath();
+这个方法可以返回启动web应用的上下文路径
+}/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
@@ -221,7 +242,7 @@ Servlet的懒加载和饿加载
 如何实现饿加载
 两种配置方式：web.xml 和注解。
 web.xml 通过在 <servlet> 标签里加一个 <load-on-startup> 标签。
-注解通过
+注解通过 @WebServlet() 的 loadOnStartu 属性实现。
 }/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -241,4 +262,11 @@ ServletContext 实例.setAttribute(属性名, 属性值);
 ServletContext 接口的getAttribute()方法
 ServletContext 实例.getAttribute(属性名);
 这个方法可以返回ServletContext实例的属性值, 返回的值是Object类型。
+}//////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+ServletRequest 接口
+}//////////////////////////////////////////////////////////////////////////////////////////////////////////
 }//////////////////////////////////////////////////////////////////////////////////////////////////////////
