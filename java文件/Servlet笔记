@@ -221,8 +221,9 @@ HttpServletResponse 接口介绍
 HttpServletResponse实例是响应对象，服务器通过它向浏览器发送数据。
 
 HttpServletResponse 接口的setContentType()方法
-HttpServletRequest实例.setContentTyype(响应内容类型和编码)
-这里的相应内容和编码可以是text/html;charset=UTF-8，这代表相应的内容是html, 而编码类型是UTF-8。
+HttpServletRequest实例.setContentTyype("响应内容类型和编码")
+这个方法的作用是设置Http的响应头的Content-Type属性。
+注意这个方法得写在getWriter()方法之前，它是设置响应体编码格式的。
 
 HttpServletResponse 接口的getWriter() 方法
 HttpServletRequest实例.getWriter()
