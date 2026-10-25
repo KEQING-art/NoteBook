@@ -22,6 +22,20 @@ Servlet的规范
 
 
 
+Servlet容器
+}////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Servlet容器（Servlet Container）
+实现了Servlet规范的服务器，如Tomcat。它负责管理Servlet的生命周期、调用Servlet的方法。
+
+servlet与Tomcat的关系
+Servlet规范规定了"服务器和业务代码之间怎么配合工作"的规则。Tomcat遵守这个规则来调用你的代码，你的代码遵守这个规则来处理请求。
+服务器只负责接收请求、解析HTTP报文，然后把请求交给一个"符合规范的Java类"来处理。处理完了，服务器负责把结果组装成HTTP响应发给浏览器。
+}////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
 Servlet接口
 }////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 Servlet 接口介绍
@@ -40,6 +54,11 @@ ServletConfig getServletConfig();
 service()方法
 void service(ServletRequest req, ServletResponse res)throws ServletException, IOException; 
 每次浏览器发来请求，Tomcat都会调用这个方法来处理。 req 是请求对象， res 是响应对象。你的业务逻辑就写在这里。
+service 方法简化代码
+service(request, response){
+ if(请求方式是get){调用doGet()方法}
+ .....
+}
 
 getServlet()方法
 String getServletInfo(); 
@@ -54,14 +73,16 @@ void destroy();
 
 
 
-Servlet容器
-}////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-Servlet容器（Servlet Container）
-实现了Servlet规范的服务器，如Tomcat。它负责管理Servlet的生命周期、调用Servlet的方法。
 
-servlet与Tomcat的关系
-Servlet规范规定了"服务器和业务代码之间怎么配合工作"的规则。Tomcat遵守这个规则来调用你的代码，你的代码遵守这个规则来处理请求。
-服务器只负责接收请求、解析HTTP报文，然后把请求交给一个"符合规范的Java类"来处理。处理完了，服务器负责把结果组装成HTTP响应发给浏览器。
+Servlet对象的生命周期
+{////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+servlet 对象的生命周期
+三个阶段：创建对象, 工作, 死亡。
+创建对象阶段: 第一次访问的把servlet对象创建出来, Tomcat调用servlet的构造函数和init()函数, init函数的作用是做初始化工作,例如: 读取配置文件、建立数据库链接、初始化一些变量。
+工作阶段: 每次请求都会Tomcat调用service 方法。
+死亡阶段: Tomcat 关闭的时候, Tomcat会调用这个方法，做清理工作, 例如: 关闭数据库连接, 释放文件资源, 保存一些状态。
+
+注意：只有 Tomcat 正常关闭（用 shutdown.bat）才会调用 destroy()。如果你直接关命令行窗口，属于"强制终止"，destroy() 不会被调用。
 }////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -102,7 +123,9 @@ Servlet 的三大作用域
 
 请求作用域
 HttpServletRequest接口, 它全限定名:jakarta.servlet.http.HttpServletRequest
-数据在一次Servlet 的service 方法中有效。请求转发时可以传数据，请求结束数据就没了。对应的对象是 HttpServletRequest，它是一个接口，在 jakarta.servlet.http 包下。
+HttpServletResponse接口, 它全限定名: jakarta.servlet.http.HttpServletResponse
+这两个对象在浏览器发请求时，Tomcat 会创建一对新对象：一个 HttpServletRequest、一个 HttpServletResponse。
+然后调用 Servlet 的 service(request, response) 方法，把这对对象传进去。service() 方法执行完、响应发回浏览器之后，这对对象就被销毁回收了。
 
 会话作用域
 HttpSession 接口, 它全限定名: jakarta.servlet.http.HttpSession
@@ -117,17 +140,38 @@ ServletContext 接口, 它全限定名: jakarta.servlet.http.HttpSession
 
 
 
-Servlet对象的生命周期
-{////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-servlet 对象的生命周期
-三个阶段：创建对象, 工作, 死亡。
-创建对象阶段: 第一次访问的把servlet对象创建出来, Tomcat调用servlet的构造函数和init()函数, init函数的作用是做初始化工作,例如: 读取配置文件、建立数据库链接、初始化一些变量。
-工作阶段: 每次请求都会Tomcat调用service 方法。
-死亡阶段: Tomcat 关闭的时候, Tomcat会调用这个方法，做清理工作, 例如: 关闭数据库连接, 释放文件资源, 保存一些状态。
+HttpServletRequeset接口
+{/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+HttpServletRequest 接口
+它的全限定名是: jakarta.servlet.http.HttpServletRequest
 
-注意：只有 Tomcat 正常关闭（用 shutdown.bat）才会调用 destroy()。如果你直接关命令行窗口，属于"强制终止"，destroy() 不会被调用。
-}////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+HttpServletRequest 接口的hashCode()方法
+HttpServletRequest实例.hasCode()
+这个方法会返回一个代表该请求对象的 int 值，主要用于哈希表定位。
 
+HttpServletRequest 接口的setCharacterEncoding()方法
+HttpServletRequest实例.setCharacterEncoding("编码类型");
+这个方法可以设置请求的编码。
+
+HttpServletRequest 接口的getParameter()方法
+HttpServletRequest实例.getParameter("参数名");
+这个方法可以获得参数名的值, 返回一个字符串的值。
+{/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+HttpServletResponse 接口
+{/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+HttpServletResponse 接口的setContentType()方法
+HttpServletRequest实例.setContentTyype(响应内容类型和编码)
+这里的相应内容和编码可以是text/html;charset=UTF-8，这代表相应的内容是html, 而编码类型是UTF-8。
+
+HttpServletResponse 接口的getWriter() 方法
+HttpServletRequest实例.getWriter()
+这个方法返回的就是PrintWriter 实例，这个PrintWriter 的实例底层被 Servlet 容器包装到了 HTTP 响应体里，println()最终会作为 HTTP 响应体发给浏览器。
+}/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
@@ -146,23 +190,6 @@ HttpServlet（抽象类） ← 把service()实现了，根据HTTP方法分发到
 doGet/doPost
 ↑
 你的Servlet（具体类） ← 只重写doGet/doPost就行！
-}/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
-
-HttpServletResponset类
-{/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-HttpServletResponse 类的setContentType()方法
-HttpServletRequest实例.setContentTyype(响应内容类型和编码)
-这里的相应内容和编码可以是text/html;charset=UTF-8，这代表相应的内容是html, 而编码类型是UTF-8。
-
-HttpServletResponse 类的getWriter() 方法
-HttpServletRequest实例.getWriter()
-这个方法返回的就是PrintWriter 实例，这个PrintWriter 的实例底层被 Servlet 容器包装到了 HTTP 响应体里，println()最终会作为 HTTP 响应体发给浏览器。
-
-HttpServletRespo
 }/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -201,40 +228,17 @@ web.xml 通过在 <servlet> 标签里加一个 <load-on-startup> 标签。
 
 
 
-xml文件的servlet标签及其内部标签
-}//////////////////////////////////////////////////////////////////////////////////////////////////////////
-<servlet>标签
-<servlet></servlet> 标签可以在 web.xml 里向 Web 容器“注册”一个 Servlet。
-
-<servlet-name>标签
-这个标签可以给这个servlet容器命名
-
-<servlet-class>标签
-这个标签可以给这个Servlet类指定对应的java类
-
-<load-on-startup>标签
-<load-on-stand>n</load-on-stand> 这里的n>=0。
-值越小哪个Servlet对象先实例化。
-值相同，按 web.xml 中的顺序创建。
-值 ≥ 0 时是饿加载，负数或不写就是懒加载（默认）。
-}//////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
-
-xml文件的servlet-mapping 标签及其内部标签
+ServletContext 接口
 {//////////////////////////////////////////////////////////////////////////////////////////////////////////
-<servlet-mapping>标签
-它的作用是把一个 URL 访问路径映射到某个已注册的 Servlet 上。
+ServletContext 接口介绍
+它是 Java Servlet 规范中代表整个 Web 应用运行环境的接口，一个 Web 应用只有一个 ServletContext 实例，它随应用启动而创建、随应用停止而销毁，是所有 Servlet 共享的“全局上下文”。
+它和你的代码无关，是由Servlet容器自动创建的。
 
-<servlet-name>标签
-<servlet-name>Servlet容器名</servlet-name>
-这可以链接一个Servlet容器。
+ServletContext 接口的setAttribute()方法
+ServletContext 实例.setAttribute(属性名, 属性值);
+这个方法可以给ServletContext实例的属性修改值。
 
-<url-pattern>标签
-<url-pattern>Servlet容器的浏览器访问路径</url-pattern>
-这个标签可以设置servlet容器的访问路径，可以看成在这个web应用里的文件名，它的书写结构:/Servlet路径。
-访问这个Serlet容器的http地址，协议://IP:端口/上下文路径/Servlet路径。
-需要注意的是，访问ROOY应用直接写Servlet路径就行了，不需要写上下文路径。
+ServletContext 接口的getAttribute()方法
+ServletContext 实例.getAttribute(属性名);
+这个方法可以返回ServletContext实例的属性值, 返回的值是Object类型。
 }//////////////////////////////////////////////////////////////////////////////////////////////////////////
