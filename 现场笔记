@@ -28,13 +28,6 @@ idea 开发的步骤
 6. 部署模块
 7. 启动
 
-servlet 的六大对象和三大作用域 
-request 对象, session 对象, response对象, application对象。
-request, reponse对象, 执行servlet方法前，这两个对象被创建，在一个方法结束后，这两个对象被销毁。
-session 对象, 不同的页面共享一个session。 
-application 对象, 在同一个应用中, 都可以被访问。
-对象的setAttribute()方法, getAttribute(),它返回Object对象, removeAttribute()。
-
 请求转发
 RequestDispatcher 请求传发器
 RequestDispatcher类的forward(目标地址)方法
@@ -44,21 +37,7 @@ PrintWriter 类的close()方法执行后， PrintWriter println方法发出的�
 重定向
 response.sendRedirect(); 跨域请求
 
-
-servlet 调用时机
-servlet 类当第一次被访问的时候, 调用new 构造函数()，当servlet 类被创建的时候tomcat调用init方法。
-浏览器访问一次，tomcat就开一个线程调用servlet的service方法。
-应用关闭的时候， tomcat调用destroy方法。
-servlet 始终是单实例。
-
-
-当请求来的时候， tomcat 自动生成request, response对象。
-
-HttpServletRequest 类的对象是请求对象，封装了浏览器发来的所有信息。
-request类的setCaracterEncoding 方法可以设置解码的码
 request类的getContextPath() 方法可以获得请求的上下文路径
-
-getParameterValues(String s){} // 获取指定片段的字符串
 
 绝对路径
 /myapp/hello, 这里的第一个/ 代表主机+ 端口
