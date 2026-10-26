@@ -30,3 +30,19 @@ idea 开发的步骤
 
 重定向
 response.sendRedirect(); 跨域请求
+
+getServletConfig() 获取ServletConfig 配置对象
+ServletConfig的getInitParameter()方法
+
+ServlertContext 在一个应用中只能有一个，也一定会一个
+ServletContext 的remove()方法，可以释放掉它
+
+get, set, remove方法。
+
+http请求 是无状态的。
+什么是一次会话。浏览器打开几个同一个页面，这些都是同一个。一次会会话共享一个session对象。
+第一次访问, 服务器给浏览器一个jsessionID， 这个值保存在浏览器的cookie里面, 这个值(cookie)保存在磁盘上, 下一次再访问， 浏览器会读取这个值， 将这个值传过去， 服务器会读取这个值找到对应的jsession, 找到之前的数据。
+
+HttpSession类的getSession(bool create)方法，若是create 是false, 不造jsession，返回有的session, 若是没有session, 返回null。 是true, 造jsession
+HttpSession类的invalidate()方法, 这个方法可以销毁session。
+HttpSession类的setMaxInactiveInterval(秒数) ， 这个方法可以设置用户长时间不操作，就把session销毁
