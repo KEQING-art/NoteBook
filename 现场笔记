@@ -2,30 +2,14 @@
 
 java代码，先编码，再编译
 
-tomcat 已经有了的jar包， 自己的项目不要再导入lib.
 
-可以再Tomcat的根目录中放入war包，等Tomcat启动的时候，war包会被自动解压。
 
 idea中蓝色文件，代表文件源代码根目录。
-项目结构的模块能够加入依赖。
-项目结构中的facet 能够增加web 模块
 配置文件里面可以配置服务器。 
 idea 运行tomcat 会把tomcat 复制到C盘的 一个文件里。
 
-web.xml 部署描述符
-servlet 类在servlet.api.jar 包里
-
 工件 artifacts 在项目文件里.
 工件可以
-
-idea 开发的步骤
-1. 创建项目普通模块
-2. 普通模块 + web 支持
-3. 导jar包, 编码 
-4. 每个项目要配置一次tomcat.
-5. 在项目结构里造工件。
-6. 部署模块
-7. 启动
 
 重定向
 response.sendRedirect(); 跨域请求
