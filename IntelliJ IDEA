@@ -1,3 +1,14 @@
+idea中的项目
+项目就是“一个完整软件系统的总容器”，它把代码、模块、SDK、库、编译设置、版本控制配置等都归到同一个工作空间里。
+Project 项目
+ └─ Module 模块
+      └─ Package 包
+           └─ Class 类
+
+新建java模块
+File → New → Module
+在左侧选 Java, 这里的Moudle SDK默认就是项目的jdk
+
 SDK 设置介绍
 它在project Structure->Project
 SDK 表示软件开发工具包, 对于java项目来说就是jdk。
