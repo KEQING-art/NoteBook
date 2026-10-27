@@ -3,7 +3,6 @@
 java代码，先编码，再编译
 
 tomcat 已经有了的jar包， 自己的项目不要再导入lib.
-javac命令
 
 可以再Tomcat的根目录中放入war包，等Tomcat启动的时候，war包会被自动解压。
 
