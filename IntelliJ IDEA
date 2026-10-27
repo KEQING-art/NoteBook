@@ -1,1 +1,27 @@
+SDK 设置介绍
+它在project Structure->Project
+SDK 表示软件开发工具包, 对于java项目来说就是jdk。
 
+language level 设置介绍
+它在project Structure->Project
+它表示这个项目允许写哪些版本的 Java 语法
+
+Global Encoding 设置介绍
+它在idea的settings->Editor0-> File Encodings
+它表示全局的项目的Project Encoding是什么编码。
+
+Projcet Encoding 设置介绍
+它在idea的settings->Editor0-> File Encodings
+它表示若这个项目里没有单独声明编码，本项目使用什么编码保存, 代开, 编译。
+
+Default encoding for properties files 设置介绍
+它在settings->Editor0-> File Encodings
+它表示.properties 文件设置的默认编码。
+因为.properties 文件在 Java 里比较特殊：JDK 默认规定它按 ISO-8859-1 编码读取，所以它不会直接跟随 Project Encoding。
+
+Transparent native-to-ascii conversion 设置介绍
+它在它在settings->Editor0-> File Encodings
+它的作用是：
+保存时：把你在 properties 文件里输入的非 ASCII 字符，自动转成 \uXXXX 形式写入文件；
+打开时：把文件里的 \uXXXX 自动还原成原字符显示给你看；
+整个过程透明：你在 IDEA 里始终看到的是正常中文，不需要手动转。
