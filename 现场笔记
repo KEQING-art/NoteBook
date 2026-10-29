@@ -29,3 +29,8 @@ http请求 是无状态的。
 HttpSession类的getSession(bool create)方法，若是create 是false, 不造jsession，返回有的session, 若是没有session, 返回null。 是true, 造jsession
 HttpSession类的invalidate()方法, 这个方法可以销毁session。
 HttpSession类的setMaxInactiveInterval(秒数) ， 这个方法可以设置用户长时间不操作，就把session销毁
+
+Filter 过滤器
+
+listener 监听器
+
