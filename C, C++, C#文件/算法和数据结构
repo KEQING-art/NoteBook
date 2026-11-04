@@ -1109,15 +1109,32 @@ coid CreateHuffmanTree(HuffmanTree &HT, int n){
 哈夫曼树的基本操作: 根据哈夫曼树求哈夫曼编码
 }////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 C源码
-void CreateHuffmanCode(HuffmanTree HT, HuffmanCode &HC, int n){
-	HC = new char*[n+1]; //这是哈夫曼编码
-	char *cd = new char[n];  
+void CreateHuffmanCode(HuffmanTree HT, HuffmanCode &HC, int n){ //这里的HuffmanTree 是上面介绍过的结构。
+	HC = new char*[n + 1];
+	char* cd = new char[n];
 	cd[n - 1] = '\0';
-	for(int i = 1; i < n; i++){
-		int start = n - 1;
-		int c = i;
-		int f = HT[i].parent;
-	}
+
+	for(int i = 1; i <= n; i++){ //HT从下标1开始。
+		start = n - 1;  //定义输入cd数组的起点 
+		int p = HT[i].parent;  //叶子节点的双亲 
+		int c = i;	//一个叶子节点
+
+		whlie(p != 0){ // 直到没有双亲
+			start--;   // 检查到有双亲，将start 赋值到可以存放数据的位置
+			if(p.lchild == c){  //看看子节点是左还是右
+				cd[start] = 0;
+			}else{
+				cd[start] = 1;
+			}
+
+			p = HT[p].parent;  // 赋值p的双亲结点
+			c = HT[c].parent;  // 赋值c的双亲节点
+		}
+
+		HC[i] = new char[n - start];  // 将i子叶的哈夫曼编码存储
+		strcpy(HC[i], &cd[start]);    // 赋值
+	}	
+	delete[] cd; //销毁cd 的堆内存, cd 指针会随着函数结束，被释放。
 }
 }////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
