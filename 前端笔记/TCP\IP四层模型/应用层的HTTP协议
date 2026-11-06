@@ -1,1 +1,99 @@
+http协议
+{////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+1
+http 协议介绍
+它是TCP/IP的应用层协议规则。
+它是短链接， 只能进行一次性对话。
 
+2
+http请求报文介绍
+请求报文由请求行、请求头、空白、请求体组成。
+请求报文是HTTP 请求在协议层面的具体数据格式（即载体）。
+
+请求行介绍
+请求行包含三个信息：请求方法，url，http版本。
+
+请求行的请求方法
+它的作用是告诉服务器我要干什么。
+get 请求获取资源，这个请求的特点是参数在URL上，有长度限制，能被收藏，不安全，理论能传输的数据最大2kb。
+post请求提交数值，这个请求的特点是参数在请求体中，无长度限制，不能被收藏，相对安全。
+put 请求更新数据，它的特点是更新整条数据。
+delete 请求删除资源，它的特点是删除数据。
+
+请求头介绍
+请求头是一堆键值对，每一行一个，格式是 名字: 值 。它携带的是请求的"附加信息"，它告诉服务器"我是谁""我能接受什么""我的数据是什么格式"等等。
+Host，它的是目标服务器的地址。 示例：Host: www.baidu.com
+User-Agent，它是发出请求的浏览器信息（什么浏览器、什么版本）。 示例：User-Agent: Chrome/120.0
+Content-Type 它表示请求体的数据类型。 示例：Content-Type:application/json  //若是请求体没有，Content-Type 也就不用写了。
+Content-Length 它是请求体的字节长度。   示例：Content-Length: 25
+Accept 它白哦是客户端能接受的响应类型。 示例：Accept: text/html
+Cookie 它表示客户端携带的Cookie信息。  示例：Cookie: JSESSIONID=abc123
+Referer  它表示从哪个页面跳过来的。  示例：Referer: http://a.com
+
+
+请求头的Content-Type属性介绍
+Content-Type: 值 ,它表示请求体的数据类型, 若是请求体没有，Content-Type 也就不用写了。。
+值可以是application/json;charset=UTF-8, 这代表返回JSON 字符串。
+值可以是application/octet-stream,	这代表下载文件（配合字节流）。
+值可以是image/jpeg、image/png,	输出图片。
+
+请求体介绍
+请求体是请求的"货物"——真正要发送给服务器的数据。
+
+
+真实的http请求报文示例：
+POST /login HTTP/1.1           ← 请求行（Request Line）
+Host: www.example.com          ┐
+User-Agent: Chrome/120.0       │
+Content-Type: application/json │ ← 请求头（Headers）
+Content-Length: 25             │
+Accept: */*                    ┘
+← 空行（分隔头和体）
+{"username":"zhangsan", ┐
+"password":"123456"}    ┘ ← 请求体（Body）
+
+2
+http响应报文介绍
+它由三个部分组成：状态行（Status Line）、响应头（Response Headers）、响应体（Response Body）。
+响应体和响应头之间有一个空行。
+
+状态行介绍
+它包含三个信息：HTTP版本 + 状态码 + 状态描述。
+
+状态行的状态码
+状态码是服务器告诉浏览器"这次请求的结果怎么样"的一个数字。
+200 OK，请求成功，服务器已成功处理请求并返回响应。
+302 Found，临时重定向，请求的资源暂时位于另一个URI，客户端应使用原URI继续后续请求。
+400 Bad Request 这个状态码表示你的请求格式有问题。 
+404 Not Found  资源未找到，服务器无法找到请求的资源。
+500 InternalServer Error  服务器内部错误，服务器在处理请求时发生了意外错误.
+
+响应头介绍
+它是一堆键值对，每一行一个，格式是 名字: 值 。它携带的是请求的"附加信息"。
+Content-Type，它表示响应体的数据类型，示例：text/html / application/json。
+Content-Length，他表示响应体的字节长度。
+Server，它表示服务器的信息，示例：Server: Tomcat
+Set-Cookie，它表示服务器让浏览器保存的Cookie。
+Location，它表示重定向的目标地址。
+Cache-Control，它表示缓存控制。
+
+响应体
+它就是服务器真正返回给浏览器的内容。
+它可能是HTML网页，也可能是JSON数据。
+
+真实的http响应报文
+HTTP/1.1 200 OK             ← 状态行（Status Line）
+Content-Type: text/html    ┐
+Content-Length: 1024       │
+Server: Apache             │ ← 响应头（Response Headers）
+Set-Cookie: JSESSIONID=xyz ┘
+← 空行（分隔头和体）
+<html>         ┐
+<body>         │
+<h1>Hello</h1> │ ← 响应体（Response Body）
+</body>        │
+</html>        ┘
+
+小知识
+网页中的，请求头是请求标头，请求体是负载，响应体是响应，响应头是响应标头。
+}////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
