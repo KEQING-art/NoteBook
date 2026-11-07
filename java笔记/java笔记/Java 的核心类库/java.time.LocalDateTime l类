@@ -1,0 +1,23 @@
+LocalDateTime类的now()方法
+LocalDateTime.now();
+这个方法是个静态方法。
+这个方法可以返回现在的时间。
+
+LocalDateTime类的getYeat()方法
+LocalDateTime实例.getYear();
+这个方法返回一个时间里的年 
+
+LocalDateTime类的getMonth()方法
+LocalDateTime实例.getMonth();
+这个方法会返回Month枚举类的其中一个常量。
+
+LocalDateTime类的getDayOfMonth()方法
+LocalDateTime实例.getDayOfMonth();
+这个方法可以返回一个时间里的天数    
+
+LocalDateTime类的getDayOfMonth()方法 
+now.getDayOfWeek();
+这个方法可以返回该日期时间对象所表示的日期是星期几，注意它返回的是DayOfWeek 枚举类其中一个常量。
+
+时间转化为字符串
+now.toString()
