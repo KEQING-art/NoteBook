@@ -1,0 +1,32 @@
+Socket 类介绍
+这个类可以实现TCP通信。
+它是java提供的一台网络编程api
+它相当于客户端，可以主动链接服务端的IP和端口。
+
+Socket 构造方法
+new Socket("IP地址", 服务端的端口号)；
+这个方法若是成功可以创建一个连接服务端的连接。
+
+Socket 的getOutputStream()方法
+socket实例.getOutputStream();
+这个方法可以返回一个SocketOutputStream实例，这个实例的类的父接口是OutputStream。
+你可以通过这个SocketInputStream实例的write，发送客户端的请求，或发送服务端的响应, 注意发送的请求和响应用utf-8编码。
+注意，你若是直接通过OutputStream的close方法关闭输出流，会顺带把Socket也关闭
+
+Socket 的getInputStream()方法
+socket实例.getInputStream();
+这个方法会返回一个SocketInputStream实例,这个实例的类的父接口是InputStream。
+你可以通过这个SocketInputStream实例的read方法，接受客户端的请求，或服务端的发送的响应，注意接受的请求或响应用utf-8编码。
+注意，你若是直接通过inputStream的close方法关闭输入流，会顺带把Socket也关闭
+
+Socket 的getRemoteSocketAddress()方法
+socket实例.getRemoteSocketAddress()
+这个方法可以获取当前 Socket 所连接的远程端点（Endpoint）的网络地址。
+
+Socket 类的shutdownOutput()方法
+socket实例.shutdownOutput();
+这个方法可以单向关闭 Socket 的输出流，向对端发送传输结束信号（FIN 包），对端内核标记 EOF 状态，同时保留输入流以继续接收对端的响应数据。
+
+Socket 的close()方法
+socket实例.close()
+这个方法可以将socket关闭，释放资源。
