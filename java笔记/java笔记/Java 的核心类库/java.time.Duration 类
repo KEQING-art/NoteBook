@@ -1,0 +1,17 @@
+Duration 类介绍
+java.time.Duration;
+这个类可用于计算两个时间的之差。
+这个类只能接收带有时间维度的对象,如以下三种 ：LocalTime（纯时间）、LocalDateTime（日期+时间）、Instant（时间戳），它不能接受LocalDate（纯日期）。
+
+Duration类的between()方法
+Duration.between(起始时间, 结束时间) 
+这是个静态方法。
+这个方法会返回一个duration，其中包含着两个时间之差。
+
+Duration类的toDays()方法
+Duration实例.toDays()
+这个方法可以将duration中的时间差转化为天数。
+
+Duration类的toHours()方法
+Duration实例.toHours()
+这个方法可以将duration中的时间差转化为小时数。
