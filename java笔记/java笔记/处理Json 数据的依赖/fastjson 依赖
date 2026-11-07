@@ -1,0 +1,15 @@
+引入依赖
+<dependency>
+ <groupId>com.alibaba</groupId>
+ <artifactId>fastjson</artifactId>
+ <version>1.2.62</version>
+</dependency>
+
+toJSONString()方法
+toJSONString(datas);  
+这个方法可以使datas 装化成json 字符串。
+MAP类型的datas可以转化为json格式  （要让网页看所以转为JSON格式）
+
+parseObject()方法
+parseObject(content,类型.class);  
+这个方法可以将网页获取的JSON信息转化为我们想要的类型
