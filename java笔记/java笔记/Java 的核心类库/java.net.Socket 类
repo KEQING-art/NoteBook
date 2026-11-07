@@ -1,4 +1,5 @@
 Socket 类介绍
+它的全限定名是java.net.Socket。
 这个类可以实现TCP通信。
 它是java提供的一台网络编程api
 它相当于客户端，可以主动链接服务端的IP和端口。
