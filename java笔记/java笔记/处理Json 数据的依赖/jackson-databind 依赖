@@ -1,0 +1,20 @@
+引入依赖
+<dependency>
+    <groupId>com.fasterxml.jackson.core</groupId>
+    <artifactId>jackson-databind</artifactId>
+    <version>2.15.2</version>
+</dependency>
+
+ObjectMapper 类介绍
+这个类实例化后，可以给我们提供处理json的方法。
+类实例化：ObjectMapper mapper = new ObjectMapper();
+
+ObjectMapper 对象的writeValueAsString()方法
+objectMapper.wirteValueAsString()
+它可以将 Java 对象序列化为 JSON 格式的字符串。
+
+ObejectMapper 对象的readValue()方法
+mapper.readValue(json格式数据, java类型) {   // 如果User 是个对象那么 写User.class   
+它可以将 JSON 格式的数据反序列化为 Java 对象。
+这里的json 格式的数据指的是JSON 字符串、字节数组、文件流等
+这里的java类型可以是数据类型.class ，当json数据是数组，集合，或包含泛型的集合时，可以使用 new TypeReference<数据类型>。
