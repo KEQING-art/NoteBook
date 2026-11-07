@@ -1,0 +1,23 @@
+DateTimeFormatter类介绍
+java.time.format.DateTimeFormatter;
+这个类可以使字符串变量、时间变量互相转化
+
+DateTimeFormatter类的ofPattern()方法
+DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+这个方法是个静态方法。
+这个方法的作用是返回一个DateTimeFormatter实例，这个实例有一个固定的模板。
+括号里面的格式可以自定义时间格式。
+
+DateTimeFormatter类的format()方法
+DateTimeFormatter实例.format(时间);
+这个方法可以将时间转化成DateTimeFormatter实例中固定格式的字符串，将其返回。
+
+DateTimeFormatter类的parse()方法
+DateTimeFormatter实例.parse(字符串);
+这个方法可以将字符串转化成DateTimeFormatter实例中固定格式的时间，将其返回。
+注意这里的字符串需要和DateTimeFormatter实例中固定格式一致。
+
+使用示例:
+DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+String str1 = "2021-05-01 18:00:00";
+LocalDateTime time = LocalDateTime.parse(str1,dtf);
