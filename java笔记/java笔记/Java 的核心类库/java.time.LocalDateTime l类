@@ -1,3 +1,8 @@
+介绍时间
+java.time.LocalDateTime, LocalDateTime 是一个有日期，又有时间的变量，包含年月日，时分秒
+java.time.LocalDate, LocalDate 是一个有日期的变量，包含年、月、日。
+java.time.LocalTime, LocalTime 是一个有时间的变量，包含时、分、秒、纳秒
+
 LocalDateTime类的now()方法
 LocalDateTime.now();
 这个方法是个静态方法。
