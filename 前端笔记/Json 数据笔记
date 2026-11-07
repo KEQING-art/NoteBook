@@ -1,0 +1,6 @@
+json数据介绍
+json数据是网页看的数据， 前端需要向服务器请求数据， 服务器将数据以json格式返回给前端。
+
+json结构
+大括号的内容类似于Map, 可以把json 数据转化成 Map、HashMap、JSONObject。
+中括号的内容类似于数组, 可以把json 数据转化成 数组，List、ArrayList、JSONArray。
