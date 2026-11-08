@@ -1,0 +1,24 @@
+整型：bigint, int, smallint , tinyint , bit   
+日期时间型：date YYYY-MM-DD , time HH:MM;SS , year YYYY , datetime YYYY-MM-DD HH:MM:SS , timestamp YYYY-MM-DD HH:MM:SS
+
+CHAR 数据类型
+CHAR(10)是规定存储十个字节，不管实际存储时有没有十个字节，系统都会存储10个字节，剩余位置自动补零。
+CAHR 最大存储 255字符。
+检索时，CAHR 会忽略末尾的空格。
+
+VARCAHR 数据类型
+VARCHAR(10)是规定存储是个个字节，如果只存储3个字节，那么系统就会存储4个字节，多出来的一个字节是用来记录长度的，剩余位置不占用空间。
+VARCHAR 最大 65535字符。
+检索时，VARCHAR  会保留所有空格
+
+FLOAT 数据类型
+单精度浮点数, 存储4字节。
+它的存储空间分为三部分, 符号位, 指数位, 尾数位。
+
+DOUBLE 数据类型
+双精度浮点数, 存储8字节。
+它的存储空间分为三部分, 符号位, 指数位, 尾数位。
+
+DECIMA 数据类型
+定点数，可以精确存储。
+DECIMA[(m,d)], m 代表可以使用的数字位数，d 代表小数点可以有几位
