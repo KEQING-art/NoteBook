@@ -1,1 +1,16 @@
+泛型介绍
+泛型可以给集合设定存储的数据。
+泛型的结构是<>，它需要写到声明数据类型的后面。
+泛型不支持基本数据类型。
 
+list使用泛型
+List<数据类型> 变量名 = new ArrayList<>();
+
+Collection使用泛型
+Collection<数据类型> 变量名 = new ArrayList<>();
+
+Set使用泛型
+Set<数据类型> 变量名 = new HashSet<>();
+
+Map使用泛型
+Map<数据类型, 数据类型> 变量名 = new HashMap<>();
