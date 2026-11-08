@@ -1,0 +1,11 @@
+创建数据库
+CREATE DATABASE [IF NOT EXISTS] 数据库名 DEFAULT [CHARACTER SET] 字符集;
+
+使用数据库
+USE 数据库名 
+
+删除数据库
+DROP DATABASE 名字 
+
+展示所有数据库
+SHOW DATABASES
