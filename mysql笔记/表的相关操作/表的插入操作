@@ -1,2 +1,9 @@
-插入表
-Insert INTO 表名(fildid1, fildid2, fildid3....)values(value1,value2,.....),(value1,value2,.....); 往表中插入元素
+插入全部列
+INSERRT INTO 表名 VALUES
+(fildid1, fildid2, fildid3....),
+(fildid1, fildid2, fildid3....);
+
+插入选中的列
+INSERT INTO 表名(fildid1, fildid2, fildid3....)values
+(value1,value2,.....),
+(value1,value2,.....); 
