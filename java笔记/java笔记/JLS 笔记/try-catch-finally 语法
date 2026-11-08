@@ -1,0 +1,8 @@
+try-catch-finally 捕捉异常
+捕获异常就是用来应对可能打断程序进程的异常
+try语句中放入可能出问题的代码，若是代码在运行时出了问题，抛出了异常，catch里的 e 就会尝试接受异常， 若是能够接受，程序继续执行，不能够接受，程序中断
+
+
+try{}
+catch(Expetion e){} 
+finally{} // 只要try 语句块执行了，finally一定会执行，除非之前有System.exit()。 哪怕是return 也无法打断finally 的执行，举例try{trturn 2;}finally{ System.out.println(3);} 这个输出结果是3 ，若是有变量接收了return 的值，并试图输出，那么这个此程序的输出结果是3 2
