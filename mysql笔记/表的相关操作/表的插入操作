@@ -1,0 +1,2 @@
+插入表
+Insert INTO 表名(fildid1, fildid2, fildid3....)values(value1,value2,.....),(value1,value2,.....); 往表中插入元素
