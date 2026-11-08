@@ -1,0 +1,10 @@
+try-with-resources 的意义
+try-with-resources 是 Java 7 引入的自动资源管理语法，用来替代以前那种 try-catch-finally 里手动 close() 的写法。
+
+try-with-resources 的使用结构及其内容介绍
+try(实现了AutoCloseable的实例1; 实现了AutoCloseable的实例2...){}catch(){}
+这里的实现了AutoCloseable的实例 可以是在括号里直接new出来的, 也可以是在括号外new 出来的final变量或"基本不可变量"
+
+try-with-resources 的效果
+它会在 try 语句结束的时候，自动关闭”实现了AutoCloseable的实例“, 注意是逆序关闭, 不管try 会不会抛异常, 都会关闭。
+它也能捕获try 里面的异常，也能捕获"实现了AutoCloseable的实例" 关闭时候的抛出的异常。
