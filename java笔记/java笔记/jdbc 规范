@@ -68,7 +68,7 @@ JDBC 驱动被加载后，会把自己注册到 DriverManager 里, 表示驱动�
 DriverManager 类的getConnection() 方法
 DriverManager类名.getConnection(url, user, password)
 这个方法的作用是，DriverManager 会从已注册的驱动中找一个能处理这个 URL 的驱动，然后尝试建立连接，连接成功返回Connection实例, 失败抛出SQLExpection。
-这里的 url 是数据库连接地址，链接mysql的 url格式为jdbc:mysql://localhost:3306/数据库名?参数，例如 jdbc:mysql://localhost:3306/mydb。
+这里的 url 是数据库连接地址, 它的基本格式是jdbc:数据库类型://主机:端口/数据库名?参数。  //需要注意的是参数是每个数据库独有的, 想知道可以写什么参数，得专门去看
 这里的 user 是数据库用户名。
 这里的 password  是数据库密码。
 {///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -79,12 +79,19 @@ DriverManager类名.getConnection(url, user, password)
 
 Connection 类
 {///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+Connection 类的全限定名
+java.sql.Connection
+
 Connection实例的作用
 它可以连接一个数据库。
 
 Connection 类的prepareStatement()方法
 Connection实例.prepareStatement(字符串sql语句);
 这个方法可以通过返回preparedStatement实例 预编译sql 语句，这个实例可以对sql 语句进行更进一步的处理。
+
+Collection 类的commit()方法
+Collection 示例.commit()
+
 
 Connection 类的close()方法
 Connection 实例.close()
@@ -110,6 +117,14 @@ PrepareStatement 类executeUpdate()方法
 PrepareStatement 实例.executeUpdate(字符串sql语句)
 这个方法可以执行行增删改的sql 语句, 它返回影响的行数。
 
+PrepareStatement 类setString()方法
+PrepareStatement 实例.setString(int parameterIndex, String x);
+这个方法可以设置指定位置的占位符处的数值, 注意第一个占位符的下表是1。
+
+PrepareStatement 类setInt()方法
+PrepareStatement 实例.setInt(int parameterIndex, int x);
+这个方法可以设置指定位置的占位符处的数值, 注意第一个占位符的下表是1。
+
 PrepareStatement 类的close()方法
 PrepareStatement 实例.close() 
 这个方法的作用是立即释放这个预编译语句对象占用的数据库资源和 JDBC 资源，它关联的ResultSet实例也会被关闭。
@@ -122,8 +137,12 @@ PrepareStatement 实例.close()
 
 ResultSet 接口
 {///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+ResultSet 类的全限定名
+java.sql.ResultSet
+
 ResultSet 的实例介绍
-它本质上是一个网络通信 + 本地缓冲 + 游标管理的组合体，而不是一个简单的集合类
+它本质上是一个网络通信 + 本地缓冲 + 游标管理的组合体，而不是一个简单的集合类。
+注意：通过PrepareStatement实例 的executeUpdate方法 
 
 ResultSet 接口的 rowData属性
 它存放数据。
@@ -132,15 +151,15 @@ ResultSet 接口的 rowData属性
 
 ResultSet 接口的next()
 ResultSet实例. next()
-这个方法可以让ResultSet指向结果集的下一行，这个方法返回Boolean。
+这个方法可以先让ResultSet的游标指向结果集的下一行，然后下一行有没有数据，根据情况返回Boolean。
 
 ResultSet 接口的getString()
-ResultSet 实例.getString("字段名");
+ResultSet 实例.getString("字段名"/ 占位符的下标数);
 这个方法可以取出ResultSet 指向指定行的字段名数据,  将之以String 的形式返回。
 注意，我们建议字段是什么类型的数据, 就用什么类型的get 方法去取
 
 ResultSet 接口的getInt()
-ResultSet 实例.getInt("字段名")
+ResultSet 实例.getInt("字段名"/占位符的下表述数)
 这个方法可以取出ResultSet 指向指定行的字段名数据,  将之以int 的形式返回。
 注意，我们建议字段是什么类型的数据, 就用什么类型的get 方法去取
 
@@ -162,4 +181,33 @@ mysql 的驱动依赖
         <artifactId>mysql-connector-j</artifactId>
         <version>8.0.33</version>
     </dependency>
+
+它是是数据库连接地址，链接mysql的 url格式为jdbc:mysql://localhost:3306/数据库名?参数，例如 jdbc:mysql://localhost:3306/mydb。
+}////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+mysql 的数据库连接地址
+}////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+数据库类型
+mysql。
+
+sslMode 参数
+这个参数代表是否使用SSL加密连接
+这个参数的值为Boolean
+
+allowPublicKeyRetrieval 参数
+这个参数代表是否允许驱动从服务端获取 RSA 公钥，用于加密密码
+这个参数的值为Boolean。
+
+serverTimezone 参数
+这个参数驱动"数据库的时间按哪个时区计算。
+这个参数的值为指定时区，例如：Asia/Shanghai。
+注意, 8.4 后, 不写这个参数，驱动多数情况下也能识别。
+
+characterEncoding 参数
+这个参数指定客户端与数据库交互的字符编码, 也就是设置客户端解析字符如何编码 和mysql 接受字符解码。
+这个参数的值为字符集。
 }////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
