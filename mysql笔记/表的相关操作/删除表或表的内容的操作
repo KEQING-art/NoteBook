@@ -1,0 +1,5 @@
+删除表
+DROP TABLE 表名 [IF EXISTS 表名];
+
+删除表内容
+DELETE FROM 表名 [WHERE 语句]
