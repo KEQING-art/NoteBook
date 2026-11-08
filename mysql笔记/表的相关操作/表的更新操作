@@ -1,4 +1,6 @@
+UPDATE 表名 SET 列名=列值 [where语句] 
+如果不加WHERE 语句, 那么就是修改的是所有行。
+如果加了WHERE 语句, 那么就是修改符合条件的行
 
-update 表名 set 列名=列值 [where语句] //我们可以用这句话修改一行的数据，也可以删除多行数据， 注意如果不写where 那么修改的是所有行
 update 表名 set 列名 = concat(字符串 ,列名) //这句话的作用是把字符串拼接起来 
 示例：UPDATE student SET sno = CONCAT('000', sno); 这句话的作用是把字符串拼接起来
