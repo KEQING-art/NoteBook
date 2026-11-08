@@ -1,0 +1,89 @@
+1
+查询表
+SELECT [DISTINCT] fildid1, fildid2.... FROM 表名; 
+
+fildid1, fildid2 ..... 的作用
+它可以指定查询哪几行。
+
+fildid1, fildid2....可以是 * 
+这的意思是查询所有列 ， 也可以是几个列名例如：sno ,cno
+
+DISTINCT 约束
+它的作用去除重复行,只留一个flidid1   
+
+2
+为查询添加条件 where            
+select 列 from 表名 where 条件 ;
+
+小知识
+where 不可以使用聚合函数
+where 审查的是前面的虚拟表里的数据。
+
+2
+group 为查询结果分类
+当你使用group 语句的时候，你所有的查询字段要么 GROUP BY 子句中，要么使用聚合函数（如 COUNT(), MAX() 等）
+select 列名 from student_info group by 列; 这句的意思是 用第二个列将第一个列分类
+示例：select gender,count(gender)as 数量 from student_info group by gender;  这句话的意思是用gender的分类 将 gender 和 数量分类
+
+3
+having 为group 分组后的查询结果进行条件过滤
+
+having 语句的实例:
+select emp_type_id, min(emp_id) from emp group by emp_type_id having min(emp_id) > 1; 
+如何理解这句话，如下
+FROM emp ,从 emp 表读取所有数据
+GROUP BY emp_type_id, 按 emp_type_id（员工类型ID）进行分组
+HAVING MIN(emp_id) > 1，对每个分组计算最小的 emp_id，只保留最小值大于1的分组
+SELECT emp_type_id, MIN(emp_id) 输出满足条件的分组的 emp_type_id 和该分组的最小 emp_id
+
+4
+order为查询结果排序
+order by 字段 desc(降序)/asc(升序)
+示例：select * from student_info order by birthday desc;  // 这句话的意思是把查询结果按照哪个字段的顺序排列
+
+5
+指定查询范围
+select * form 表名 Limit 偏移量, 行数;  这句话是在查询结果中，指定第偏移量位， 查询从此后的行数
+
+6
+显示链接
+select 表1.列1，表1.列2 .... 
+from 表1
+join 表2 on 表1.列1 = 表2.列2;
+这段代码可以这么理解:
+from 表1 ,生成一张表1的虚拟表;
+join 表2 ,参考表2; 
+on 表1.列1 = 表2.列2 ,把表1中的每一行的列1的值与所有表2的列2的值对比，若是找到表2的列2中有值与表1列1的一行值相等，那么把表2这一行连接在表1的这一行，若是没找到相等的，那么表一的这一行删掉;
+最后得到的虚拟表，根据字段名留下选中的列
+
+左连接/右连接
+select 表1.列1，表1.列2 .... 
+from 表1
+left/right join 表2 on 表1.列1 = 表1.列2
+这里的左表是表1，左表会被完全保留， 若是右表没有对应的，那就改成null
+
+隐式连接  //无论如何更推荐显示连接
+SELECT 表1.列1，表1.列2 .... 
+FROM 表1, 表2
+WHERE 表1.列1 = 表2.列2;
+
+多表显示连接 //由此推出，你也可以推出多表左，右连接
+SELECT * FROM TableA 
+JOIN TableB ON conditionA
+JOIN TableC ON conditionB;
+
+UNION
+它的作用是将两个或多个 SELECT 语句的结果集纵向拼接（上下叠加）成一个结果集。
+SELECT column1, column2 FROM table1
+UNION
+SELECT column1, column2 FROM table2;
+
+使用UNION时，连接的各个表列数必须相同：上下两个查询返回的列数必须完全一致。对应位置的列，数据类型必须相同或兼容（比如都是字符串，或者都是数字）。最终结果集的列名，完全取决于第一个 SELECT 语句中定义的列名或别名。
+
+UNION ALL
+它的作用是将两个或多个 SELECT 语句的结果集纵向拼接（上下叠加）成一个结果集, 但不会去重，所以执行很快
+
+小知识： 
+若是在连接时 一行对应多行，那么mysql 会生成多行逐个连接
+
+连接多个虚拟表时， 大虚拟表是从左到右的表拼接出来的
