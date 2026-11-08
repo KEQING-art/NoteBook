@@ -117,6 +117,10 @@ PrepareStatement 类executeUpdate()方法
 PrepareStatement 实例.executeUpdate(字符串sql语句)
 这个方法可以执行行增删改的sql 语句, 它返回影响的行数。
 
+PrepareStatement 的sql 语句如何书写
+这个语句像sql 语句一样写。
+这个语句里的参数可以用？代替，这个相当于一个占位符， 第一个占位符的下标是1， 在PrepareStatement 的set方法中可以将占位符替换成指定类型的数据。
+
 PrepareStatement 类setString()方法
 PrepareStatement 实例.setString(int parameterIndex, String x);
 这个方法可以设置指定位置的占位符处的数值, 注意第一个占位符的下表是1。
