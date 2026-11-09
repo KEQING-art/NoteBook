@@ -1,0 +1,2 @@
+information_schema 是mysql 的元数据库。
+information_schema 的TABLE 表是 MySQL 用来记录“所有数据库里有哪些表”的元数据表, 它的每一行都代表有一张表。TABLE 表常用的字段有TABLE_SCHEMA, 这个字段代表，表属于哪个数据库, 它的值是数据库名。 
