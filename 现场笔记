@@ -34,9 +34,20 @@ Filter 过滤器
 
 listener 监听器
 
- idea中，可以在一个文件夹中添加jar包, 然后把这个文件夹变成库文件
+idea中，可以在一个文件夹中添加jar包, 然后把这个文件夹变成库文件
 项目结构选项中, 可以在库标签中, 找到所有的库文件
 项目结构选项中, 可以在模块标签中, 给模块添加依赖
 
 IOC控制反转， 控制权发生反转, 把控制权从代码转移到了容器
 spring FrameWork 有二十多个模块
+
+IOC + AOP 是spring 两大核心。
+spring 既可以做B/S ,也可以做C/S。
+maven 第一个功能: 项目构建。第二个功能: 依赖管理 
+
+spring context 这是ioc 的jar包
+pom.xml 文件里 properties 标签可以定义属性, 这个属性的意思是, 定义一个变量，这个变量的有效范围是这个文件。
+
+BeanFactory 接口定义了IOC容器的getBean 方法等等。
+ApplicationContext 接口定了的IOC容器是饿加载（预加载）。 
+scope 的意思是作用域, application 文件中, 可以设置bean 懒加载，饿加载。
