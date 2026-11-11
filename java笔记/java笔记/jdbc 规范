@@ -110,16 +110,16 @@ PrepareStatement 类的作用
 它的作用是完善sql语句, 并执行sql语句。
 
 PrepareStatement 类executeQuery()方法
-PrepareStatement 实例.executeQuery(字符串sql语句)
+PrepareStatement 实例.executeQuery()
 这个方法可以执行查找的sql 语句, 它返回ResultSet实例，这个实例可以看成一个结果集, 它指向结果集的前一行。
 
 PrepareStatement 类executeUpdate()方法
-PrepareStatement 实例.executeUpdate(字符串sql语句)
+PrepareStatement 实例.executeUpdate()
 这个方法可以执行行增删改的sql 语句, 它返回影响的行数。
 
 PrepareStatement 的sql 语句如何书写
-这个语句像sql 语句一样写。
-这个语句里的参数可以用？代替，这个相当于一个占位符， 第一个占位符的下标是1， 在PrepareStatement 的set方法中可以将占位符替换成指定类型的数据。
+这个语句像sql 语句一样写, 里面的参数可以用？代替，这个相当于一个占位符， 第一个占位符的下标是1， 在PrepareStatement 的set方法中可以将占位符替换成指定类型的数据。
+这个占位符可以直接写在 整个sql 语句里面。
 
 PrepareStatement 类setString()方法
 PrepareStatement 实例.setString(int parameterIndex, String x);
