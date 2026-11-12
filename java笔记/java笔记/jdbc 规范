@@ -85,8 +85,13 @@ java.sql.Connection
 Connection实例的作用
 它可以连接一个数据库。
 
+Connection 类的setAutoCommit()方法
+Connection 实例.setAutoCommit(Boolean)
+这个方法可以开启，关闭连接的自动提交。
+注意：⚠️ 顺序：setAutoCommit(true) 必须在 commit() / rollback() 之后。JDBC 规定：在事务进行中调用它，会先提交当前事务再切回自动提交。放在 commit() 前面，等于把"手动提交"又切回"自动提交"，事务白开了。
+
 Connection 类的prepareStatement()方法
-Connection实例.prepareStatement(字符串sql语句);
+Connection 实例.prepareStatement(字符串sql语句);
 这个方法可以通过返回preparedStatement实例 预编译sql 语句，这个实例可以对sql 语句进行更进一步的处理。
 
 Collection 类的commit()方法
@@ -94,11 +99,11 @@ Collection 示例.commit()
 
 Connection 类commit()方法
 Connection 实例.commit();
-这个方法在连接设置不自动提交的时候, 可以提交并执行之前的sql代码。
+这个方法在连接设置不自动提交的时候, 可以使自上一次提交或回滚以来所做的所有数据库数据修改永久生效，并释放当前 Connection 对象持有的所有数据库锁。
 
 Connection 列rollback()方法
 Connection 实例.rollback();
-这个方法在连接设置不自动提交的时候, 可以撤销该连接上当前事务中所有尚未提交的操作的sql代码。
+这个方法在连接设置不自动提交的时候, 可以撤销当前事务中所有尚未提交的数据库数据修改（这条语句之前的修改），并释放该连接持有的数据库锁。
 
 Connection 类的close()方法
 Connection 实例.close()
