@@ -51,3 +51,8 @@ pom.xml 文件里 properties 标签可以定义属性, 这个属性的意思是,
 BeanFactory 接口定义了IOC容器的getBean 方法等等。
 ApplicationContext 接口定了的IOC容器是饿加载（预加载）。 
 scope 的意思是作用域, application 文件中, 可以设置bean 懒加载，饿加载。
+
+依赖注入ID 
+setter 注入, 构造器注入
+
+properties文件
