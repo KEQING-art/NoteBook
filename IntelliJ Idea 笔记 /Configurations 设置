@@ -1,0 +1,8 @@
+选择服务器
+点击左上角的加号，你可以选择运行代码时的服务器。
+
+服务器的Deployment 设置
+选择完服务器后对服务器进行设置后。
+在这个设置里，点击Deploy at the server startup 里的加号, 可以选择部署哪个Artifact。
+在这个是这里, 修改Application context 可以修改部署到指定服务器的应用名。
+
