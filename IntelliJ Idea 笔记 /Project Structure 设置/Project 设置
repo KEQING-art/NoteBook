@@ -1,0 +1,7 @@
+SDK 设置介绍
+它在project Structure->Project
+SDK 表示软件开发工具包, 对于java项目来说就是jdk。
+
+language level 设置介绍
+它在project Structure->Project
+它表示这个项目允许写哪些版本的 Java 语法
