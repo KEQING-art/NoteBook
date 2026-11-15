@@ -1,0 +1,10 @@
+左上角的加号可以将模块设置为web模块
+点左上角+, 然后选Web, 选择模块。
+
+web 模块的Web Resource Directories 设置介绍
+将模块设置完web模块后->点击web模块
+Resource Directories 代表web应用的根目录, 在Tomcat中，也叫webapp
+
+web 模块的Web Deployment Descriptors 设置介绍
+将模块设置完web模块后->点击web模块
+Deployment Descriptors 代表web应用的部署描述文件
