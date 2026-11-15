@@ -1148,23 +1148,6 @@ break 和 continue 的使用
 带标签的用法: outer: for(){ inner:for(){break outer;}} 这个break 是跳出整个循环
 不带标签的用法; for(){for(){break;}} 这个break 是跳出内循环
 
-2
-class 关键字介绍
-介绍class关键字的用法。
-
-类对象
-具体类.class
-这个语法可以获取具体类的 Class 对象。
-
-类对象的.getClassLoader()方法
-具体类.class.getClassLoader()
-这个方法可以返回类的类加载器，很多情况下类加载器负责加载当前应用程序的类路径（Classpath）下的类。
-
-类加载器的方法
-类加载器.getResourceAsStream("路径");
-这个方法的作用是将资源文件（如配置文件、图片、模板等）以输入流（InputStream）的形式加载到内存中，供程序读取， 换句话而言这个方法会返回一个输入流。
-这个路径是相对于classpath 的根目录， 绝对不能以/ 开头。
-
 3
 intence 关键字
 intenceof 可以判断一个实例是不是一个类的父类或子类 ， object intanceof class
