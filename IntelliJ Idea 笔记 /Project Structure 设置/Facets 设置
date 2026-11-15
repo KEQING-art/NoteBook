@@ -1,5 +1,5 @@
 左上角的加号可以将模块设置为web模块
-点左上角+, 然后选Web, 选择模块。
+点左上角+, 然后选Web, 选择模块, 记住选择web的根目录。
 
 web 模块的Web Resource Directories 设置介绍
 将模块设置完web模块后->点击web模块
