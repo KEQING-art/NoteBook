@@ -107,7 +107,7 @@ typedef 可以给已有类型起别名
 typedef int integer; 
 
 typedef 可以给struct{} 起别名
-typedef struct{} 名字, *指针类型名;
+typedef struct{} 名字, *指针类型名, 数组名[数组大小];
 
 typedef 可以给enum{} 起别名
 typedef enum { A, B } E;
