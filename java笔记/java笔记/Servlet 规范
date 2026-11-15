@@ -235,6 +235,9 @@ HttpServletRequest实例.getOutputStream()
 这个方法返回的就是OutputStream() 实例, 这个OutputStream实例的方法会写入到响应报文中。
 需要注意, 用了 getWriter() 就不能用 getOutputStream()。
 
+如何用OutputStream 发送HTTP响应
+你只需要按照 HTTP响应报文的格式，利用outputStram的write方法，发送出去就行了。
+
 HttpServletResponse 接口的sendRedirect() 方法
 HttpServletRequest实例.sendRedirect("目标路径");
 这个方法的路径是相对于服务器根的，需要写出上下文路径, 也就是: /上下文路径/....
