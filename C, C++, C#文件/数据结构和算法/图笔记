@@ -84,7 +84,7 @@ typedef struct VNode{
 typedef struct {
   AdjList vertices;      
   int vernum, arcnum;    // 顶点数, 边结点数
-}
+}ALGraph;                // 邻接表
 {/////////////////////////////////////////////////////////////////////////////////////////////////
 
 
