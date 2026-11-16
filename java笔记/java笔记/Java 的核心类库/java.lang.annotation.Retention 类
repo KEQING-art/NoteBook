@@ -1,0 +1,15 @@
+Retention 类是一个元注解, 它只能写在类前面, 它的作用是规定注解能活到哪个阶段, 也就是SOURCE（仅源码阶段）, CLASS（保留在字节码中，默认值）, RUNTIME（运行时保留，可通过反射读取，框架最常用）。
+
+
+Retention 注解的使用: @Retention(值) 
+
+@Retention 值介绍
+它有三个值在java.lang.annotation.RetentionPolicy枚举类中。
+RetentionPolicy.SOURCE:也就是说是纯注释作用
+RetentionPolicy.CLASS:也就是在编译阶段是有效的
+RetentionPolicy.RUNTIME: 运行时有效
+
+为什么spring 的注解必须标为RUNTIME 
+1.main 方法里写了 new AnnotationConfigApplicationContext(SpringConfig.class) 。这一行是普通 Java 代码，由 JVM 在执行你的 main 方法时执行。
+2. 执行到这一行时， .java 早已编译成 .class ，程序正处在 3.2.6 说的第三个阶段——运行阶段。
+3.这个阶段 Spring 才开始扫描包、读类上的注解、创建对象、注入依赖；读的方式全是反射。
