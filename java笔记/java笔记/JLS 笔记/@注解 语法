@@ -1,0 +1,3 @@
+注解的作用：Java 用 @Override、@Deprecated、@Target 这种 @ 形式来给类、方法、字段等附加信息
+注解在编译时, 编译器会把它编译成一个特殊的接口，并且它继承自 java.lang.annotation.Annotation， 编译后保留在class文件里, 运行时能看到。
+注解在运行时, 通过反射拿到的注解对象，其实是一个动态代理实例。
