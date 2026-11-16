@@ -6,11 +6,6 @@ Java 注解（Annotation），也叫元数据（Metadata），是 JDK 1.5 引入
 @注解名(注解属性名 = 值)
 若注解里有属姓名是默认值value的时候，给这个属性赋值可以省略属性名直接写值。
 
-注解的三个阶段（这三个阶段由Retention 控制）
-SOURCE（仅源码阶段）
-CLASS（保留在字节码中，默认值）
-RUNTIME（运行时保留，可通过反射读取，框架最常用）。
-
 四个元注解一览
 @Target、@Retention、@Documented、@Inherited
 @Retention注解 决定注解的存活时间。
@@ -18,5 +13,9 @@ RUNTIME（运行时保留，可通过反射读取，框架最常用）。
 @Documented注解 决定能不能被包含在生成的 Javadoc 文档中 取决于。
 @Inherited注解 声明当前的Java类型是Annotation。
 
-注解接口里的属性声明介绍
+自定义注解的写法
+...(注解)
+类访问修饰符 @interface 注解名{}
+
+自定义注解的属性写法
 属性 属性名() default "";
