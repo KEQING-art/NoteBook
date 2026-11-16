@@ -1,11 +1,13 @@
-Target 作为元注解, 它只能写在类前面, 它的作用是，用来限制该注解能应用在哪些 Java 元素上（如类、方法、字段、参数等)。
+Target 作为元注解, 它只能写在类前面, 它的作用是，用来限制该注解能应用在哪些 Java 元素上（如类、方法、字段、参数等), 这样注释贴到自己不能贴的地方会报错。
 
-Target 的使用:@Target(值, 值...)
+Target 的使用:@Target(值), @Target({值, 值....})
 
 @Target 值介绍
 它的值在java.lang.annotation.ElementType中。
-ElementType.TYPE可以作用于类、接口类、枚举类上
-ElementType.FIELD可以作用于类的属性上
-ElementType.METHOD可以作用于类的方法上
-ElementType.PARAMETER可以作用于类的参数
-  
+ElementType.TYPE可以作用于类、接口类、枚举类上， 例子: @Component 、 @Servic
+ElementType.FIELD可以作用于类的属性上, 例子: @Autowired 、 @Value
+ElementType.METHOD可以作用于类的方法上, 例子: @Bean 、 @PostConstruct
+ElementType.PARAMETER可以作用于类的参数, 例子: @RequestParam
+
+注意: 
+若是一个注释没有Target 注释, 那就默认哪都能贴
