@@ -1,3 +1,22 @@
-注解的作用：Java 用 @Override、@Deprecated、@Target 这种 @ 形式来给类、方法、字段等附加信息
-注解在编译时, 编译器会把它编译成一个特殊的接口，并且它继承自 java.lang.annotation.Annotation， 编译后保留在class文件里, 运行时能看到。
-注解在运行时, 通过反射拿到的注解对象，其实是一个动态代理实例。
+注解的定义：
+Java 注解（Annotation），也叫元数据（Metadata），是 JDK 1.5 引入的特性。通俗来说，它就像是给 Java 代码贴上的“标签”。这些标签本身不会直接影响代码的运行逻辑，但编译器、开发工具或框架可以在编译、类加载或运行阶段读取这些标签信息，从而执行特定的处理。
+从本质上看，注解是一种特殊的接口，它默认继承自 java.lang.annotation.Annotation 接口，所以需要通过import语句，来引入注解，然后才能使用注解。
+
+注解的使用
+@注解名(注解属性名 = 值)
+若注解里有属姓名是默认值value的时候，给这个属性赋值可以省略属性名直接写值。
+
+注解的三个阶段
+源码阶段：你写java文件, 注解在java里
+编译阶段: javac把java编译成class文件, 注解可能被写进class里
+运行阶段: jvm加载class文件, 注解可能还在jvm内存中, 能被反射读到。
+
+四个元注解一览
+@Target、@Retention、@Documented、@Inherited
+@Retention注解 决定注解的存活时间。
+@Target注解 决定注解能写到谁前面。
+@Documented注解 决定能不能被包含在生成的 Javadoc 文档中 取决于。
+@Inherited注解 声明当前的Java类型是Annotation。
+
+注解接口里的属性声明介绍
+属性 属性名() default "";
