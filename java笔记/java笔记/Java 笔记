@@ -1063,44 +1063,6 @@ ExecutorService实例.submit();
 
 annotation
 {///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-2
-@Target({ 值, 值...})介绍
-java.lang.annotation.Target。
-它用来限制该注解能应用在哪些 Java 元素上（如类、方法、字段、参数等）。
-这个注解只有一个数组属性，里面的值可以用来限制注解的目标范围，可以同时设定多个范围。
-它需要写到类前面。
-
-@Target 值介绍
-它有四个值在java.lang.annotation.ElementType中。
-ElementType.TYPE可以作用于类、接口类、枚举类上
-ElementType.FIELD可以作用于类的属性上
-ElementType.METHOD可以作用于类的方法上
-ElementType.PARAMETER可以作用于类的参数
-
-@Retention(值) 介绍
-java.lang.annotation.Retention
-指定注解的“生命周期”（保留策略）。分为 SOURCE（仅源码阶段）、CLASS（保留在字节码中，默认值）和 RUNTIME（运行时保留，可通过反射读取，框架最常用）。
-它只能填 一个值。
-它需要写到类前面。
-
-@Retention 值介绍
-它有三个值在java.lang.annotation.RetentionPolicy枚举类中。
-RetentionPolicy.SOURCE:也就是说是纯注释作用
-RetentionPolicy.CLASS:也就是在编译阶段是有效的
-RetentionPolicy.RUNTIME: 运行时有效
-
-@Documentted 介绍
-java.lang.annotation.Documented
-它表明该注解应被包含在生成的 Javadoc 文档中。
-它没有值。
-它需要写到类前面。
-
-@interface
-该注解可以直接使用，不需要通过import引入
-它的作用就是声明当前的Java类型是Annotation。
-它没有值。
-它需要写到类名前面，修饰符后面。
-
 3
 @AliasFor("别名")
 这个注解可以写到注解里属性的前面，注意是 定义注解的前面，用以表示这个属性还有另一个属性名。
