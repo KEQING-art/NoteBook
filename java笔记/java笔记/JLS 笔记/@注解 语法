@@ -6,10 +6,10 @@ Java 注解（Annotation），也叫元数据（Metadata），是 JDK 1.5 引入
 @注解名(注解属性名 = 值)
 若注解里有属姓名是默认值value的时候，给这个属性赋值可以省略属性名直接写值。
 
-注解的三个阶段
-源码阶段：你写java文件, 注解在java里
-编译阶段: javac把java编译成class文件, 注解可能被写进class里
-运行阶段: jvm加载class文件, 注解可能还在jvm内存中, 能被反射读到。
+注解的三个阶段（这三个阶段由Retention 控制）
+SOURCE（仅源码阶段）
+CLASS（保留在字节码中，默认值）
+RUNTIME（运行时保留，可通过反射读取，框架最常用）。
 
 四个元注解一览
 @Target、@Retention、@Documented、@Inherited
