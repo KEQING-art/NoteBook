@@ -1,28 +1,37 @@
 @Autowired 注解的全限定名
 org.springframework.beans.factory.annotation.Autowired
 
+@Aurowired 的执行类
+执行Autowired 注解的是IOC容器的AutowiredAnnotationBeanPostProcessor 类, 若是它不在@Autowired注解不会被相应
+
 @Autowired 注解可以写在谁前面？
 它可以写在字段、方法(构造方法也可以)前面。
 
-它写在字段前的作用
+注入字段的方式
 Spring 容器在运行时自动将匹配的 Bean 注入到目标类的字段。
-若是在IOC容器找到了对应单例等情况, 完成依赖注入。
+
+注入字段失败的情况
 若是没找到 一个对应的bean 或 找到多个无法确定主次的bean, 报错。
 
-它写在构造方法前的作用
-它可以指定, IOC容器在new 时, 使用哪个构造方法, 然后调用该方法, 往函数参数上传bean。
-注意: 在Spring 4.3+：一个类只有一个构造器时， @Autowired 可以省略。
+注入字段能注入private 字段
+private 字段也能注入, 这是因为反射可以突破访问限制。
 
-它写在普通方法前的作用
+注入字段能注入final 字段
+final 字段不该被注入, 尽管你注入没问题。
+
+注入字段不能注入static 的字段
+static 字段属于类本身, 不能被注入, 注入是给"某个对象塞值"
+
+注入构造方法的方式 
+它可以指定, IOC容器在new 时, 使用哪个构造方法, 然后调用该方法, 往函数参数上传bean。
+注意: 在Spring 4.3+：一个类只有一个有参构造器时， @Autowired 可以省略。
+
+注入构造方法失败的情况
+若是没找到 一个对应的bean 或 找到多个无法确定主次的bean, 报错。
+
+注入普通方法的方式
 Spring 容器在运行时调用指定方法, 往方法参数里注入bean，从而避免手动创建对象或显式调用赋值方法，实现控制反转（IoC）和依赖注入（DI）。 
 
 它的用法
 @Autowired, @Autowired(required = 值)
 这里的required 代表如果找不到（一个都找不到）是否注入null, 它的值是Boolean
-
-注意: 
-执行Autowired 注解的是AutowiredAnnotationBeanPostProcessor 类, 若是它不在@Autowired注解不会被相应
-private 字段也能注入, 这是因为反射可以突破访问限制。
-final 字段不该被注入, 尽管你注入没问题。
-static 字段属于类本身, 不能被注入, 注入是给"某个对象塞值"
-
