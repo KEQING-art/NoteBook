@@ -81,12 +81,16 @@ Annotation 类型的 IoC容器
 它的类是org.springframework.context.annotation.AnnotationConfigApplicationContext
 它是容器的实现类，它通过层层继承最终实现了 ApplicationContext 接口，从而具备了容器所需的所有功能。
 
-Annotation 类型的 IoC容器的实例化
-ApplicationContext context = new AnnotationConfigApplicationContext("包名"/Class clazz);
-若括号里的是包名，容器启动会扫描包内的IOC目标类，并且会自动加载包下的目标类。                //目标类是被spring 的@service、@Component、@Controller、@Reposity 注解修饰的类。
-若括号里的是JVM 类(配置类), 容器启动会获取配置类的@ComponentScan 里的信息，然后去扫描，并且会自动加载包下的目标类。
+Annotation IOC容器的构造方法
+new AnnotationConfigApplicationContext("包名"/Class clazz);
+这个方法会返回一个Annotation IOC类型容器的实例, 同时Annotation IOC类型容器的实例化时, 会根据括号的内容实例化指定包下的IOC目标类。  //目标类是被spring 的@service、@Component、@Controller、@Reposity 注解修饰的类。
+若括号里的是包名，容器启动会扫描包内的IOC目标类，并且会自动加载包下的目标类。               
+若括号里的是JVM 类(配置类), 容器启动会获取配置类的@ComponentScan 里的信息，然后去扫描并且会自动new包下的目标类。
 
-下面介绍的是spring 的annotation 容器是如何完成目标类实例化，以及依赖注入
+annotation IOC容器实例化IOC目标类的规则
+默认调用目标类的无参构造, 若是没有无参构造，又没用@Autowired 指定使用构造, 那么会报错。
+
+annotation IOC容器实例化, 完成目标类实例化，以及依赖注入的步骤
 1. 启动容器：Spring 扫描 @ComponentScan 指定包下的所有类
 2. 读类注解：对每个类用反射检查 isAnnotationPresent(Component.class),  命中 @Component （或 @Service / @Repository / @Controller ）, 在定义表里记一笔
 3. 实例化：定义收齐后才开始按表创建。单例且非懒加载的此刻就造；多例和懒加载的等被用到时再造。
