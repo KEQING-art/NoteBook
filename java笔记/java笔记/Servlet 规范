@@ -199,11 +199,11 @@ HttpServletRequest实例.getContextPath();
 
 HttpServletRequest 接口的setAttribute()方法
 HttpServletRequest 实例.setAttribute("属性名", 属性值);
-这个方法可以给HttpServletRequest实例的属性修改值。
+这个方法可以让服务端能够给HttpServletRequest实例的属性修改或增加值。
 
 HttpServletRequest 接口的getAttribute()方法
 HttpServletRequest 实例.getAttribute(属性名);
-这个方法可以返回HttpServletRequest实例的属性值, 返回的值是Object类型。
+这个方法可以但会HttpServletRequest实例的服务端设置的属性值(setAttribute), 返回的值是Object类型。
 
 HttpServletRequest 接口的getRequestDispatcher()方法
 HttpServletRequest 实例.getRequestDispatcher("/目标路径");
