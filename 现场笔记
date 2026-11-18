@@ -56,3 +56,9 @@ scope 的意思是作用域, application 文件中, 可以设置bean 懒加载�
 setter 注入, 构造器注入
 
 properties文件
+
+
+GET 请求可以被浏览器缓存，POST 请求默认不缓存?
+线程是操作系统分配资源的基本单位?
+进程是 CPU 调度的基本单位?
+默认情况下（即不设置任何过期属性），Cookie 是会话 Cookie，浏览器关闭后立即被删除。所以选 B。
