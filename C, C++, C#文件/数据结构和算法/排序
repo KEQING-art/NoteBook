@@ -1,0 +1,103 @@
+
+排序
+{///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+插入排序
+public static void insertSort(int[] array)   //传入一个数组
+for(int i = 1;i < array.length;i++){  //从一开始遍历
+  int j = i - 1;
+  int num = array[i];
+
+while(j >= 0 &&  array[j] > num){  //边对比 ， 边位移
+  array[j + 1] = array[j];
+  j--;
+}
+
+array[j + 1] = num;  // 插入
+}
+
+冒泡排序
+public static void Sort(int[] array) 
+for(int i = 0;i < array.lenth - 1;i++){
+  for(int j = i + 1;j < array.lenth;j ++){ 
+     if(array[j] < array[i]) {array[j] += array[i]; array[i] = array[j] - array[i] ; array[j] -= array[i]}
+  }
+}
+
+选择排序
+public static void Sort(int[] array) 
+for(int i = 0;i < array.lenth - 2;i++){
+  int index = i;
+  for(int j = i + 1;j < array.lenth;j ++){ 
+     if(array[j] < array[i]) {index = j}
+  }
+  int temp ; temp = array[i]; array[i] = array[index] ; array[index] = temp; 
+}
+
+归并排序
+(这个排序极其稳定 ， 能较好的处理大量的数据，百万级别以上)
+public static int[] Sort(int[] array){
+  if(array.length = 1) return array; //数组内容只剩一个时，返回值
+  int mid = array.length/2;
+  int[] left = Sort(subArray(array,0,mid));
+  int[] right = Sort(subArray(array,mid + 1, array.length))
+  
+  int index = 0;
+  int index_left = 0;
+  int index_right = 0;
+
+  while(index_left < left.length && index_right < right.length){ //将数据一一填上去
+    if(left[index_left] <= right[index_right]){array[index++] = left[index_left++];}
+    else{array[inde++] = right[index_right++];} 
+
+    if(index_right < right.length){array[index++] = right[index_right++];} //检查剩余有没有数据美填上去
+    if(index_left < left.length){array[index++] = right[index_left++];}
+  }
+  return array;
+}
+
+piublic static int[] subArray(int[] array,int left ,int right){  //选取一个数组的片段
+  int[] result = new int[right - left + 1];
+
+  int i = 0;
+  while(left <= right){result[i++] = array[left++];}
+  return result; 
+}
+
+
+
+快速排序：
+    public static void Sort(int[] array){
+        quickSort(array,0,array.length - 1);
+    }
+    public static void quickSort(int[] array,int left,int right){
+        if(left == right){
+            return ;
+        }
+
+        int pivotIndex = right;
+
+        int index_left = left;
+        int index_right = right - 1;
+        while(index_left < index_right){
+            if(array[index_left] > array[pivotIndex]){
+
+                while(index_left < index_right){
+                    if(array[index_right] < array[pivotIndex]){
+                        int temp = array[index_left];
+                        array[index_left] = array[index_right];
+                        array[index_right] = temp;
+                        break;
+                    }
+                    index_right--;
+                }
+            }
+            index_left++;
+        }
+        int temp = array[index_left];
+        array[index_left] = array[pivotIndex];
+        array[pivotIndex] = temp;
+        quickSort(array,left,index_left - 1);
+        quickSort(array,index_left + 1,right);
+    }
+}//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
