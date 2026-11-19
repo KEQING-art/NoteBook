@@ -1,0 +1,62 @@
+查找
+{/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+二分查找
+二分查找适用于数组是降序或升序的情况
+
+二分查找用法：
+我们必须有一个有顺序的数组  
+int left = 0; int right = array.length - 1;  //我们把这个首位标记起来
+while(left <= right){   //left 小于 right 是为了保证目标值一直在 left-> right 的范围里面
+  int mid = left + (right - left)/2  // 算出中点  ， 中点只可能在left 和right之内
+  middleValue == aim return middle;  // 下面两步 每一次判断都会舍去不可能存在的区域 ， 直到舍掉全部的点  ， 最后返回mid 
+  middleValue >= aim ;
+  middleValue <= aim ;  
+}
+
+二分查找可以解决有序字符串查找问题
+  public static int find(ArrayList<String> array, String aim) {
+    int left = 0;
+    int right = array.size();
+    while(left <= right){
+      int mid = left + (right - left)/2;
+      if(array.get(mid).compareTo(aim) == 0) {return mid;}
+      else if(array.get(mid).compareTo(aim) < 0) {left = mid + 1;}
+      else{right = mid - 1;}
+    }
+    return -1;
+  }
+
+快速查找
+    public static int quickFind(int[] array,int aim){
+        int left = 0;
+        int right = array.length - 1;
+        return quick(array,aim - 1,left,right);
+    }
+    public static int quick(int[] array,int aim,int left,int right){ //
+        if(left == right) return array[left];  // 终结函数
+
+        int pivotIndex = partion(array,left,right); // 将函数大体排序好后 ， 得出排序好的下标 
+
+        if(pivotIndex == aim) return array[pivotIndex]; 
+        else if (pivotIndex < aim) return quick(array, aim, pivotIndex + 1, right);
+        else return quick(array,aim,left,pivotIndex - 1);
+    }
+
+    public static int partion(int[] array, int left,int right){ // 排序函数 ， 检查除最后一个外的数据 ， 大的放前面 ， 小的放后面，然后排号 i
+        int i = left;
+        int pivot = array[right];
+
+        for(int j = left;j < right;j++){
+            if(array[j] >= pivot) {swap(array,i,j); i++;}
+        }
+
+        swap(array,i,right);
+        return i;
+    }
+
+    public static void swap(int[] array,int i,int j){ 交换函数
+        int temp = array[i];
+        array[i] = array[j];
+        array[j] = temp;
+    }
+}//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
