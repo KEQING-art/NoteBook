@@ -1,1 +1,14 @@
+@Resource 设置位置
+它可以写在， 字段方法前。
 
+@Resource 注解的作用
+spring 支持了 @Resource, spring 容器在启动时，会识别 @Resource 注解, 进行依赖注入, 它在注入策略是先按名称(bean id)找，找不到再按类型。
+
+@Resource 的name属性
+这个属性代表要去寻找的bean id。 
+
+@Resource 注入字段的注入规则
+若是写了 name → 按 name 找。
+若是没写 name → 拿字段名当 bean id 去找。
+若思同名的找不到 → 再退一步按类型找。
+ 
