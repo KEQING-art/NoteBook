@@ -1,0 +1,15 @@
+Pip 相当于Maven, 它是 Python 官方标配的包管理器，负责从中央仓库（PyPI）下载、安装和管理第三方依赖库。
+pip 安装的包，最终都会存放在当前 Python 环境的 site-packages 目录下（类似于 Maven 的本地仓库 ~/.m2/repository）。
+如果你使用了虚拟环境（venv），pip 就会把包隔离安装在项目目录下，互不干扰。
+
+pip show 包名 命令
+这个命令的作用是查询当前 Python 环境中某个已安装包的详细元数据信息。
+会展示出一下信息。
+Name / Version：包的名称和当前安装的版本号。
+Summary / Home-page / Author / License：包的简介、主页、作者和许可证等基础元数据。
+Location：非常关键的字段，显示该包在硬盘上的具体安装路径。如果你在使用虚拟环境（venv），这里会指向项目目录下的 .venv\Lib\site-packages，而不是全局 Python 目录，这可以用来验证包是否装对了地方8。
+Requires：列出这个包依赖了哪些其他包（例如 requests 依赖 certifi、urllib3 等）34。
+Required-by：列出哪些其他包依赖了这个包，在排查依赖冲突时非常有用
+
+pip list 命令
+这个命令的作用是列出当前环境里所有已安装的包和版本号，是一个“总览”。。
