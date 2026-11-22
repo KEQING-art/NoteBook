@@ -16,3 +16,9 @@ pip list 命令
 
 pip install 包名
 这个命令的作用是从中央仓库下载第三方依赖库。
+
+pip install -U 包名
+这个命令添加 -U 的作用是安装或升级指定的 Python 包到最新可用版本。
+
+pip install -U 包名 --upgrade-strategy eager
+这个命令添加 -U 的作用是安装或升级指定的 Python 包到最新可用版本, 并把它的依赖项也一并升级到满足要求的最新版本。。
