@@ -48,15 +48,17 @@ ${basedir}/src/test/resources                 测试使用的资源
 
 pom 文件的 packaging 标签
 {///////////////////////////////////////////////////////////////////////////////////
-packaging 的作用: <packaging> 用来声明这个项目打包成什么类型的构件（artifact），也就是告诉 Maven「我最后要产出什么格式的文件」。
+packaging 的作用: 
+<packaging> 用来声明这个项目打包成什么类型的构件（artifact），也就是告诉 Maven「我最后要产出什么格式的文件」。
 
 pacaging 默认值：
 jar, 这意味着，不主动定义这个标签, 项目会打包成jar。
 
-packaging 的war 值:
-eb 内容（WEB-INF、JSP、静态资源、依赖的 lib 等）按 Web 应用目录结构打成 xxx.war，可直接扔进 Tomcat 部署。
+packaging 的war 值的作用:
+1.使用mvn package 命令会将, web 内容（WEB-INF、JSP、静态资源、依赖的 lib 等）按 Web 应用目录结构打成 xxx.war，可直接扔进 Tomcat 部署。
+2.idea 每次加载maven, 会根据maven使用的mvn-war-plugin的warSourceDirectory配置，将指定文件变成web资源目录。
 
-packaging 的pom 值:
+packaging 的pom 值的作用:
 聚合工程（父工程）、BOM 依赖管理，只做管理不产包
 {///////////////////////////////////////////////////////////////////////////////////
 
@@ -171,7 +173,22 @@ configuration 标签的配置
 
 maven-war-plugin 插件
 {///////////////////////////////////////////////////////////////////////////////////
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-war-plugin</artifactId>
+    <version>3.4.0</version>
+</plugin>
 
+maven-war-plugin 插件作用:
+它是 Maven 官方提供的 Web 应用打包插件, 它能把项目打包成 .war 文件，用于部署到外部 Servlet 容器（如 Tomcat）。
+只有当 <packaging>war</packaging> 时，这个插件才真正参与打包（Maven 会默认绑定 war 插件）。如果你的项目是 jar，war 插件不会执行。
+
+显性声明maven-war-plugin 插件的作用:
+可以指定使用什么配置的插件, 和指定版本的插件。
+若没有显性声明,  Maven 会用自己的内置版本的插件。
+
+configuration 标签的配置
+<warSourceDirectory>web Resource Directory 目录</warSourceDirectory>，这个路径是从src开始的, 如果不写这个配置默认值是src/main/webapp。 //注意指定文件夹下一定要有WEB-INF 文件。
 {///////////////////////////////////////////////////////////////////////////////////
 
 
