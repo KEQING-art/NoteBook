@@ -1,0 +1,29 @@
+SpringWeebmvc 的依赖
+{///////////////////////////////////////////////////////////////////////////////////
+<dependency>
+  <groupId>org.springframework</groupId>
+  <artifactId>spring-webmvc</artifactId>
+  <version>6.2.19</version>
+</dependency>
+{///////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+spring-webmvc 的定位和作用
+{///////////////////////////////////////////////////////////////////////////////////
+它是 Spring 的 Web MVC 模块，也就是我们常说的 Spring MVC 框架本体，用来构建基于 Servlet 的 Web 应用（接收 HTTP 请求、分发到 Controller、返回页面或 JSON）。
+它按「前端控制器（DispatcherServlet）→ HandlerMapping → Controller → 视图解析」这套流程处理 Web 请求，帮你把「HTTP 请求」和「Java 代码」对接起来，而不用手写 Servlet。
+{///////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+spring-webmvc 和 spring-web的关系
+{///////////////////////////////////////////////////////////////////////////////////
+spring-web：底层 Web 基础模块，提供 RestTemplate、HttpMessageConverter、WebApplicationContext 等通用能力，不包含 MVC 框架。
+spring-webmvc：在 spring-web 之上构建的完整 MVC 框架（DispatcherServlet、Controller 注解等），并且它内部依赖 spring-web。
+所以只要引入 spring-webmvc，spring-web 会作为传递依赖自动进来，通常不用单独声明.
+{///////////////////////////////////////////////////////////////////////////////////
