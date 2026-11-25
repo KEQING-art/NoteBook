@@ -307,3 +307,33 @@ void ShortestPath_DIJ(AMGraph G,int v0){
   }
 }
 {/////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+拓补排序
+{/////////////////////////////////////////////////////////////////////////////////////////////////
+拓扑排序原理
+对于一个
+
+C源码
+Status TopologicalSort(ALGraph G,int topo[]){
+  int i,k,m; ArcNode *p; SqStack S;
+  FindInDegree(G,indegree); InitStack(S);
+  for(i=0;i<G.vexnum;++i)
+    if(!indegree[i]) Push(S,i);
+  m=0;
+  while(!StackEmpty(S)){
+    Pop(S,i); topo[m]=i; ++m;
+    p=G.vertices[i].firstarc;
+    while(p!=NULL){
+      k=p->adjvex; --indegree[k];
+      if(indegree[k]==0) Push(S,k);
+      p=p->nextarc;
+    }
+  }
+  if(m<G.vexnum) return ERROR;
+  else return OK;
+{/////////////////////////////////////////////////////////////////////////////////////////////////
+}
