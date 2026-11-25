@@ -107,6 +107,10 @@ pom 文件的dependency 标签
 {///////////////////////////////////////////////////////////////////////////////////
 dependency 标签的作用: 每一个dependency内部 其实就是一个maven坐标, 对应着一个jar包。
 
+冗余依赖会怎么样:
+1.同一个 jar 被两条路径引入，深度不同, 选路径近的那个
+2.同一个 jar 被两条路径引入，深度相同（都是直接声明），选pom 里先出现的那个
+
 第三方库和第二方库: 别人写的dependency 称为第三方库， 我们自己写的称为第二方库
 {///////////////////////////////////////////////////////////////////////////////////
 
@@ -209,6 +213,10 @@ maven 的mvn clean installmvn 命令
 
 maven 的mvn compile exec:java -Dexec.mainClass=${main} 命令
 这个命令的意思是在compile执行完后，执行运行Java的命令，具体执行哪个Java类是由-Dexec.mainclass=${main} 参数指定的，比如我们想执行com.youkeda.Test类，那么这个完整的命令就是mvn compile exec:java -Dexec.mainClass=com.youkeda.Test
+
+用 mvn dependency:tree 能看到被选中的版本，
+
+用 mvn dependency:analyze 能看到冗余和冲突。
 
 5
 pom文件介绍
